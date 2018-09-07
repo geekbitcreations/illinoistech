@@ -107,21 +107,35 @@
     var num1 = document.getElementById("val1").value;
     var num2 = document.getElementById("val2").value;
     var total = document.getElementById("results").value;
+    var letters = /^[0-9a-zA-Z]+$/;
+    var nonNum = /^[\d]/;
 		
-    if (num1 == "" || num2 == "")
+    /*function required()
     {
-      alert("Error: Either value1 or value2 are blank.");
-    }
-    
-    else if (isNaN(num1) || isNaN(num2))
-    {
-      alert("Error: Either value1 or value2 does not contain a real number.");
-    }
-    
-    else if (num1 == undefined || num2 == undefined)
-    {
-      alert("Error: Either a letter or non-number was entered in value1 or value2.");
-    }
+      // Check if the input for value1 or value2 is empty.
+      if (num1 == "" || num2 == "")
+      {
+        alert("Error: Either value1 or value2 are blank.");
+      }
+      
+      // Check if the input for value1 or value2 is not a number.
+      else if (isNaN(num1) || isNaN(num2))
+      {
+        alert("Error: Either value1 or value2 does not contain a real number.");
+      }
+      
+      // Check if the input for value1 or value2 are letters.
+      else if (num1 == letters || num2 == letters)
+      {
+        alert("Error: Either a letter or non-number was entered in value1 or value2.");
+      }
+      
+      // Check if the input for value1 or value2 are non-number characters.
+      else if (num1 == nonNum || num2 == nonNum)
+      {
+        alert("Error: Either a letter or non-number was entered in value1 or value2.");
+      }
+    }*/
     
     addBtn.addEventListener("click", addition);
     subBtn.addEventListener("click", subtraction);
@@ -163,7 +177,9 @@
     
     function clear()
     {
-      
+      document.getElementById("val1").value = "";
+      document.getElementById("val2").value = "";
+      document.getElementById("results").innerHTML = "";
     }
 
 		// End JavaScript Code Here - Do not put JavaScript outside these comments.
