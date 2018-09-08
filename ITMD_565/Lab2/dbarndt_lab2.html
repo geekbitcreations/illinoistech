@@ -107,35 +107,33 @@
     var num1 = document.getElementById("val1").value;
     var num2 = document.getElementById("val2").value;
     var total = document.getElementById("results").value;
-    var letters = /^[0-9a-zA-Z]+$/;
-    var nonNum = /^[\d]/;
+    //var letters = /[a-zA-Z]/;
 		
-    /*function required()
+    function required()
     {
       // Check if the input for value1 or value2 is empty.
       if (num1 == "" || num2 == "")
       {
-        alert("Error: Either value1 or value2 are blank.");
+      alert("Error: Either value1 or value2 are blank.");
       }
       
       // Check if the input for value1 or value2 is not a number.
       else if (isNaN(num1) || isNaN(num2))
       {
-        alert("Error: Either value1 or value2 does not contain a real number.");
+        alert("Error NaN: Either a letter or non-number was entered in value1 or value2.");
       }
       
-      // Check if the input for value1 or value2 are letters.
-      else if (num1 == letters || num2 == letters)
+      // Check if the input for value1 or value2 are letters or non-number characters.
+      else if (Number(num1) || Number(num2))
       {
         alert("Error: Either a letter or non-number was entered in value1 or value2.");
-      }
+      }      
       
-      // Check if the input for value1 or value2 are non-number characters.
-      else if (num1 == nonNum || num2 == nonNum)
+      else
       {
-        alert("Error: Either a letter or non-number was entered in value1 or value2.");
+        return true;
       }
-    }*/
+    }
     
     addBtn.addEventListener("click", addition);
     subBtn.addEventListener("click", subtraction);
@@ -145,33 +143,53 @@
     
     function addition()
     {
+      document.getElementById("results").innerHTML = "";
       num1 = Number(document.getElementById("val1").value);
       num2 = Number(document.getElementById("val2").value);
-      total = document.getElementById("results").innerHTML = num1 + num2;
+      
+      if(required())
+      {
+        total = document.getElementById("results").innerHTML = num1 + num2;
+      }
       console.log(total);
     }
     
     function subtraction()
     {
+      document.getElementById("results").innerHTML = "";
       num1 = Number(document.getElementById("val1").value);
       num2 = Number(document.getElementById("val2").value);
-      total = document.getElementById("results").innerHTML = num1 - num2;
+      
+      if(required())
+      {
+        total = document.getElementById("results").innerHTML = num1 - num2;
+      }
       console.log(total);
     }
     
     function multiply()
     {
+      document.getElementById("results").innerHTML = "";
       num1 = Number(document.getElementById("val1").value);
       num2 = Number(document.getElementById("val2").value);
-      total = document.getElementById("results").innerHTML = num1 * num2;
+      
+      if(required())
+      {
+        total = document.getElementById("results").innerHTML = num1 * num2;
+      }
       console.log(total);
     }
     
     function divide()
     {
+      document.getElementById("results").innerHTML = "";
       num1 = Number(document.getElementById("val1").value);
       num2 = Number(document.getElementById("val2").value);
-      total = document.getElementById("results").innerHTML = num1 / num2;
+      
+      if(required())
+      {
+        total = document.getElementById("results").innerHTML = num1 / num2;
+      }
       console.log(total);
     }
     
