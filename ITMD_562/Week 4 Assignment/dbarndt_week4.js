@@ -32,25 +32,25 @@
 function sumCongruentModulo(inputArray, divisor, remainder) 
 {   
   let sum = 0;
-  let x = 0;
+  let geekitem = 0;
   
   // For loop to go through each of the array elements for the length of the array.
-  /*for (x = 0; x < inputArray.length; x++)
+  /*for (geekitem = 0; geekitem < inputArray.length; geekitem++)
   {
     // Check to see if the array element % the divisor equals the remainder, and add each of the elements that qualify.
-    if (inputArray[x] % divisor === remainder)
+    if (inputArray[geekitem] % divisor === remainder)
     {
-      sum+= inputArray[x];
+      sum+= inputArray[geekitem];
     }
   }*/
   
   // Array forEach method to go through each of the array elements.
-  inputArray.forEach(function(x)
+  inputArray.forEach(function(geekitem)
   {
     // Check to see if the array element % the divisor equals the remainder, and add each of the elements that qualify.
-    if (inputArray[x] % divisor === remainder)
+    if (geekitem % divisor === remainder)
     {
-      sum+= inputArray[x];
+      sum+= geekitem;
     }
   })
   
