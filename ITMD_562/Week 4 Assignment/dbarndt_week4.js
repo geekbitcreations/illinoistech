@@ -31,25 +31,31 @@
 
 function sumCongruentModulo(inputArray, divisor, remainder) 
 {   
-  /*sum = 0;
+  let sum = 0;
+  let x = 0;
   
-  for (x = 0; x < inputArray.length; x++)
+  // For loop to go through each of the array elements for the length of the array.
+  /*for (x = 0; x < inputArray.length; x++)
   {
-    if (inputArray[x] % divisor == remainder)
+    // Check to see if the array element % the divisor equals the remainder, and add each of the elements that qualify.
+    if (inputArray[x] % divisor === remainder)
     {
       sum+= inputArray[x];
     }
-  }
+  }*/
   
-  return sum;*/
-  
-  inputArray.forEach(sumCongruentModulo(x, divisor))
+  // Array forEach method to go through each of the array elements.
+  inputArray.forEach(function(x)
   {
-    if (x[divisor] === remainder)
+    // Check to see if the array element % the divisor equals the remainder, and add each of the elements that qualify.
+    if (inputArray[x] % divisor === remainder)
     {
       sum+= inputArray[x];
     }
-  }
+  })
+  
+  // Display the result of the sum of each of the elements.
+  return sum;
 }
   
 console.log(sumCongruentModulo([1, 2, 3, 6], 3, 0)); // Should log 9
