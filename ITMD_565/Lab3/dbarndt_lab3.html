@@ -138,13 +138,24 @@
 		var descrip = document.getElementById("bodyInput").value;
     var quantity = Number(document.getElementById("qtyInput").value);
 		var color = document.getElementById("colorInput").value;
-		var results = document.getElementById("resultsWrapper").value;
-
-		runBtn.addEventListener("click", runLab);
-		resetBtn.addEventListener("click", resetResults);
-
+		//var results = document.getElementById("resultsWrapper").value;
+				
 		function runLab ()
 		{
+			var headline = document.createElement("h2");
+			var headText = document.createTextNode("Item " + results[geekitem]);
+			headline.appendChild(headText);
+			results.appendChild(headline);
+
+			var results = document.createElement("ul");
+			results.id = "output";
+			resultsWrapper.appendChild(results);
+			
+			var deleteBtn = document.createElement("button");
+			deleteBtn.id = "deleteBtn";
+			deleteBtn.appendChild(document.createTextNode("Delete"));
+			document.getElementById(deleteBtn).addEventListener("click", deleteItem);
+		
 			// Check if the input for the bodyInput and qtyInput is empty.
       if (descrip === "" || quantity === "")
       {
@@ -169,9 +180,15 @@
 				document.getElementById("resetBtn").disabled = true;
 			}
 
-			// For loop to go through each of the array elements for the length of the array.
+			// For loop 
 			for (geekitem = 1; geekitem < results; geekitem++)
 			{
+				var textIn = document.getElementById("bodyInput").value;
+				var geekitem = document.createElement("li");
+				geekitem.appendChild(document.createTextNode(textIn));
+				document.getElementById("results").appendChild(geekitem);
+				document.getElementById("bodyInput").value = "";
+				
 				results += geekitem++;
 				return results;
 			}
@@ -181,9 +198,17 @@
 		{
 			document.getElementById("bodyInput").value = "";
 			document.getElementById("qtyInput").value = "";
-			document.getElementById("colorInput").value = "";
+			document.getElementById("colorInput").value = "red";
       document.getElementById("resultsWrapper").innerHTML = "";
 		}
+
+		function deleteItem ()
+		{
+			document.getElementById("geekitem").parentNode.removeChild(document.getElementById("geekitem[]"));
+		}
+		
+		runBtn.addEventListener("click", runLab);
+		resetBtn.addEventListener("click", resetResults);
 		// End JavaScript Code Here - Do not put JavaScript outside these comments.
 	</script>
 
