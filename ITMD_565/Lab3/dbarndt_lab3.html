@@ -183,6 +183,12 @@
 			// For loop 
 			for (geekitem = 1; geekitem < results; geekitem++)
 			{
+				var textIn = document.getElementById("bodyInput").value;
+				var geekitem = document.createElement("li");
+				geekitem.appendChild(document.createTextNode(textIn));
+				document.getElementById("results").appendChild(geekitem);
+				document.getElementById("bodyInput").value = "";
+				
 				results += geekitem++;
 				return results;
 			}
@@ -198,7 +204,7 @@
 
 		function deleteItem ()
 		{
-
+			document.getElementById("geekitem").parentNode.removeChild(document.getElementById("geekitem[]"));
 		}
 		
 		runBtn.addEventListener("click", runLab);
