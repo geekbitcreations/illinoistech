@@ -4,7 +4,11 @@
 	Professor Brian Bailey
 	Lab 3
 	9-20-18
-   
+	 
+	This program will take input from the user, then display the number of
+	items that the user entered and in the color that was selected. Then it
+	will allow the user to delete an item from the results.
+
 	Introduction:
 		This lab will have you try to implement some of the JavaScript syntax 
 		and basic DOM manipulation.
@@ -136,64 +140,82 @@
 	<script type="text/javascript">
 		// Begin JavaScript Code Here - Do not put JavaScript outside these comments.
 		var descrip = document.getElementById("bodyInput").value;
-    var quantity = Number(document.getElementById("qtyInput").value);
+    var quantity = document.getElementById("qtyInput").value;
 		var color = document.getElementById("colorInput").value;
-		//var results = document.getElementById("resultsWrapper").value;
-				
+		var output = document.getElementById("resultsWrapper").value;
+		
+		document.getElementById("resetBtn").disabled = true;
+		
+		// Function to take in the input from the user and display the number of items.		
 		function runLab ()
 		{
-			var headline = document.createElement("h2");
-			var headText = document.createTextNode("Item " + results[geekitem]);
-			headline.appendChild(headText);
-			results.appendChild(headline);
-
-			var results = document.createElement("ul");
-			results.id = "output";
-			resultsWrapper.appendChild(results);
+			var descrip = document.getElementById("bodyInput").value;
+			var quantity = document.getElementById("qtyInput").value;
+			var color = document.getElementById("colorInput").value;
+			var output = document.getElementById("resultsWrapper").value;
 			
-			var deleteBtn = document.createElement("button");
-			deleteBtn.id = "deleteBtn";
-			deleteBtn.appendChild(document.createTextNode("Delete"));
-			document.getElementById(deleteBtn).addEventListener("click", deleteItem);
-		
+			document.getElementById("resetBtn").disabled = false;
+
 			// Check if the input for the bodyInput and qtyInput is empty.
       if (descrip === "" || quantity === "")
       {
 				alert("Please enter the description and the quantity of the items.");
+				
 				return false;
       }
       
       // Check if the input for quantity is a positive number.
-      else if (Number.isNaN(quantity) || Number(quantity) > 0)
+      else if (Number(quantity) < 0)
       {
 				alert("The quantity needs to be a number and above 0. Please enter the quantity.");
 				return false;
-      }      
+			}
+			
+			// Check to see if the quantity entered is not a number.
+			else if (isNaN(quantity))
+			{
+				alert("The quantity needs to be a number.");
+				return false;
+			}
       
       else
       {
-				return true;
-			}
-			
-			function disableButton ()
-			{
-				document.getElementById("resetBtn").disabled = true;
-			}
-
-			// For loop 
-			for (geekitem = 1; geekitem < results; geekitem++)
-			{
-				var textIn = document.getElementById("bodyInput").value;
-				var geekitem = document.createElement("li");
-				geekitem.appendChild(document.createTextNode(textIn));
-				document.getElementById("results").appendChild(geekitem);
-				document.getElementById("bodyInput").value = "";
-				
-				results += geekitem++;
-				return results;
-			}
+				// For loop to take in the input text and display in the results.
+				for (x = 1; x <= quantity; x++)
+				{
+					// Create a border around each item in the resultsWrapper.
+					/*var border = document.createElement("border");
+					var bordercolor = document.createTextNode(color);
+					border.appendChild(bordercolor);
+					var bordelement = document.getElementById("resultsWrapper");
+					bordelement.appendChild(border);*/
+					document.div.style.border = 'color';
+					
+					
+					// Create the h2 heading for the resultsWrapper.
+					var heading = document.createElement("h2");
+					var headingnode = document.createTextNode("Item " + x);
+					heading.appendChild(headingnode);
+					var headelement = document.getElementById("resultsWrapper");
+					headelement.appendChild(heading);
+					
+					// Create the paragraph for the bodyInput in the resultsWrapper.
+					var para = document.createElement("p");
+					var paranode = document.createTextNode(descrip);
+					para.appendChild(paranode);
+					var paraelement = document.getElementById("resultsWrapper");
+					paraelement.appendChild(para);
+					
+					// Create the delete button for the items in the resultsWrapper.
+					var deleteBtn = document.createElement("button");
+					var btnText = document.createTextNode("Delete");
+					deleteBtn.appendChild(btnText);
+					resultsWrapper.appendChild(deleteBtn);
+				}
+			}	
 		}
-
+			
+		// Function to reset the inputs when the reset button is pushed.
 		function resetResults ()
 		{
 			document.getElementById("bodyInput").value = "";
@@ -202,13 +224,15 @@
       document.getElementById("resultsWrapper").innerHTML = "";
 		}
 
+		// Function to allow the user to delete an item from the results.
 		function deleteItem ()
 		{
-			document.getElementById("geekitem").parentNode.removeChild(document.getElementById("geekitem[]"));
+			resultsWrapper.removeChild(x);
 		}
 		
 		runBtn.addEventListener("click", runLab);
 		resetBtn.addEventListener("click", resetResults);
+		deleteBtn.addEventListener("click", deleteItem);
 		// End JavaScript Code Here - Do not put JavaScript outside these comments.
 	</script>
 
