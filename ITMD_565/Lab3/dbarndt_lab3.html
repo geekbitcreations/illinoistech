@@ -160,7 +160,6 @@
       if (descrip === "" || quantity === "")
       {
 				alert("Please enter the description and the quantity of the items.");
-				
 				return false;
       }
       
@@ -179,38 +178,43 @@
 			}
       
       else
-      {
+      {				
 				// For loop to take in the input text and display in the results.
 				for (x = 1; x <= quantity; x++)
 				{
 					// Create a border around each item in the resultsWrapper.
-					/*var border = document.createElement("border");
-					var bordercolor = document.createTextNode(color);
-					border.appendChild(bordercolor);
-					var bordelement = document.getElementById("resultsWrapper");
-					bordelement.appendChild(border);*/
-					document.div.style.border = 'color';
-					
-					
-					// Create the h2 heading for the resultsWrapper.
+					var borderWrapper = document.createElement("div");
+					var borderelement = document.getElementById("resultsWrapper");
+					borderelement.appendChild(borderWrapper);
+
+					// Apply the CSS styles listed to the border.
+					borderWrapper.style.border = "6px solid " + color;
+					borderWrapper.style.padding = "10px";
+	
+					// Create the h2 heading for the resultsWrapper and adding the CSS styles.
 					var heading = document.createElement("h2");
+					heading.style.color = color;
+
+					// Create the text node for the h2 element.
 					var headingnode = document.createTextNode("Item " + x);
 					heading.appendChild(headingnode);
-					var headelement = document.getElementById("resultsWrapper");
-					headelement.appendChild(heading);
+					borderWrapper.appendChild(heading);
 					
 					// Create the paragraph for the bodyInput in the resultsWrapper.
 					var para = document.createElement("p");
 					var paranode = document.createTextNode(descrip);
 					para.appendChild(paranode);
-					var paraelement = document.getElementById("resultsWrapper");
-					paraelement.appendChild(para);
+					borderWrapper.appendChild(para);
 					
 					// Create the delete button for the items in the resultsWrapper.
 					var deleteBtn = document.createElement("button");
 					var btnText = document.createTextNode("Delete");
 					deleteBtn.appendChild(btnText);
-					resultsWrapper.appendChild(deleteBtn);
+					borderWrapper.appendChild(deleteBtn);
+
+					var spaceBreak = document.createElement("br");
+					resultsWrapper.appendChild(spaceBreak);
+					resultsWrapper.appendChild(borderWrapper);
 				}
 			}	
 		}
@@ -222,12 +226,13 @@
 			document.getElementById("qtyInput").value = "";
 			document.getElementById("colorInput").value = "red";
       document.getElementById("resultsWrapper").innerHTML = "";
+			document.getElementById("resetBtn").disabled = true;
 		}
 
 		// Function to allow the user to delete an item from the results.
 		function deleteItem ()
 		{
-			resultsWrapper.removeChild(x);
+			
 		}
 		
 		runBtn.addEventListener("click", runLab);
