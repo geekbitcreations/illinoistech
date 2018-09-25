@@ -154,6 +154,7 @@
 			var color = document.getElementById("colorInput").value;
 			var output = document.getElementById("resultsWrapper").value;
 			
+			document.getElementById("resultsWrapper").innerHTML = "";
 			document.getElementById("resetBtn").disabled = false;
 
 			// Check if the input for the bodyInput and qtyInput is empty.
@@ -209,12 +210,17 @@
 					// Create the delete button for the items in the resultsWrapper.
 					var deleteBtn = document.createElement("button");
 					var btnText = document.createTextNode("Delete");
+					deleteBtn.addEventListener("click", deleteItem);
 					deleteBtn.appendChild(btnText);
 					borderWrapper.appendChild(deleteBtn);
 
 					var spaceBreak = document.createElement("br");
 					resultsWrapper.appendChild(spaceBreak);
 					resultsWrapper.appendChild(borderWrapper);
+
+					document.getElementById("bodyInput").value = "";
+					document.getElementById("qtyInput").value = "";
+					document.getElementById("colorInput").value = "red";
 				}
 			}	
 		}
@@ -232,12 +238,11 @@
 		// Function to allow the user to delete an item from the results.
 		function deleteItem ()
 		{
-			
+			this.parentNode.parentNode.removeChild(this.parentNode);
 		}
 		
 		runBtn.addEventListener("click", runLab);
 		resetBtn.addEventListener("click", resetResults);
-		deleteBtn.addEventListener("click", deleteItem);
 		// End JavaScript Code Here - Do not put JavaScript outside these comments.
 	</script>
 
