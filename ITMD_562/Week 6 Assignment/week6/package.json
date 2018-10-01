@@ -1,0 +1,14 @@
+{
+  "name": "week6",
+  "version": "1.0.0",
+  "description": "simple counter application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Deborah Barndt",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
