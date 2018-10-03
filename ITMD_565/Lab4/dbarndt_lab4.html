@@ -154,6 +154,7 @@
     // Create table head row.
     var tableheadtr = document.createElement("tr");
     tableheadtr.className = "thead-dark";
+    tableheadtr.setAttribute("border", "2");
 
     // Create table headings for the table head row.
     var th1 = document.createElement("th");
@@ -247,13 +248,14 @@
 
               var cellActive = document.createElement("td");
               var activeText = document.createTextNode(data[x].active);
+              
               cellActive.appendChild(activeText);
               row.appendChild(cellActive);
 
               table.appendChild(row);
               results.appendChild(table);
               
-              if (data[x].active === "true")
+              if (data[x].active === true)
               {
                 cellActive.className = "true";
               }
