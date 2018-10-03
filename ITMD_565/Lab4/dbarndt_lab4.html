@@ -1,0 +1,287 @@
+<!-- 
+	Deborah Barndt
+	ITMD 565 Rich Internet Applications
+	Professor Brian Bailey
+	Lab 4
+	9-28-18
+	 
+  This program will have some basic JavaScript functionality that queries a server for JSON data 
+  with AJAX and displays it on the page inside a table. 
+
+  Introduction:
+    This lab will have you implement some of the JavaScript syntax and basic DOM manipulation
+    similar to what we discussed in class. It will also be the first introduction to using AJAX and
+    working with JSON data.
+  
+  Objective:
+    Create a single HTML5 file that includes some CSS and JavaScript embedded on the page. This
+    single file will have some basic JavaScript functionality that queries a server for JSON data with
+    AJAX and displays it on the page.
+  
+  Requirements:
+    • All HTML tags and page structure should be HTML5 compliant
+    • CSS and JavaScript need to be embedded in the HTML page. I only want one HTML file
+      turned in, it should be zipped.
+    • You may use a CSS framework like Bootstrap if you like. Just link to CDN version instead
+      of a local file. Again, only want the one html file turned in.
+    • Do not put any spaces in your file name
+    • Do not use jQuery for this lab. Pure JavaScript for DOM manipulation and AJAX. You
+      may use DOM element functions or innerHTML but no jQuery.
+    • You need to make sure you do a new AJAX request each time you run the lab. I will be
+      pulling a different set of data randomly.
+    • You may use plain XMLHttpRequest, XMLHttpRequest with Events, Axios Library, or the
+      Fetch API
+    • The html page should never refresh. Do not trigger a refresh of the browser with
+      javascript to reset the page.
+    • JSON data URL: http://libertyville.rice.iit.edu/scripts/4565_lab4.php
+
+  Graduate Additional Requirements:
+    If you are involved in any section of 565 you need to complete the additional requirements
+    listed here.
+    
+    Table and page needs to be styled nicely with CSS and look professional. 565 Students will be
+    graded harder on CSS presentation. Please use a CSS framework with some custom modifications or 
+    completely custom styles. I want the active cell in the table highlighted in green somehow if 
+    the user has a true value and in red if the value is false. Still show the word true or false 
+    but also highlight with color. Can be a background, border, text color. However you want to 
+    clearly highlight the cell.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITMD 565 Lab 4 - dbarndt</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
+      body {
+        background-color: #ccc;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      
+      button {
+        display: inline-block;
+        margin: 20px 10px 20px 0;
+        border-radius: 5px;
+        padding: 6px;
+        font-weight: bold;
+      }
+      
+      #container {
+        background-color: #fff;
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 20px 40px;
+        text-align: center;
+      }
+
+      table tr td {
+        text-align: left;
+        border: solid #000000 1px;
+        padding: 5px;
+      }
+
+      #container h2 {
+        padding: 5px 0;
+      }
+
+      #results {
+        margin: auto;
+        width: 100%;
+		  }
+
+      tr:nth-child(odd) {
+        background-color: lightgrey
+      }
+
+      tr:hover {
+        background-color: silver;
+      }
+
+      .true {
+        background-color: lightgreen;
+        color: green;
+        text-transform: capitalize;
+        font-weight: bold;
+      }
+
+      tr:hover .true {
+        background-color: darkgreen;
+        color: white;
+      }
+
+      .false {
+        background-color: lightpink;
+        color: red;
+        text-transform: capitalize; 
+        font-weight: bold;
+      }
+
+      tr:hover .false {
+        background-color: darkred;
+        color: white;
+      }
+    </style>
+  </head>
+<body>
+	<div id="container">
+		<h1>ITMD 565 - Lab 4</h1>
+		<h2>Deborah Barndt - dbarndt@hawk.iit.edu</h2>
+    		
+		<button id="loadBtn">Load Data</button>
+		<button id="resetBtn">Reset</button>
+		
+		<h2>Employee List</h2>
+		<div id="results"></div>
+	</div>
+	
+	<script type="text/javascript">
+		// Begin JavaScript Code Here - Do not put JavaScript outside these comments.
+    var results = document.getElementById("results");
+    
+    document.getElementById("loadBtn").addEventListener("click", createTable, false);
+    document.getElementById("resetBtn").addEventListener("click", resetResults, false);
+    
+    document.getElementById("resetBtn").disabled = true;
+
+    // Create a table for the json data.
+    var table = document.createElement("table");
+    table.className = "table";
+    table.setAttribute("border", "1");
+
+    // Create table head row.
+    var tableheadtr = document.createElement("tr");
+    tableheadtr.className = "thead-dark";
+
+    // Create table headings for the table head row.
+    var th1 = document.createElement("th");
+    var thtext1 = document.createTextNode("ID");
+    var th2 = document.createElement("th");
+    var thtext2 = document.createTextNode("First Name");
+    var th3 = document.createElement("th");
+    var thtext3 = document.createTextNode("Last Name");
+    var th4 = document.createElement("th");
+    var thtext4 = document.createTextNode("Title");
+    var th5 = document.createElement("th");
+    var thtext5 = document.createTextNode("Email");
+    var th6 = document.createElement("th");
+    var thtext6 = document.createTextNode("Gender");
+    var th7 = document.createElement("th");
+    var thtext7 = document.createTextNode("Active");
+
+    // Display table headings.
+    th1.appendChild(thtext1);
+    th2.appendChild(thtext2);
+    th3.appendChild(thtext3);
+    th4.appendChild(thtext4);
+    th5.appendChild(thtext5);
+    th6.appendChild(thtext6);
+    th7.appendChild(thtext7);
+
+    // Display the table head row.
+    tableheadtr.appendChild(th1);
+    tableheadtr.appendChild(th2);
+    tableheadtr.appendChild(th3);
+    tableheadtr.appendChild(th4);
+    tableheadtr.appendChild(th5);
+    tableheadtr.appendChild(th6);
+    tableheadtr.appendChild(th7);
+
+    table.appendChild(tableheadtr);
+
+    results.appendChild(table);
+
+   	// Function to take in the data from the JSON file and display it.		
+		function createTable ()
+		{
+			document.getElementById("resetBtn").disabled = false;
+      document.getElementById("loadBtn").disabled = true;
+      	
+      var dataRequest = new XMLHttpRequest();
+
+      dataRequest.onreadystatechange = function()
+      {
+        if (dataRequest.readyState === 4) 
+        {
+          if (dataRequest.status === 200)
+          {
+            console.log(JSON.parse(dataRequest.responseText));
+            var data = JSON.parse(dataRequest.responseText);
+            
+            for (var x = 0; x < data.length; x++)
+            {
+              console.log(data[x]);
+              var row = document.createElement("tr");
+              
+              var cellId = document.createElement("td");
+              var infoText = document.createTextNode(data[x].id);
+              cellId.appendChild(infoText);
+              row.appendChild(cellId);
+              
+              var cellFname = document.createElement("td");
+              var fnameText = document.createTextNode(data[x].first_name);
+              cellFname.appendChild(fnameText);
+              row.appendChild(cellFname);
+
+              var cellLname = document.createElement("td");
+              var lnameText = document.createTextNode(data[x].last_name);
+              cellLname.appendChild(lnameText);
+              row.appendChild(cellLname);
+
+              var cellTitle = document.createElement("td");
+              var titleText = document.createTextNode(data[x].title);
+              cellTitle.appendChild(titleText);
+              row.appendChild(cellTitle);
+
+              var cellEmail = document.createElement("td");
+              var emailText = document.createTextNode(data[x].email);
+              cellEmail.appendChild(emailText);
+              row.appendChild(cellEmail);
+
+              var cellGender = document.createElement("td");
+              var genderText = document.createTextNode(data[x].gender);
+              cellGender.appendChild(genderText);
+              row.appendChild(cellGender);
+
+              var cellActive = document.createElement("td");
+              var activeText = document.createTextNode(data[x].active);
+              cellActive.appendChild(activeText);
+              row.appendChild(cellActive);
+
+              table.appendChild(row);
+              results.appendChild(table);
+              
+              if (data[x].active === "true")
+              {
+                cellActive.className = "true";
+              }
+
+              else
+              {
+                cellActive.className = "false";
+              }          
+            }
+          }
+        }        
+      };
+      
+      dataRequest.open("GET", "http://libertyville.rice.iit.edu/scripts/4565_lab4.php", true);
+
+      dataRequest.send();
+		}
+			
+		// Function to reset the inputs when the reset button is pushed.
+		function resetResults ()
+		{
+			table.innerHTML = "";
+      table.appendChild(tableheadtr);
+			document.getElementById("resetBtn").disabled = true;
+      document.getElementById("loadBtn").disabled = false;
+		}
+    
+		
+	</script>
+</body>
+</html>
