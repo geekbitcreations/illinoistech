@@ -247,13 +247,14 @@
 
               var cellActive = document.createElement("td");
               var activeText = document.createTextNode(data[x].active);
+              
               cellActive.appendChild(activeText);
               row.appendChild(cellActive);
 
               table.appendChild(row);
               results.appendChild(table);
               
-              if (data[x].active === "true")
+              if (data[x].active === true)
               {
                 cellActive.className = "true";
               }
