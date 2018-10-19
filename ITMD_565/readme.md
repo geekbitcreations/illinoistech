@@ -1,7 +1,7 @@
 # Deborah Barndt
 ## ITMD-565 - Fall 2018
 
-![alt text](tardisdeb.jpg "Me in my tardis cardigan" width="250")
+![alt text](tardisdeb.jpg width="250" "Me in my tardis cardigan" )
 
 ## Academic Interests
 I am a co-terminal ITM major with a specialization in Software Development. 
