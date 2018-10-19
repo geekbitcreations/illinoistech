@@ -79,8 +79,8 @@
     var y = 0;
     var r = 0;
     var dr = 1;
-    //var ar = 0;
-    var dar = 2;
+    var radius = 0;
+    var newrad = 2;
 
     var canvas = document.getElementById("myCanvas");
     
@@ -149,7 +149,7 @@
       // Draw arc shape
       ctx.save();
       ctx.translate(345, 225);
-      ctx.rotate((Math.PI / 180) * r);
+      ctx.rotate((Math.PI / 180) * radius);
       ctx.beginPath();
       //ctx.arc(295, 180, 50, 1.5 * Math.PI, 0.3 * Math.PI);
       ctx.arc(-49, -49, 50, 1.5 * Math.PI, 0.3 * Math.PI);
@@ -157,7 +157,7 @@
       ctx.strokeStyle = "#FFA500";
       ctx.stroke();
       ctx.restore();
-      r = r + adr;
+      radius = radius + newrad;
 
       // Draw outer square and rotate it
       ctx.save();
