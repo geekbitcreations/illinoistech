@@ -1,0 +1,227 @@
+<!-- 
+	Deborah Barndt
+	ITMD 565 Rich Internet Applications
+	Professor Brian Bailey
+	Lab 5
+	10-11-18
+	 
+  This program will do some basic drawing with the HTML canvas API. 
+
+  Introduction:
+    This lab will have you do some basic drawing with the HTML canvas API. Everything in this lab 
+    should be familiar based on our class demos.
+  
+  Objective:
+    Use the provided HTML base file to create a canvas drawing. There is an attached Lab4.png image 
+    to show what your lab should look like. For graduate students, there is an attached 
+    Grad-Lab4.mov to show the animation features you need to accomplish.
+  
+  Requirements
+    • All HTML tags and page structure should be HTML5 compliant
+    • Use the attached lab5_template.html file. Rename to YourUsername_lab5.html
+    • JavaScript drawing code should be embedded in html page where provided
+    • You should not have to edit the HTML file other than add JavaScript for drawing.
+    • Only use one canvas tag. All drawing goes on the same canvas, not layered canvases.
+    • Do not use any libraries for this lab at all. No jQuery, No EaselJS, No canvas library
+    • General Layout, shape position, shape colors, shape size should be very similar to the provided 
+      mockup. Very slight variation is ok.
+    • Canvas is 600px x 450px
+    • The canvas is drawn or the animation starts when the Draw Canvas button is pressed, not when the 
+      page loads.
+    • Canvas should have a linear gradient fill in the background (drawn in the canvas not css in the 
+      html) from white to black.
+    • The title text is 32px in sans-serif font
+    • The name and email text is 14px in sans-serif font
+    • Use your best judgment for line widths and styles to make the canvas look similar.
+    • I used a quadratic curve for the dotted line.
+    • School of Applied Technology logo is included but it is not the correct size. You will need to 
+      scale the file or use the drawing commands that let you scale the image as you draw it to the canvas.
+    • Colors used were:
+      o Blue = #0000C8
+      o Orange = #FFA500
+      o Green = #00C800
+      o Red = #C80000
+
+  Graduate Additional Requirements:
+    If you are involved in any section of 565 you need to complete the additional requirements
+    listed here.
+    
+    Animate the middle arc and the rectangle as shown in the Grad-Lab5.mov.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ITMD 565 Lab 5 - Canvas Drawing</title>
+	<style type="text/css">
+		#content-wrapper {
+			width: 600px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		#canvasRun {
+			background-color: #c00;
+			border: 0;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="content-wrapper">
+		<button id="canvasRun">Draw Canvas</button><br><br>
+		<canvas id="myCanvas" width="600" height="450"></canvas>
+	</div>
+	<script type="text/javascript">
+		// Canvas Drawing Code Here
+    
+    var x = 0;
+    var y = 0;
+    var r = 0;
+    var dr = 1;
+    //var ar = 0;
+    var dar = 2;
+
+    var canvas = document.getElementById("myCanvas");
+    
+    if (canvas.getContext)
+    {
+      console.log("request frame");
+      document.getElementById("canvasRun").addEventListener("click", createDrawing);
+    }
+    
+    // Draw image of IIT Logo
+    var img = document.createElement("img");
+    img.setAttribute("src", "iitLogo.png");
+    
+    function createDrawing()
+    {
+      document.getElementById("canvasRun").disabled = true;
+      
+      console.log("draw frame");
+      var ctx = canvas.getContext("2d");
+            
+      // Setting up the gradient
+      var my_gradient = ctx.createLinearGradient(0, 0, 0, 430);
+    
+      // Declaring the gradient colors
+      my_gradient.addColorStop(1, "black");
+      my_gradient.addColorStop(0, "white");
+      
+      // Gradient rectangle
+      ctx.fillStyle = my_gradient;
+      ctx.fillRect(0, 0, 600, 450);
+      
+      // Text to display class and lab
+      ctx.save();
+      ctx.font = "32px sans-serif";
+      ctx.fillStyle = "#C80000";
+      ctx.fillText("ITMD 565 Canvas Lab", 140, 70);
+      ctx.restore();
+
+      // Straight line under class and lab text
+      ctx.save();
+      ctx.moveTo(20, 90);
+      ctx.lineTo(580, 90);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "#C80000"; 
+      ctx.stroke();
+      ctx.restore();
+      
+      // Draw outer circle
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(95, 170, 55, 0, 2 * Math.PI);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.stroke();
+      ctx.restore();
+
+      // Draw inner circle
+      ctx.save();
+      var circle = new Path2D();
+      circle.moveTo(60, 35);
+      circle.arc(95, 170, 55, 0, 2 * Math.PI);
+      ctx.fillStyle = "#0000C8";
+      ctx.fill(circle);
+      ctx.restore();
+
+      // Draw arc shape
+      ctx.save();
+      ctx.translate(345, 225);
+      ctx.rotate((Math.PI / 180) * r);
+      ctx.beginPath();
+      //ctx.arc(295, 180, 50, 1.5 * Math.PI, 0.3 * Math.PI);
+      ctx.arc(-49, -49, 50, 1.5 * Math.PI, 0.3 * Math.PI);
+      ctx.lineWidth = 15;
+      ctx.strokeStyle = "#FFA500";
+      ctx.stroke();
+      ctx.restore();
+      r = r + adr;
+
+      // Draw outer square and rotate it
+      ctx.save();
+      ctx.translate(500, 178);
+      ctx.rotate((Math.PI / 180) * r);
+      ctx.beginPath();
+      ctx.lineWidth = 10;
+      ctx.fillStyle = "#C80000";
+      ctx.strokeStyle = "#FFFFFF";
+      ctx.rect(-49, -49, 98, 98);
+      ctx.stroke();
+      ctx.fill();
+      ctx.restore();
+      r = r + dr;     
+
+      // Draw green triangle
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(40, 360);
+      ctx.lineTo(95, 275);
+      ctx.lineTo(150, 360);
+      ctx.closePath();
+      ctx.fillStyle = "#00C800";
+      ctx.fill();
+      ctx.restore(); 
+
+      // Draw rectangle for quadratic curve
+      ctx.save();
+      ctx.beginPath();
+      ctx.fillStyle = "#FFFFFF";
+      ctx.rect(255, 263, 320, 100);
+      ctx.fill();
+      ctx.restore();
+
+      // Draw quadratic curve
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(280, 315);
+      ctx.quadraticCurveTo(350, 260, 410, 320);
+      ctx.moveTo(404, 315);
+      ctx.quadraticCurveTo(460, 360, 545, 320);
+      ctx.setLineDash([10, 10]);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "#000000";
+      ctx.stroke();
+      ctx.restore();
+
+
+      // Draw text for name and email
+      ctx.save();
+      ctx.font = "14px sans-serif";
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillText("Deborah Barndt", 20, 410);
+      ctx.fillText("dbarndt@hawk.iit.edu", 20, 430);
+      ctx.restore();
+
+      // Draw the IIT logo image 
+      ctx.save();
+      ctx.drawImage(img, 345, 375, 235, 55);
+      ctx.restore();
+
+      window.requestAnimationFrame(createDrawing);
+    }
+
+	</script>
+</body>
+</html>
