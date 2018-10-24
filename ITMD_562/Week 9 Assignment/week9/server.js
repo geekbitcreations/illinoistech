@@ -94,6 +94,7 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
 
       else
       {
+        res.status(200).send();
         res.send(result.ops[0]);
       }
     })
