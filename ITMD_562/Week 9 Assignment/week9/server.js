@@ -76,7 +76,6 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
 
     let newBook = 
     {
-      "id" : "",
       "title" : "",
       "author" : "",
       "numPages" : 0
