@@ -66,22 +66,22 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
 
   let db = client.db("booklist");
   let books = db.collection("books");
-
+  
+  let book = 
+  {
+    _id : mongodb.Types.ObjectId(),
+    title : "",
+    author : "",
+    numPages : 0
+  }
+  //let books = [dummyBook];
+  
   // Post to create a new book
   app.post("/books", (req, res) =>
   {
     let newBook = req.body;
     newBook.id = books.length;
     books.push(newBook);
-
-    let newBook = 
-    {
-      _id: mongodb.Types.ObjectId(),
-      "title" : "",
-      "author" : "",
-      "numPages" : 0
-    }
-
     res.status(200).send(newBook);
 
     books.insertOne(newBook, function (err, result)
@@ -104,6 +104,7 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
   app.get("/books/:id", (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
+    let foundBook = books[id];
 
     books.findOne({"_id": id}, function (err, book)
     {
@@ -117,14 +118,14 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
       {
         console.log(book);
 
-        if (book === null)
+        if (foundBook === undefined)
         {
           res.status(404).send("Not found");
         }
 
         else
         {
-          res.send(book)
+          res.send(foundBook);
         }
       }
     })
