@@ -54,18 +54,18 @@ var app = express();
 const port = 3000;
 
 // Initiate MongoDB
-var MongoClient = require("mongodb").MongoClient;
-var ObjectID = require("mongodb").ObjectId;
+var MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectId;
 
 app.use(express.json());
 
 // Connect to the MongoDB
-MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
+MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
 {
   if (err) throw err
 
-  let db = client.db("booklist");
-  let books = db.collection("books");
+  let db = client.db('booklist');
+  let books = db.collection('books');
   
   let book = 
   {
@@ -77,7 +77,7 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
   //let books = [dummyBook];
   
   // Post to create a new book
-  app.post("/books", (req, res) =>
+  app.post('/books', (req, res) =>
   {
     let newBook = req.body;
     newBook.id = books.length;
@@ -100,13 +100,13 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
   })
 
   // Get the books inside the database
-  app.get("/books", (req, res) => res.send(books))
-  app.get("/books/:id", (req, res) =>
+  app.get('/books', (req, res) => res.send(books))
+  app.get('/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
     let foundBook = books[id];
 
-    books.findOne({"_id": id}, function (err, book)
+    books.findOne({'_id': id}, function (err, book)
     {
       if (err)
       {
@@ -132,7 +132,7 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
   })
 
   // Put to update a book inside the database
-  app.put("/books/:id", (req, res) =>
+  app.put('/books/:id', (req, res) =>
   {
     let updatedBook = req.body;
     let id = req.params.id;
@@ -154,7 +154,7 @@ MongoClient.connect("mongodb://localhost:27017/booklist", function (err, client)
   });
 
   // Delete a book from the database
-  app.delete("/books/:id", (req, res) =>
+  app.delete('/books/:id', (req, res) =>
   {
     let id = req.params.id;
     books[id] = undefined;
