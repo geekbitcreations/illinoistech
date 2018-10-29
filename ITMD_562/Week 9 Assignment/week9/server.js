@@ -50,7 +50,6 @@
 
 // Required items for server
 var express = require('express');
-var mongodb = require('mongodb');
 var app = express();
 const port = 3000;
 
@@ -70,7 +69,6 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   
   let book = 
   {
-    _id : mongodb.Types.ObjectId(),
     title : "",
     author : "",
     numPages : 0
@@ -82,7 +80,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let newBook = req.body;
     newBook.id = books.length;
-    books.push(newBook);
+    //books.push(newBook);
     res.status(200).send(newBook);
 
     books.insertOne(newBook, function (err, result)
@@ -118,8 +116,9 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       else
       {
         console.log(book);
-
-        if (foundBook === undefined)
+        res.status(200).send(book);
+        
+        if (foundBook === null)
         {
           res.status(404).send("Not found");
         }
@@ -139,7 +138,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
     let id = req.params.id;
     let existingBook = books[id];
 
-    if (existingBook === undefined)
+    if (existingBook === null)
     {
       res.status(404).send();
     }
@@ -157,10 +156,22 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   // Delete a book from the database
   app.delete('/books/:id', (req, res) =>
   {
-    let id = req.params.id;
-    books[id] = undefined;
-    res.status(204).send();
-  });
+    let id = ObjectID.createFromHexString(req.params.id);
+    
+    books.deleteOne({'_id': id}, function (err, book)
+    {
+      if  (books[id] = null)
+      {
+      
+        res.status(404)
+      }
+      
+      else
+      {
+        res.status(204).send();
+      }
+    } 
+  )});
 })
 
 // Listen for the book app running on port 3000
