@@ -50,6 +50,7 @@
 
 // Required items for server
 var express = require('express');
+var mongodb = require('mongodb');
 var app = express();
 const port = 3000;
 
