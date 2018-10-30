@@ -134,23 +134,22 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   // Put to update a book inside the database
   app.put('/books/:id', (req, res) =>
   {
+    let id = ObjectID.createFromHexString(req.params.id);
     let updatedBook = req.body;
-    let id = req.params.id;
-    let existingBook = books[id];
 
-    if (existingBook === null)
+    books.updateOne({'_id': id}, {$set: req.body}, function (err, updatedBook)
     {
-      res.status(404).send();
-    }
+      if (err)
+      {
+        console.log(err);
+        res.status(404).send("Book not found");
+      }
 
-    else
-    {
-      existingBook.title = updatedBook.title;
-      existingBook.author = updatedBook.author;
-      existingBook.numPages = updatedBook.numPages;
-
-      res.status(204).send();
-    }
+      else
+      {
+        res.status(204).send();
+      }
+    }); 
   });
 
   // Delete a book from the database
