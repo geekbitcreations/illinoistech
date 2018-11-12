@@ -1,0 +1,21 @@
+{
+  "name": "booklist",
+  "version": "1.0.0",
+  "description": "Build a server which implements an API and saves data to mongo.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "book",
+    "list",
+    "website"
+  ],
+  "author": "Deborah Barndt",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "pug": "^2.0.3"
+  }
+}
