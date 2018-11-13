@@ -42,7 +42,7 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
-var Book = []
+//var book = []
 
 // Connect to the MongoDB
 MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
@@ -63,7 +63,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   // Get request for the index page that finds all the books and renders it to the page.
   app.get('/', (req, res) => 
   {
-    Book.find({}, function(err, books) 
+    books.find({}, function(err, books) 
     {
       if (err) 
       {
@@ -73,7 +73,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       
       else 
       {
-        res.render('index', { books: books })
+        res.render('index', { books: [] })
       }
     });
   });
@@ -83,7 +83,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Book.findById(id, function(err, book) 
+    books.findById(id, function(err, book) 
     {
       if (err) 
       {
@@ -130,7 +130,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Book.findById(id, function(err, book) 
+    books.findById(id, function(err, book) 
     {
       if (err) 
       {
@@ -158,7 +158,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    Book.updateOne({"_id": id}, { $set: req.body }, function(err, details) 
+    books.updateOne({"_id": id}, { $set: req.body }, function(err, details) 
     {
       if (err) 
       {
@@ -177,21 +177,22 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   app.post('/books/:id/delete', function (req, res) 
   {
     let id = ObjectID.createFromHexString(req.params.id)
-    Book.deleteOne({_id: id}, function(err, product) 
+    books.deleteOne({_id: id}, function(err, product) 
     {
       res.redirect("/");
     });
   });
 
   // Post to create a new book
-  app.post('/books', (req, res) =>
+  app.post('/api/books', (req, res) =>
   {
-    let newBook = req.body;
+    console.log(req.body);
+    let newBook = new Book(req.body);
     newBook.id = books.length;
     //books.push(newBook);
     res.status(200).send(newBook);
 
-    books.insertOne(newBook, function (err, result)
+    /*books.insertOne(newBook, function (err, result)
     {
       if (err)
       {
@@ -203,17 +204,48 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       {
         res.status(200).send(result.ops[0]);
       }
+    })*/
+
+    newBook.save(function (err, savedBook)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.status(500).send("There was an internal error.");
+      }
+
+      else
+      {
+        res.send(savedBook);
+      }
     })
   })
 
   // Get the books inside the database
-  app.get('/books', (req, res) => res.send(books))
-  app.get('/books/:id', (req, res) =>
+  app.get('/api/books', (req, res) => 
+  {
+    books.find({}, function(err, books)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.status(500).send("Internal server error.");
+      }
+
+      else
+      {
+        res.send(books);
+      }
+    });
+    //res.send(books))
+  });
+
+  app.get('/api/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
     let foundBook = books[id];
 
-    books.findOne({'_id': id}, function (err, book)
+    /*books.findOne({'_id': id}, function (err, book)
     {
       if (err)
       {
@@ -236,11 +268,33 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
           res.send(foundBook);
         }
       }
-    })
-  })
+    })*/
+
+    books.findById(id, function(err, book)
+    {
+      if (err)
+      {
+        console.log(err);
+        res.status(500).send("Internal server error.");
+      }
+
+      else
+      {
+        if (book === null)
+        {
+          res.status(404).send("Not found");
+        }
+
+        else
+        {
+          res.send(book);
+        }
+      }
+    });
+  });
 
   // Put to update a book inside the database
-  app.put('/books/:id', (req, res) =>
+  app.put('/api/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
     let updatedBook = req.body;
@@ -261,7 +315,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   });
 
   // Delete a book from the database
-  app.delete('/books/:id', (req, res) =>
+  app.delete('/api/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
     
