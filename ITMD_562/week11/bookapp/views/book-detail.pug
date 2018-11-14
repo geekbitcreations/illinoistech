@@ -2,8 +2,8 @@ extends template.pug
 
 block content
   h1.mt-5= book.title
-    a.btn.btn-primary(href='/books/' + book.id + '/update' style='margin-left: 25px') Update
+    a.btn.btn-primary(href='/books/' + book.id + '/update' style='margin-left: 25px') Update Book
     form(action='/books/' + book.id + '/delete' method="POST")
-      button.btn.btn-delete(type='submit') Delete
+      button.btn.btn-delete(type='submit') Delete Book
   h6.mt-5= "Book listing of '" + book.title + "' by " + book.author
   p= book.numPages
