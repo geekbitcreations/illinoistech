@@ -31,6 +31,8 @@ var app = express();
 const port = 3000;
 
 // Initiate MongoDB
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/bookapp');
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectId;
 
@@ -44,10 +46,21 @@ app.set('views', __dirname + '/views');
 
 //var book = []
 
+var bookSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  author: { type: String, required: true },
+  numPages: { type: String, required: true },
+});
+
+var Book = mongoose.model('Book', bookSchema);
+
 // Connect to the MongoDB
-MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
+//MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function()
 {
-  if (err) throw err
+  /*if (err) throw err
 
   let db = client.db('booklist');
   let books = db.collection('books');
@@ -57,13 +70,13 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
     title : "",
     author : "",
     numPages : 0
-  }
+  }*/
   //let books = [dummyBook];
   
   // Get request for the index page that finds all the books and renders it to the page.
   app.get('/', (req, res) => 
   {
-    books.find({}, function(err, books) 
+    Book.find({}, function(err, books) 
     {
       if (err) 
       {
@@ -73,17 +86,23 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       
       else 
       {
-        res.render('index', { books: [] })
+        res.render('index', { books : books })
       }
     });
+  });
+
+  // Get that renders the book form and passes an empty book object.
+  app.get('/books/new', (req, res) => 
+  {
+    res.render('book-form', { title: "New Book", book: {} })
   });
 
   // Get request to get the book to pre-fill the fields, render the form, and then pass the book form to allow for an update.
   app.get('/books/:id/update', (req, res) => 
   {
-    let id = ObjectID.createFromHexString(req.params.id)
+    let id = ObjectID.createFromHexString(req.params.id);
 
-    books.findById(id, function(err, book) 
+    Book.findById(id, function(err, book) 
     {
       if (err) 
       {
@@ -128,9 +147,9 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   // Get request to render the detailed view of a book.
   app.get('/books/:id', (req, res) => 
   {
-    let id = ObjectID.createFromHexString(req.params.id)
+    let id = ObjectID.createFromHexString(req.params.id);
 
-    books.findById(id, function(err, book) 
+    Book.findById(id, function(err, book) 
     {
       if (err) 
       {
@@ -158,7 +177,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let id = ObjectID.createFromHexString(req.params.id)
 
-    books.updateOne({"_id": id}, { $set: req.body }, function(err, details) 
+    Book.updateOne({"_id": id}, { $set: req.body }, function(err, details) 
     {
       if (err) 
       {
@@ -177,7 +196,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   app.post('/books/:id/delete', function (req, res) 
   {
     let id = ObjectID.createFromHexString(req.params.id)
-    books.deleteOne({_id: id}, function(err, product) 
+    Book.deleteOne({_id: id}, function(err, product) 
     {
       res.redirect("/");
     });
@@ -192,7 +211,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
     //books.push(newBook);
     res.status(200).send(newBook);
 
-    /*books.insertOne(newBook, function (err, result)
+    Book.insertOne(newBook, function (err, result)
     {
       if (err)
       {
@@ -204,7 +223,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       {
         res.status(200).send(result.ops[0]);
       }
-    })*/
+    })
 
     newBook.save(function (err, savedBook)
     {
@@ -224,7 +243,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   // Get the books inside the database
   app.get('/api/books', (req, res) => 
   {
-    books.find({}, function(err, books)
+    Book.find({}, function(err, books)
     {
       if (err)
       {
@@ -237,13 +256,13 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
         res.send(books);
       }
     });
-    //res.send(books))
+    res.send(books);
   });
 
   app.get('/api/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
-    let foundBook = books[id];
+    //let foundBook = books[id];
 
     /*books.findOne({'_id': id}, function (err, book)
     {
@@ -270,7 +289,7 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
       }
     })*/
 
-    books.findById(id, function(err, book)
+    Book.findById(id, function(err, book)
     {
       if (err)
       {
@@ -297,14 +316,15 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   app.put('/api/books/:id', (req, res) =>
   {
     let id = ObjectID.createFromHexString(req.params.id);
-    let updatedBook = req.body;
+    //let updatedBook = req.body;
 
-    books.updateOne({'_id': id}, {$set: req.body}, function (err, updatedBook)
+    Book.updateOne({'_id': id}, {$set: req.body}, function (err, updatedBook)
     {
       if (err)
       {
         console.log(err);
-        res.status(404).send("Book not found");
+        //res.status(404).send("Book not found");
+        res.status(500).send("Internal server error.");
       }
 
       else
@@ -319,21 +339,22 @@ MongoClient.connect('mongodb://localhost:27017/booklist', function (err, client)
   {
     let id = ObjectID.createFromHexString(req.params.id);
     
-    books.deleteOne({'_id': id}, function (err, book)
+    Book.deleteOne({'_id': id}, function (err)
     {
       if  (books[id] = null)
       {
-      
-        res.status(404)
+        console.log(err);
+        //res.status(404)
+        res.status(500).send("Internal server error.");
       }
       
       else
       {
         res.status(204).send();
       }
-    } 
-  )});
-})
+    }); 
+  });
+});
 
 // Listen for the book app running on port 3000
 app.listen(port, () => console.log(`Book app listening on port ${port}!`));
