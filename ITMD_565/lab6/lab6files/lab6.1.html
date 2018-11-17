@@ -1,0 +1,88 @@
+<!--
+    Deborah Barndt
+	ITMD 565 Rich Internet Applications
+	Professor Brian Bailey
+	Lab 6.1
+    11-13-18
+    
+    Introduction:
+        In this lab we will be experimenting with some React core concepts 
+        like elements, components, and JSX.
+
+    Objective:
+       The objective is to build a React class and functional components 
+       with and without JSX. This lab files will be submitted with GitHub 
+       to your private illinoistech-itm repository and you will just submit 
+       the URL of your GitHub repository to the blackboard assignment. 
+       
+    Requirements/Process:
+        •	You must submit this Lab via your illinoistech-itm GitHub 
+            repository that was setup in the Github Lab.
+        •	Please create a new lab6 folder for this lab inside your class 
+            folder in your repository and keep all your files for this lab 
+            there.
+        •	Submit the URL to your illinoistech-itm GitHub repository to 
+            the assignment on blackboard before the due date.
+        •	Use the supplied html files as the start of the lab.
+        •	The supplied starter files have React, ReactDOM, and Babel CDN 
+            links
+        •	Make sure you are looking at your browser’s dev tools console 
+            for errors if you are having issues.
+    Part 1:
+        •	Use supplied file lab6.1.html for this part.
+        •	Do not use any JSX for Part 1.
+        •	Create a functional React component called headline, as shown 
+            in class.
+        •	The headline component when rendered on the page should be an 
+            h1 tag with the following text inside:
+            o	ITMD-4/565 Lab 6 Part 1 – your name here
+        •	The headline element should have a property called name that 
+            you use in the text of the element instead of putting your name 
+            in the element directly.
+        •	No JSX, you must create the React elements manually as shown in 
+            class.
+        •	Using ReactDOM render the headline element to the page in the 
+            div with id of app.
+    
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab 6 Part 1</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+    // All your code should be between these two comments
+    let name = "Deborah Barndt";
+    
+    function HeadlineFunctionComponent(props)
+    {
+        return React.createElement
+        (
+            'h1', 
+            null, 
+            'ITMD 565 Lab 6 Part 1 - ' {props.name}
+        );
+    }
+
+    const wrapperElement = React.createElement
+    (
+        'div',
+        null,
+        React.createElement(HeadlineFunctionComponent, {name: name})
+    );
+    
+    ReactDOM.render(wrapperElement, null), document.getElementById('app'));  
+    // All your code should be between these two comments
+    </script>
+</body>
+</html>
