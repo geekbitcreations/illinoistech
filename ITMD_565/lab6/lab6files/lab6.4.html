@@ -1,0 +1,89 @@
+<!--
+    Deborah Barndt
+	ITMD 565 Rich Internet Applications
+	Professor Brian Bailey
+	Lab 6.4
+    11-13-18
+    
+    Introduction:
+        In this lab we will be experimenting with some React core concepts 
+        like elements, components, and JSX.
+
+    Objective:
+       The objective is to build a React class and functional components 
+       with and without JSX. This lab files will be submitted with GitHub 
+       to your private illinoistech-itm repository and you will just submit 
+       the URL of your GitHub repository to the blackboard assignment. 
+       
+    Requirements/Process:
+        •	You must submit this Lab via your illinoistech-itm GitHub 
+            repository that was setup in the Github Lab.
+        •	Please create a new lab6 folder for this lab inside your class 
+            folder in your repository and keep all your files for this lab 
+            there.
+        •	Submit the URL to your illinoistech-itm GitHub repository to 
+            the assignment on blackboard before the due date.
+        •	Use the supplied html files as the start of the lab.
+        •	The supplied starter files have React, ReactDOM, and Babel CDN 
+            links
+        •	Make sure you are looking at your browser’s dev tools console 
+            for errors if you are having issues.
+    Part 4:
+        •	Use supplied file lab6.4.html for this part.
+        •	You can not use JSX for Part 4. Use a class-based component 
+            for Part 4.
+        •	Create a single class based React component called Product.
+        •	The Product component will take in a single prop called product 
+            and is expecting data in the form of an object. This will be an 
+            object representing JSON data for one product. The product data 
+            is defined in the supplied file.
+        •	Pass the data object for the single product to the Product 
+            component and then inside the component use that object for 
+            the img src, product name, and product desc. Do not pass 
+            separate props, pass in the one object and use it.
+        •	When rendered this should look identical to Part 2, use the 
+            same html elements as described in Part 2.
+        •	Using ReactDOM render the Product element to the page in the 
+            div with id of app.
+
+    Graduate Additional Requirements: 
+        If you are involved in any section of 565 you need to complete 
+        the additional requirements listed here. 
+        
+        You must do an additional part 4. In part 4 you will do the exact 
+        same thing you did in part 3 but without using any JSX. Do all 
+        the createElement function calls yourself. 
+    
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab 6 Part 4 - Grad Only</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+    // All your code should be between these two comments
+    const product = {
+        prod_img: 'http://libertyville.rice.iit.edu/misc/care-products.jpg',
+        prod_name: 'Bath and Body Products',
+        prod_description: 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.'
+    };
+
+    // Put class based Product component here
+    
+
+    ReactDOM.render();
+
+    // All your code should be between these two comments
+    </script>
+</body>
+</html>

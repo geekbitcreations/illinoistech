@@ -1,0 +1,104 @@
+<!--
+    Deborah Barndt
+	ITMD 565 Rich Internet Applications
+	Professor Brian Bailey
+	Lab 6.2
+    11-13-18
+    
+    Introduction:
+        In this lab we will be experimenting with some React core concepts 
+        like elements, components, and JSX.
+
+    Objective:
+       The objective is to build a React class and functional components 
+       with and without JSX. This lab files will be submitted with GitHub 
+       to your private illinoistech-itm repository and you will just submit 
+       the URL of your GitHub repository to the blackboard assignment. 
+       
+    Requirements/Process:
+        •	You must submit this Lab via your illinoistech-itm GitHub 
+            repository that was setup in the Github Lab.
+        •	Please create a new lab6 folder for this lab inside your class 
+            folder in your repository and keep all your files for this lab 
+            there.
+        •	Submit the URL to your illinoistech-itm GitHub repository to 
+            the assignment on blackboard before the due date.
+        •	Use the supplied html files as the start of the lab.
+        •	The supplied starter files have React, ReactDOM, and Babel CDN 
+            links
+        •	Make sure you are looking at your browser’s dev tools console 
+            for errors if you are having issues.
+    Part 2:
+        •	Use supplied file lab6.2.html for this part.
+        •	You can use JSX for Part 2. Use functional components for 
+            Part 2.
+        •	You will be creating four functional React components for this 
+            part. These components will form a product listing.
+        •	Here are the component names: ProductImage, ProductName, 
+            ProductDesc, Product
+        •	The product component will be a wrapper around the other 
+            components. You should return a div element with the three 
+            other components nested inside. The order should be image, 
+            name, desc.
+        •	The image src, product name, and product desc should be passed 
+            in as props to the components. They are defined as constants in 
+            the supplied file to use. Image should be an image tag, name 
+            should be an h2, desc should be wrapped in a p.
+        •	Using ReactDOM render the Product element to the page in the div 
+            with id of app.
+    
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab 6 Part 3</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+    // All your code should be between these two comments
+    const prod_img = 'http://libertyville.rice.iit.edu/misc/care-products.jpg';
+    const prod_name = 'Bath and Body Products';
+    const prod_description = 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.';
+
+    const ProductImageFunctionComponent = (props) => 
+    {
+        return <img>{props.image}</img>;
+    };
+
+    const ProductNameFunctionComponent = (props) => 
+    {
+        return <h2>{props.name}</h2>;
+    };
+
+    const ProductDescFunctionComponent = (props) => 
+    {
+        return <p>{props.description}</p>;
+    };
+
+    const ProductWrapperComponent = (props) => 
+    {
+        return
+        (
+            <div>
+                <ProductImageFunctionComponent image={prod_img} />
+                <ProductNameFunctionComponent name={prod_name} />
+                <ProductDescFunctionComponent description={prod_description} />
+            </div>
+        );
+    };
+
+    ReactDOM.render(<ProductWrapperComponent />, document.getElementById('app'));
+
+    // All your code should be between these two comments
+    </script>
+</body>
+</html>
