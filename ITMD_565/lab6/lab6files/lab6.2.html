@@ -55,7 +55,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lab 6 Part 3</title>
+    <title>Lab 6 Part 2</title>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -69,25 +69,20 @@
     const prod_name = 'Bath and Body Products';
     const prod_description = 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.';
 
-    const ProductImageFunctionComponent = (props) => 
-    {
+    const ProductImageFunctionComponent = (props) => {
         return <img>{props.image}</img>;
     };
 
-    const ProductNameFunctionComponent = (props) => 
-    {
+    const ProductNameFunctionComponent = (props) => {
         return <h2>{props.name}</h2>;
     };
 
-    const ProductDescFunctionComponent = (props) => 
-    {
+    const ProductDescFunctionComponent = (props) => {
         return <p>{props.description}</p>;
     };
 
-    const ProductWrapperComponent = (props) => 
-    {
-        return
-        (
+    const ProductWrapperComponent = (props) => {
+        return(
             <div>
                 <ProductImageFunctionComponent image={prod_img} />
                 <ProductNameFunctionComponent name={prod_name} />
