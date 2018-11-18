@@ -69,18 +69,22 @@
     const prod_name = 'Bath and Body Products';
     const prod_description = 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.';
 
+    // Create functional component to create image element
     const ProductImageFunctionComponent = (props) => {
         return <img src={props.prod_img} />;
     };
 
+    // Create functional component to create name element
     const ProductNameFunctionComponent = (props) => {
         return <h2>{props.prod_name}</h2>;
     };
 
+    // Create functional component to create description element
     const ProductDescFunctionComponent = (props) => {
         return <p>{props.prod_description}</p>;
     };
 
+    // Create ProductWrapperComponent to render all three of the components into a div element
     const ProductWrapperComponent = (props) => {
         return (
             <div>
