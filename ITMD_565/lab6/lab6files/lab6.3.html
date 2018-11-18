@@ -71,29 +71,19 @@
     };
 
     // Put class based Product component here
-    class ProductComponent extends React.Component {
-        render(){
-            return (
-                <img src={this.props.prod_img} />,
-                <h2>{this.props.prod_name}</h2>,
-                <p>{this.props.prod_description}</p>
-            );
-        }
-    }
-
-    class WrapperClassComponent extends React.Component {
+    class Product extends React.Component {
         render(){
             return (
                 <div>
-                    <ProductComponent image={this.props.prod_img} />
-                    <ProductComponent name={this.props.prod_name} />
-                    <ProductComponent desc={this.props.prod_description} />
+                    <img src={product.prod_img} />
+                    <h2>{product.prod_name}</h2>
+                    <p>{product.prod_description}</p>
                 </div>
             );
         }
     }
 
-    ReactDOM.render(<WrapperClassComponent />, document.getElementById('app'));
+    ReactDOM.render(<Product />, document.getElementById('app'));
 
     // All your code should be between these two comments
     </script>
