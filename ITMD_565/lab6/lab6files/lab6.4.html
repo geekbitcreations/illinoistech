@@ -79,9 +79,19 @@
     };
 
     // Put class based Product component here
-    
+    class ProductComponent extends React.Component {
+        render() {
+            return React.createElement('img', null, this.props.prod_img);
+        }
+    }
 
-    ReactDOM.render();
+    class WrapperComponent extends React.Component {
+        render() {
+            return React.createElement(ProductComponent, this.props.product);
+        }
+    }
+
+    ReactDOM.render(WrapperComponent, document.getElementById('app'));
 
     // All your code should be between these two comments
     </script>
