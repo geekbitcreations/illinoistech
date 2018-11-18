@@ -70,23 +70,23 @@
     const prod_description = 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.';
 
     const ProductImageFunctionComponent = (props) => {
-        return <img>{props.image}</img>;
+        return <img src={props.prod_img} />;
     };
 
     const ProductNameFunctionComponent = (props) => {
-        return <h2>{props.name}</h2>;
+        return <h2>{props.prod_name}</h2>;
     };
 
     const ProductDescFunctionComponent = (props) => {
-        return <p>{props.description}</p>;
+        return <p>{props.prod_description}</p>;
     };
 
     const ProductWrapperComponent = (props) => {
-        return(
+        return (
             <div>
-                <ProductImageFunctionComponent image={prod_img} />
-                <ProductNameFunctionComponent name={prod_name} />
-                <ProductDescFunctionComponent description={prod_description} />
+                <ProductImageFunctionComponent prod_img={prod_img} />
+                <ProductNameFunctionComponent prod_name={prod_name} />
+                <ProductDescFunctionComponent prod_description={prod_description} />
             </div>
         );
     };
