@@ -71,12 +71,9 @@
     };
 
     // Put class based Product component here
-    class ProductComponent extends React.Component
-    {
-        render()
-        {
-            return
-            (
+    class ProductComponent extends React.Component {
+        render(){
+            return (
                 <img>{this.props.image}</img>
                 <h2>{this.props.name}</h2>
                 <p>{this.props.desc}</p>
@@ -84,12 +81,9 @@
         }
     }
 
-    class WrapperClassComponent extends React.Component
-    {
-        render()
-        {
-            return
-            (
+    class WrapperClassComponent extends React.Component {
+        render(){
+            return (
                 <div>
                     <ProductComponent image={this.props.prod_img} />
                     <ProductComponent name={this.props.prod_name} />

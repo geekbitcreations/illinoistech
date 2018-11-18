@@ -63,25 +63,18 @@
     <script type="text/babel">
     // All your code should be between these two comments
     let name = "Deborah Barndt";
-    
-    function HeadlineFunctionComponent(props)
-    {
-        return React.createElement
-        (
-            'h1', 
-            null, 
-            'ITMD 565 Lab 6 Part 1 - ' {props.name}
-        );
-    }
 
-    const wrapperElement = React.createElement
-    (
+    function HeadlineFunctionComponent(props){
+         return React.createElement('h1', null, 'ITMD 565 Lab 6 Part 1 - ' + props.name);
+    }
+    
+    const wrapperElement = React.createElement(
         'div',
         null,
         React.createElement(HeadlineFunctionComponent, {name: name})
     );
-    
-    ReactDOM.render(wrapperElement, null), document.getElementById('app'));  
+
+    ReactDOM.render(wrapperElement, document.getElementById('app'));
     // All your code should be between these two comments
     </script>
 </body>
