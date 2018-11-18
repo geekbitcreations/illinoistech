@@ -79,32 +79,42 @@
     };
 
     // Put class based Product component here
+    
+    // Create classes for each of the elements image, name, and description
+
+    // Create class ProductImage for the image element
+    class ProductImage extends React.Component {
+        render(){
+            return React.createElement('img', {src:this.props.product}, null);
+        }
+    }
+    
+    // Create class ProductName for the name element
+    class ProductName extends React.Component {
+        render(){
+            return React.createElement('h2', null, this.props.product);
+        }
+    }
+
+    // Create class ProductDescription for the description element
+    class ProductDescription extends React.Component {
+        render(){
+            return React.createElement('p', null, this.props.product);
+        }
+    }
+
+    // Create class Product to render all three of the child classes
     class Product extends React.Component {
         render(){
-            return (
-                React.createElement('img', null, product.prod_img), 
-                React.createElement('h2', null, product.prod_name), 
-                React.createElement('p', null, product.prod_description)
+            return React.createElement('div', null,
+                    React.createElement(ProductImage, {product: product.prod_img}), 
+                    React.createElement(ProductName, {product: product.prod_name}), 
+                    React.createElement(ProductDescription, {product: product.prod_description})  
             );
         }
-    }
+    };
 
-    ReactDOM.render(React.createElement(Product, document.getElementById('app'));
-
-    /*class Product extends React.Component {
-        render(){
-            return (
-                <div>
-                    <img src={product.prod_img} />
-                    <h2>{product.prod_name}</h2>
-                    <p>{product.prod_description}</p>
-                </div>
-            );
-        }
-    }
-
-    ReactDOM.render(<Product />, document.getElementById('app'));*/
-
+    ReactDOM.render(React.createElement(Product, null), document.getElementById('app'));
     // All your code should be between these two comments
     </script>
 </body>

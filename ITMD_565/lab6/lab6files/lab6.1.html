@@ -64,10 +64,12 @@
     // All your code should be between these two comments
     let name = "Deborah Barndt";
 
+    // Create functional component Headline to create a H1 element
     function HeadlineFunctionComponent(props){
          return React.createElement('h1', null, 'ITMD 565 Lab 6 Part 1 - ' + props.name);
     }
     
+    // Create a wrapperElement to create a div element to then render the functional component
     const wrapperElement = React.createElement(
         'div',
         null,
