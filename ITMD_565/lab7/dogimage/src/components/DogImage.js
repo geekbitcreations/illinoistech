@@ -2,7 +2,9 @@ import React from 'react';
 
 class DogImage extends React.Component {
   render() {
-    // simple line of code to hold the img
+    return(
+      <img src={this.props.img} alt={this.props.dogBreed}/>
+    );
   }
 }
 
