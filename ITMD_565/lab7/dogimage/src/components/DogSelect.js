@@ -1,12 +1,14 @@
 import React from 'react';
 
-class DogImage extends React.Component {
+class DogSelect extends React.Component {
   render() {
-    <select id="breed">
-            <option value>Dachshund</option>
-            <option value>Maltese</option>
-            <option value>Whippet</option>
-          </select>
+    return (
+      <select id="breed" onChange={this.props.getBreed}>
+      <option value="dachshund">Dachshund</option>
+      <option value="maltese">Maltese</option>
+      <option value="whippet">Whippet</option>
+    </select>
+    );
   }
 }
 
