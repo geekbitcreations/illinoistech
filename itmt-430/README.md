@@ -1,10 +1,10 @@
 ## Deborah Barndt
 
-![alt text](/images/teal.jpg "Picture of me")
+![alt text](https://github.com/illinoistech-itm/dbarndt/blob/master/itmt-430/images/teal.jpg "Picture of me")
 
-![alt text](/images/codegirl.jpg "This represents me as a girl coder.")
+![alt text](https://github.com/illinoistech-itm/dbarndt/blob/master/itmt-430/images/codegirl.jpg "This represents me as a girl coder.")
 
-![alt text](/images/sailormoon.jpg "Sailor Scouts in the anime called Sailor Moon")
+![alt text](https://github.com/illinoistech-itm/dbarndt/blob/master/itmt-430/images/sailormoon.jpg "Sailor Scouts in the anime called Sailor Moon")
 
 ## Where are you from?
 I am from Fox Lake, which is by the Illinois Wisconsin border.
@@ -17,4 +17,4 @@ I'm a first generation college graduate in my family. I like to sing, and someti
 
 ## Git Tutorial
 
-![alt text](/images/completion-badge-learn-git.jpg "Git Tutorial Completion Badge")
+![alt text](https://github.com/illinoistech-itm/dbarndt/blob/master/itmt-430/images/completion-badge-learn-git.JPG "Git Tutorial Completion Badge")
