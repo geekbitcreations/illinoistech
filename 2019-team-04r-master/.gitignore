@@ -1,0 +1,11 @@
+packer_cache/
+quadrangle_application/
+.vagrant/
+*.swp
+*.pub
+*.lock
+.ssh/
+deploy*
+output-virtualbox-iso/
+*.box
+*.log
