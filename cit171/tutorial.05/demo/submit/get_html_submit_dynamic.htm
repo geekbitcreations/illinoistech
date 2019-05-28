@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GET Example with Dynamic HTML Submit Button</title>
+
+<script type="text/javascript">
+// declare a global variable
+var buttonValue;
+
+function dynamicSubmit() {
+	// set the form's action attribute to the selected Web page
+	// note that buttonValue is a global variable, not a property or method of the document object 
+	switch(buttonValue) {
+		case "Submit to form_processor.html":
+			document.myForm.action = "form_processor.htm";
+			break;
+		case "Submit to Google":
+			document.myForm.action = "http://www.google.com";
+			break;
+		case "Submit to Yahoo":
+			document.myForm.action = "http://www.yahoo.com";
+			break;
+	}
+
+	// always return true back to the calling procedrue
+	return true;
+}
+</script>
+
+</head>
+<body>
+
+<h1>GET Example with Dynamic HTML Submit Button</h1>
+<p>This is an example of how to use GET HTTP Method with a dynamic HTML submit button. A possible use for this type of setup with three submit buttons would be one button for Add, one for Delete, and another for Change.</p>
+<p>When you use GET the contents of your form will become url encoded into a <span style="color:blue">query string</span> appended after a ? as name=value pairs. For example if your form was submitted to form_processor.html and took your firstName and your lastName - the corresponding query string attached to the URL would be…..  <br>form_processor.html<span style="color:blue">?firstName=Santa&lastName=Claus</span></p>
+
+<p>After you click the Submit button look to see how the form data was passed as a query string in the Web browser address bar.</p> 
+
+<!--
+note that the  form's method attribute contains the "get" value  
+IMPORTANT: note that this form has the event onsubmit.event. when the user clicks the 
+submit button on this form, the onsubmit event is triggered and the user defined javascript
+function named dynamicSubmit is executed. the function named dynmaicSubmit will then 
+always return back the value of true, which is then passed to the onsubmit event here in the form 
+tag. not that when the value of true is passed to the onsubmit event the form will be submitted.
+IMPORT: note that there is no action atrribute in this form tag -->
+<form name="myForm"
+      onsubmit="return dynamicSubmit();"
+      method="get"
+      enctype="application/x-www-form-urlencoded">
+
+<!--
+IMPORTANT: note that you must have the name attribute here in the input tag for the
+querystring to be passed when the submit button is clicked. if you don't give your 
+input box a name the value will not be passed when the form is submitted -->
+firstName: <input type="text" name="firstName" value="Santa" />
+<br>
+lastName:  <input type="text" name="lastName" value="Claus" />
+<br>
+
+<!-- note that we have three  HTML submit buttons here. a possible use for this type of setup would be a button for Add, one for Delete, another for Change
+      also note that buttonValue is a global variable, not a property or method of the document object -->
+<input type="submit" value="Submit to form_processor.html" onclick="buttonValue=this.value;" />
+<input type="submit" value="Submit to Google" onclick="buttonValue=this.value;" />
+<input type="submit" value="Submit to Yahoo" onclick="buttonValue=this.value;" />
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+The following is a simple example of how to submit data from one HTML page to another using the POST method from Javascript. Normally, if data needs to be sent from one HTML page to another, it is done by appending the information to the query parameter of the the URL in the familiar “name=value” format. e.g.
+
+< href="post.aspx?user=peter&cc=aus">Click</a>
+
+Although this works fine, in most cases, problems occur when there is a lot of data to send and the URL exceeds about 2000 characters. The other disadvantage is that the URL looks ugly. The traditional method to get around this is to POST the data using a form. e.g.
+
+<form name="myform" method="post" action="post.aspx">
+<input name="user" value="peter"/>
+<input value="cc" value="aus"/>
+<a href="javascript:myform.submit()">Click</a>
+<form>
+
+This works fine, however, it does tend to make the formatting of the resulting HTML difficult and increases the size of the final HTML page significantly if there are lots of links on it.
+
+The following javascript function takes the URL of the target page and an associative array of name/values paires and POSTs the data to the supplied URL by dynamically creating a form and then submitting it.
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+
+To insert a link into a page just use a normal anchor tag in the HTML and call the function.
+
+<a href="javascript:postwith('post.aspx',{user:'peter',cc:'aus'})">click</a>

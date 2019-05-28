@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hidden Field Example</title>
+</head>
+
+<script type="text/javascript">
+function displayHiddenField() {
+	// declare variable
+	var hiddenFieldContents;
+	
+	// get the contents of the hidden field
+	hiddenFieldContents = document.forms[0].hiddenField.value;
+	
+	// display the contents of the hidden field to the screen
+	window.alert(hiddenFieldContents);
+}
+</script>
+<body>
+<h1>Hidden Field Example</h1>
+<form>
+<input type="button" value="Display Hidden Field" onclick="displayHiddenField();" />
+<br>
+
+<input type="hidden" name="hiddenField" id="hiddenField" value="Hello" />
+</form>
+</body>
+</html>
+
+

@@ -1,0 +1,120 @@
+<DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tutorial 3 Examples</title>
+</head>
+<body>
+<h1>Tutorial 3 Examples</h1>
+
+<script type="text/javascript">
+
+/*
+
+// declare a variable and assign it a value
+var x = 10;
+var day = "W";
+
+// conditional statement
+if (x < 10) {
+	alert(x);
+}
+
+if (day == "M") {
+	alert("Go to CIT 171");
+}
+else if (day == "T") {
+	alert("Go to CIT 134");
+}
+
+else if (day == "W") {
+	alert("Go to CIT 174");
+}
+
+else if (day == "R") {
+	alert("Go to CMM 111");
+}
+
+else {
+	alert("Watch TV");
+}
+
+switch (day){
+	case "M":
+		alert("Go to CIT 171");
+		break;
+	case "T":
+		alert("Go to CIT 134");
+		break;
+	case "M":
+		alert("Go to CIT 174");
+		break;
+	case "R":
+		alert("Go to CIT 111");
+		break;
+	default:
+		alert("Watch TV");
+}
+
+*/
+
+
+var counterVariable = 0;
+
+/*
+// while loop
+while (counterVariable <= 9) {
+	alert(counterVariable);
+	
+	// increment the counter variable
+	counterVariable = counterVariable + 1;
+	//counterVariable++;
+	//counterVariable += 1;
+	
+}
+
+// do/while loop
+do {
+	alert(counterVariable);
+	
+	// increment the counter variable
+	counterVariable = counterVariable + 1;
+
+} while (counterVariable <= 9);
+
+// for loop
+for (var counterVariable = 0; counterVariable <=9; counterVariable++) {
+	alert(counterVariable);
+}
+*/
+
+// declare an array
+var myArray = new Array(8);
+
+// populate the array
+myArray[0]="Joe";
+myArray[1]="Mary";
+myArray[2]="Mark";
+myArray[3]="Sue";
+myArray[4]="Paul";
+myArray[5]="Jill";
+myArray[6]="George";
+myArray[7]="Sally";
+
+// sort the array
+myArray.sort();
+
+// put it in descending order
+myArray.reverse();
+
+// display the contents of the array on the web page
+for (var subscript = 0; subscript <= myArray.length - 1; subscript++) {
+	document.write(myArray[subscript]);
+	document.write("<br />");
+}
+
+</script>
+
+	
+</body>
+</html>

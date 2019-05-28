@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Information</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function confirmReset() {
+	var resetForm = confirm("Are you sure you want to reset the form?");
+	if (resetForm == true)
+			return true;
+	return false;
+}
+
+function nextForm() {
+	/*-------------------METHOD:  2 ,  BUILT UP QUERY STRING--------------------*/
+   
+   //replace the above saved_data with document.cookie
+	
+   document.cookie = "name="      + encodeURIComponent(document.forms[0].name.value);
+   document.cookie = "address="   + encodeURIComponent(document.forms[0].address.value);
+   document.cookie = "city="      + encodeURIComponent(document.forms[0].city.value);
+   document.cookie = "state="     + encodeURIComponent(document.forms[0].state.value);
+   document.cookie = "zip="       + encodeURIComponent(document.forms[0].zip.value);
+   document.cookie = "email="     + encodeURIComponent(document.forms[0].email.value);
+   document.cookie = "telephone=" + encodeURIComponent(document.forms[0].telephone.value);
+   
+   for (var i=0; i<document.forms[0].platform.length; ++i){
+		 if (document.forms[0].platform[i].checked == true)
+			 document.cookie = "platform=" + encodeURIComponent(document.forms[0].platform[i].value);
+				  }
+	if (document.forms[0].quality.checked == true)
+												   document.cookie = "quality=" + encodeURIComponent("true");
+	if (document.forms[0].speed.checked == true)
+												   document.cookie = "speed=" + encodeURIComponent("true");
+	if (document.forms[0].functions.checked == true)
+												   document.cookie = "functions=" + encodeURIComponent("true");
+	if (document.forms[0].price.checked == true)
+												   document.cookie = "price=" + encodeURIComponent("true");
+	if (document.forms[0].design.checked == true)
+												   document.cookie = "design=" + encodeURIComponent("true");
+	document.cookie = "location=" + encodeURIComponent(document.forms[0].location.value);
+	document.cookie = "comments=" + encodeURIComponent(document.forms[0].comments.value);
+
+	location.href="product_info.htm";
+}
+
+//reads the persistent registered cookie
+function check_cookie_registered(){
+	 if (document.cookie){
+		  var reg_check = decodeURIComponent(document.cookie);
+		  var reg_value = reg_check.split("=");
+		  if (reg_value[1] == 'true'){
+				 var reg_again = window.confirm("you have already registered your color printer! Do you want to register another printer?");
+				 if (reg_again == false){
+					  document.open();
+					  document.write("<p>Thank you for registering your color printer!</p>");
+					  document.close();
+				 }
+		  }
+	 }
+}
+</script>
+</head>
+<body onload="check_cookie_registered()">
+<h3>Customer Information</h3>
+<form action="" method="get" enctype="application/x-www-form-urlencoded" onreset="return confirmReset();">
+    <p>Name<br>            <input type="text" name="name" size="50" value="Frank Thomas" /></p>
+    <p>Address<br>         <input type="text" name="address" size="50"  value="123 Market Street" /></p>
+    <p>City, state, zip<br><input type="text" name="city" size="32"  value="Grayslake" /> <input type="text" name="state" size="2" maxlength="2"  value="IL" /> <input type="text" name="zip" size="5" maxlength="5"  value="60030" /></p>
+    <p>E-mail<br>          <input type="text" name="email" size="50"  value="fthomas@google.com" /></p>
+    <p>Telephone<br>       <input type="text" name="telephone" size="50"  value="(847) 555-1212"  /></p>
+    <p>On which platform will you use this printer?<br>
+         <input type="radio" name="platform" value="windows" checked="checked" />Windows
+         <input type="radio" name="platform" value="linux" />Linux
+         <input type="radio" name="platform" value="unix" />UNIX
+         <input type="radio" name="platform" value="mac" />Macintosh</p>
+    <p>What features most influenced your selection of this model? (check all that apply)<br>
+        <input type="checkbox" name="quality" />Output quality <br>
+        <input type="checkbox" name="speed"  checked="checked" />Print speed<br>
+        <input type="checkbox" name="functions" />Print functions<br>
+        <input type="checkbox" name="price"  checked="checked" />Price/value<br>
+        <input type="checkbox" name="design" />Appearance/design</p>
+    <p>Where will you use this printer?
+        <select name="location">
+                <option value="work">Work</option>
+                <option value="school" selected="selected" >School</option>
+                <option value="home">Home</option>
+                <option value="home_office">Home Office</option>
+         </select></p>
+    <p>Comments<br>
+    <textarea name="comments" cols="40" rows="5">I need a really good printer at a very low price. Thanks, Frank.</textarea></p>
+    <p><input type="reset" /> <input type="button" name="next" value=" Next" onclick="nextForm()" /></p>
+</form>
+</body>
+</html>

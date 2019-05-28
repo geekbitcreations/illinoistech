@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;org.JarronBailey.itmd566.Jarron&apos; to &apos;org.deborahbarndt.itmd566.deborah&apos;&#x0D;&#x0A;- Original project: &apos;deborahbarndt&apos;&#x0D;&#x0A;- Original element: &apos;deborahbarndt/src/main/java/org.JarronBailey.itmd566.Jarron&apos;&#x0D;&#x0A;- Renamed element: &apos;deborahbarndt/src/main/java/org.deborahbarndt.itmd566.deborah&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;org.JarronBailey.itmd566.Jarron&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;org.JarronBailey.itmd566.Jarron" name="org.deborahbarndt.itmd566.deborah" qualified="false" references="true" stamp="1555715517463" textual="false" version="1.0"/>
+</session>

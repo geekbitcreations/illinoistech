@@ -1,0 +1,106 @@
+// This program with output a random number, then ask the player
+// to enter a number. The player will be given 10 attempts to try
+// to guess the number. If correct, it will display a message and
+// if wrong it will display an different message.
+// Written by Deborah Barndt
+
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+char chr;
+
+int main() 
+{
+	int num, guess, tries = 10, timesplayed = 0;
+	char answer;
+		
+	// Loop to output a random number between 0 to 20 and give
+	// the user 10 tries.
+	srand(time(45)); // Seed random number generator
+	
+	do
+	{
+		number = rand() % 20 + 1; 
+			
+		// Ask user to enter a number
+		cout << "Welcome to Guess the Number Game." << endl;
+				
+		do
+		{
+			cout << "Pick a number between 0 and 20: " << endl;
+			
+			if (!(cin >> guess))
+			{
+				cout << endl;
+				cout << "Error! Please enter numbers only." << endl;
+				cin.clear();
+				cin.ignore(10000, '\n');
+			}
+			
+			cin >> guess;
+				
+			/*if (num < guess)
+				cout << "You guessed too low!\n\n";
+			else if (guess > num)
+				cout << "You guessed too high!\n\n";
+			else
+				cout << "Congratulation! You guessed correctly!" << endl;
+				cout << "You got it in " << tries << " guesses!\n" << endl;*/
+		
+			while (guess > 10 || guess < 0);
+			{
+				cout << "Pick a number between 0 and 20: " << endl;
+				cout << endl;
+				guess = NULL;
+				timesplayed = 0;
+			}
+	
+			tries--;
+			timesplayed++;
+	
+			if (guess != num && tries > 0 && guess < num)
+			{
+				cout << "Sorry! Please try again. You guessed too low!" << endl;
+				cout << "You have " << tries << " tries remaining." << endl;
+				cout << endl;
+			}
+	
+			else if (guess != num && tries > 0 && guess > num)
+			{
+				cout << "Sorry! Please try again. You guessed too high!" << endl;
+				cout << "You have " << tries << " tries remaining." << endl;
+				cout << endl;
+			}
+	
+			else if (guess != num && tries == 0)
+			{
+				cout << "Sorry! Invalid choice." << endl;
+				cout << "You have " << tries << " tries remaining. You lose." << endl;
+				cout << endl;
+			}
+	
+			if (guess == number)
+				cout << "Congratulations! You guessed correctly!" << endl;
+		}
+		
+		while (timesplayed < 10 && guess != num);
+	}
+			
+	do
+	{
+		cout << "Would you like to play again?\n\n";
+		cout << "Enter Y/N" << endl;
+		cin >> answer;
+			
+			if ('N')
+				cout << "Thanks for playing!" << endl;
+	}
+	
+	while (answer = 'Y');
+		cin >> chr;	
+	
+	return 0;
+}

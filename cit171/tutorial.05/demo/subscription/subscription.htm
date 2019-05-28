@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gosselin Gazette Subscription Form</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function checkForNumber(fieldValue) {
+     var numberCheck = isNaN(fieldValue);
+     if (numberCheck == true) {
+           window.alert("You must enter a numeric value!");
+           return false;
+     }
+}
+function confirmPassword() {
+	if (document.forms[0].password_confirm.value != document.forms[0].password.value) {
+	    window.alert("You did not enter the same password!");
+        document.forms[0].password.focus();
+     }
+}
+function noDelivery() {
+     for(var i=0;i<document.forms[0].delivery.length;++i) {
+           if (document.forms[0].delivery[i].checked == true)
+                 document.forms[0].delivery[i].checked = false;
+     }
+}
+function noSunday() {
+     for(var i=0;i<document.forms[0].sunday.length;++i) {
+           if (document.forms[0].sunday[i].checked == true)
+                 document.forms[0].sunday[i].checked = false;
+     }
+}
+function sameShippingInfo() {
+     if (document.forms[0].elements[5].checked == true) {
+           document.forms[0].name_shipping.value
+                 = document.forms[0].name_billing.value;
+           document.forms[0].address_shipping.value
+                 = document.forms[0].address_billing.value;
+           document.forms[0].city_shipping.value
+                 = document.forms[0].city_billing.value;
+           document.forms[0].state_shipping.value
+                 = document.forms[0].state_billing.value;
+           document.forms[0].zip_shipping.value
+                 = document.forms[0].zip_billing.value;
+     }
+     else {
+           document.forms[0].name_shipping.value = "";
+           document.forms[0].address_shipping.value = "";
+           document.forms[0].city_shipping.value = "";
+           document.forms[0].state_shipping.value = "";
+           document.forms[0].zip_shipping.value = "";
+     }
+}
+function addMagazine() {
+	if (document.forms[0].elements[31].value == "")
+		window.alert("You must enter a magazine name.");
+	else {
+		if (document.forms[0].magazines.options[0] && document.forms[0].magazines.options[0].value == "none")
+			document.forms[0].magazines.options[0] = null;
+		var magazine = new Option();
+		magazine.text = document.forms[0].elements[31].value;
+		magazine.value = document.forms[0].elements[31].value;
+		nextItem = document.forms[0].magazines.length;
+		document.forms[0].magazines.options[nextItem] = magazine;
+		document.forms[0].elements[31].value = "";
+	}
+}
+function deleteMagazine() {
+     var selectedItem =
+           document.forms[0].magazines.selectedIndex;
+     if (selectedItem == -1)
+           window.alert("You must select a magazine name in the list.");
+     else
+           document.forms[0].magazines.options[selectedItem]
+                 = null;
+}
+function confirmSubmit() {
+	if (document.forms[0].name_billing.value == ""
+		 || document.forms[0].address_billing.value == ""
+		 || document.forms[0].city_billing.value == ""
+		 || document.forms[0].state_billing.value == ""
+		 || document.forms[0].zip_billing.value == "") {
+		 window.alert("You must enter your billing information.");
+		 return false;
+	}
+	else if (document.forms[0].name_shipping.value == ""
+		 || document.forms[0].address_shipping.value == ""
+		 || document.forms[0].city_shipping.value == ""
+		 || document.forms[0].state_shipping.value == ""
+		 || document.forms[0].zip_shipping.value == "") {
+		 window.alert("You must enter your shipping information.");
+		 return false;
+	}
+	else if (document.forms[0].area.value == ""
+		 || document.forms[0].exchange.value == ""
+		 || document.forms[0].phone.value == "") {
+		 window.alert("You must enter your telephone number.");
+		 return false;
+	}
+	else if (document.forms[0].password.value == ""
+		 || document.forms[0].password_confirm.value == "") {
+		 window.alert("You must enter a password.");
+		 return false;
+	}
+	var deliverySelected = false;
+	for (var i=0; i<8; ++i) {
+		 if (document.forms[0].delivery[i].checked == true) {
+			   deliverySelected = true;
+			   break;
+		 }
+	}
+	for (var j=0; j<2; ++j) {
+		 if (document.forms[0].sunday[j].checked == true) {
+			   deliverySelected = true;
+			   break;
+		 }
+	}
+	if (deliverySelected != true) {
+		 window.alert("You must select a delivery rate option.");
+		 return false;
+	}
+	for (var k=0; k<document.forms[0].magazines.length; ++k) {
+		 document.forms[0].magazines.options[k].selected = true;
+	}
+	return true;
+}
+function confirmReset() {
+     var resetForm = window.confirm("Are you sure you want to reset the form?");
+     if (resetForm == true)
+           return true;
+     return false;
+}
+function changeMagazine() {
+     var selectedItem =
+           document.forms[0].magazines.selectedIndex;
+     if (selectedItem == -1)
+           window.alert("You must select a magazine name in the list.");
+     else {
+     document.forms[0].magazines.options[selectedItem].value
+     	= document.forms[0].elements[31].value;
+     document.forms[0]. magazines.options[selectedItem].text
+     		= document.forms[0].elements[31].value;
+	}
+}
+</script>
+
+</head>
+<body>
+<h1>Gosselin Gazette Subscription Form</h1>
+<h2>Customer Information</h2>
+<form action="form_processor.htm" 
+      method="get"
+      enctype="application/x-www-form-urlencoded"
+      onsubmit="return confirmSubmit();"
+      onreset="return confirmReset();">
+<table border="0">
+<tr>
+<td valign="top"><h3>Billing Information</h3>
+<p>Name<br>
+<input type="text" name="name_billing" size="50" /><br> </p>
+<p>Address<br>
+<input type="text" name="address_billing" size="50" /></p>
+<p>City, State, Zip<br>
+<input type="text" name="city_billing" size="34" />
+<input type="text" name="state_billing" size="2" maxlength="2" />
+<input type="text" name="zip_billing" size="10"
+maxlength="5" onchange="return checkForNumber(this.value);" /></p>
+<p><input type="checkbox" onclick="sameShippingInfo();" />
+Same shipping information</p>
+</td>
+<td valign="top">
+<h3>Shipping Information</h3>
+<p>Name<br>
+<input type="text" name="name_shipping" size="50" /></p>
+<p>Address<br>
+<input type="text" name="address_shipping" size="50" /></p>
+<p>City, State, Zip<br>
+<input type="text" name="city_shipping" size="34" />
+<input type="text" name="state_shipping" size="2"
+maxlength="2" />
+<input type="text" name="zip_shipping" size="10"
+maxlength="5" onchange="return checkForNumber(this.value);" /></p></td>
+</tr>
+</table>
+<p>Telephone</p>
+<p>(<input type="text" name="area" size="3" maxlength="3" onchange="return checkForNumber(this.value);" />) <input
+type="text" name="exchange" size="3" maxlength="3" onchange="return checkForNumber(this.value);" />
+<input type="text" name="phone" size="4" maxlength="4" onchange="return checkForNumber(this.value);" /></p>
+<p>Enter a password that you can use to manage your subscription
+online:</p>
+<p><input type="password" name="password" size="50" onchange="ensurePasswordConfirm();" /></p>
+<p>Type the password again to confirm it.</p>
+<p><input type="password" name="password_confirm" size="50" onblur="confirmPassword();" /></p>
+<h3>Delivery Rates</h3>
+<table border="0">
+<colgroup align="left" width="100" />
+<colgroup span="4" align="center" width="100" />
+<tr><th>&nbsp;</th>
+<th>4 weeks</th>
+<th>13 weeks</th>
+<th>26 weeks</th>
+<th>52 weeks</th></tr>
+<tr><td><strong>Mon-Sat</strong></td>
+<td><input type="radio" name="delivery"
+     value="12.60" onclick="noSunday();" />$12.60</td>
+<td><input type="radio" name="delivery"
+     value="40.95" onclick="noSunday();" />$40.95</td>
+<td><input type="radio" name="delivery"
+     value="81.90" onclick="noSunday();" />$81.90</td>
+<td><input type="radio" name="delivery"
+     value="156.00" onclick="noSunday();" />$156.00</td></tr>
+<tr><td><strong>Every Day</strong></td>
+<td><input type="radio" name="delivery" value="13.56"
+onclick="noSunday();" />$13.56</td>
+<td><input type="radio" name="delivery" value="44.07"
+onclick="noSunday();" />$44.07</td>
+<td><input type="radio" name="delivery" value="88.14"
+onclick="noSunday();" />$88.14</td>
+<td><input type="radio" name="delivery" value="159.74"
+onclick="noSunday();" />$159.74</td></tr>
+</table>
+<p><strong>Sundays only ($3.50 per week)</strong>
+<input type="radio" name="sunday" value="weekly"
+onclick="noDelivery();" />Bill me weekly
+<input type="radio" name="sunday" value="weekly"
+onclick="noDelivery();" />Bill me monthly</p>
+<p>Do you subscribe to any other newspapers?</p>
+<p><input type="checkbox" name="newspapers"
+     value="nytimes" />New York Times<br>
+<input type="checkbox" name="newspapers"
+     value="bostonglobe" />Boston Globe<br>
+<input type="checkbox" name="newspapers"
+     value="sfchronicle" />San Francisco Chronicle<br>
+<input type="checkbox" name="newspapers"
+     value="miamiherald" />Miami Herald<br>
+<input type="checkbox" name="newspapers"
+     value="other" />Other</p>
+<p>Do you subscribe to any magazines?</p>
+<p>Magazine <input type="text" size="68" /></p>
+<p><input type="button" value="Add Magazine"
+onclick="addMagazine();" style="width: 120px" />
+<input type="button" value="Delete Magazine"
+onclick="deleteMagazine()" style="width: 120px" />
+<input type="button" value="Clear List"
+onclick="document.forms[0].magazines.options.length = 0;" style="width: 120px" />
+<input type="button" value="Change Magazine"
+onclick="changeMagazine()" style="width: 120px" />
+</p>
+<p><select name="magazines" multiple="multiple"
+       size="10" style="width: 500px">
+<option value="none">Enter the magazines you subscribe
+to</option>
+</select></p>
+<p><input type="image" alt="Graphical image of a subscribe button" src="subscribe.gif" />
+<button style="border:0; background:white" type="reset"><img src="reset.gif" alt="Graphical image of reset button." />
+</button></p>
+</form>
+</body>
+</html>

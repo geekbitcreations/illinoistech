@@ -1,0 +1,156 @@
+/**
+ * Deborah Barndt
+ * 10-31-16
+ * LoanProcessing.java
+ * Lab 4
+ * This program will act as a driver file to call the database CRUD methods and create
+ * some resulting output.
+ * Written by Deborah Barndt. */
+
+package bankofiit;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+
+public class LoanProcessing extends BankRecords
+{
+
+	private static final int EXIT_ON_CLOSE = 0;
+
+	public LoanProcessing() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+		// Instantiate a Dao object.
+		Dao dao = new Dao();
+		
+		// Create objects for BankRecords.
+		BankRecords client = new BankRecords();
+		
+		// Call readData method.
+		client.readData();
+		
+		// Call createTable method.
+		dao.createTable();
+		
+		// Call insertRecords method.
+		dao.insertRecords(clientInfo);
+		
+		// Call retrieveRecords method.
+		dao.retrieveRecords(null);
+		
+		try 
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Connection connect = (Connection) DriverManager.getConnection
+            		("jdbc:mysql://www.papademas.net/411labs?"
+                    + "user=db411&password=411");
+            Statement stmnt = (Statement) connect.createStatement();
+    	 
+    	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            Vector<String> column = new Vector<String>();
+    	
+            try 
+            {
+            	stmnt = (Statement) connect.createStatement();
+            	ResultSet res = stmnt.executeQuery("SELECT * FROM jpapa_tab");
+            	ResultSetMetaData metaData = res.getMetaData();
+            	int columns = metaData.getColumnCount();
+    	   
+            	// Get the column names from the table.
+            	String cols = ""; 
+    	 
+            	for (int i = 1; i <= columns ; i++) 
+            	{
+            		cols = metaData.getColumnName(i);
+            		column.add(cols);
+            	}
+            	
+            	// Get row data from the table!
+            	while (res.next()) 
+            	{
+            		Vector<Object> rows = new Vector<Object>(columns);
+    	          
+            		for (int i = 1; i <= columns; i++) 
+            		{
+            			rows.addElement(res.getObject(i));
+            		} 
+            		
+            		data.addElement(rows);
+            	}
+      
+            } 
+            
+            catch (SQLException e) 
+            {
+            	e.printStackTrace();
+            }
+		
+            TableModel rows = null;				// number of rows in the table
+			TableColumnModel columns = null;	// number of columns in the table
+			
+			JTable loantable = new JTable(rows,columns);
+            JScrollPane scrollPane = new JScrollPane(loantable);
+            getContentPane().add(scrollPane);
+
+            JPanel buttonPanel = new JPanel();
+            getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+        
+            JFrame tableframe = new JFrame("Loan Analysis Report");
+            tableframe.setSize(700, 200);
+            tableframe.add(new JScrollPane(loantable));
+            tableframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            tableframe.pack();
+            tableframe.setVisible(true);
+		}
+        
+		catch (InstantiationException e) 
+		{
+            System.err.println("Error in Instantiation!");
+        }
+        
+        catch (ClassNotFoundException e) 
+		{
+            System.err.println("Class not found!");
+        }
+        
+        catch (IllegalAccessException e) 
+		{
+            System.err.println("Access denied!");
+        }
+     
+        catch (SQLException e) 
+		{
+            System.err.println("SQL Error! " + e.getMessage() );
+        } 
+        
+    }
+
+	private static Container getContentPane() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Information</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function confirmReset() {
+    var resetForm = confirm("Are you sure you want to reset the form?");
+    if (resetForm == true)
+        return true;
+    return false;
+}
+
+function submitform(){
+       /*-------------------METHOD:  3 ,  cookies-------------------*/
+	 //dd    var saved_data = location.search;
+	 //change & to ? in the below 
+	 
+	 var saved_data = "?serial=" + document.forms[0].serial.value;
+	
+	 saved_data += "?date="   + document.forms[0].date.value;
+	 if (document.forms[0].where[0].checked == true)
+		               saved_data += "?where=retail"; 
+	 if (document.forms[0].where[1].checked == true)
+		               saved_data += "?where=catalog_mail"; 
+	 if (document.forms[0].where[2].checked == true)
+	                   saved_data += "?where=internet"; 
+	 if (document.forms[0].where[3].checked == true)
+		               saved_data += "?where=other"; 
+				   
+     //statements below creates cookie named registered. the cookie registered is assigned a value true and is set to expire in one year.
+    var expiresDate = new Date();
+    expiresDate.setFullYear(expiresDate.getFullYear() + 1);
+    document.cookie = "registered=" + encodeURIComponent(true) + ";expires=" + expiresDate.toUTCString();
+
+	top.location.href = "register.htm" + saved_data;  
+}   
+
+</script>
+</head>
+<body>
+<h3>Color Printer Product Information</h3>
+
+<form action="" method="get" enctype="application/x-www-form-urlencoded" onreset="return confirmReset();" >
+     <p>Printer serial number<br>      <input type="text" name="serial" size="50" value="PR893-23-8432" /></p>
+     <p>Date printer was purchased<br> <input type="text" name="date" size="50" value="December 1, 2009" /></p>
+     <p>Where did you purchase this printer?<br>
+         <input type="radio" name="where" value="retail" />Retail Store<br>
+         <input type="radio" name="where" value="catalog_mail" />Catalog/Mail Order<br>
+         <input type="radio" name="where" value="internet" checked="checked" />Internet Transaction<br>
+         <input type="radio" name="where" value="other" />Other</p>
+     <p> <input type="button" value="Register Product" onclick="submitform();"/>
+	     <input type="reset" /></p>
+</form>
+
+</body>
+</html>

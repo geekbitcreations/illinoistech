@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Array Declarations</title>
+</head>
+<body>
+<h1>Array Declarations</h1>
+
+<script type="text/javascript">
+
+// ARRAY DECLARATION - METHOD 1
+// declare an array with five elements
+var nameArray1 = new Array(5);
+// assign values to each of the five elements
+nameArray1[0] = "Sally";
+nameArray1[1] = "Tom";
+nameArray1[2] = "Jill";
+nameArray1[3] = "Mark";
+nameArray1[4] = "Mary";
+//you can even add a sixth element to the array even though it was created new Array(5) command
+nameArray1[5] = "Frank";
+
+// ARRAY DECLARATION - METHOD 2
+// declare an array with no elements (zero elements)
+var nameArray2 = new Array();
+// assign values to each of the elements
+// each time a value is added to the array another element is added
+nameArray2[0] = "Sally";
+nameArray2[1] = "Tom";
+nameArray2[2] = "Jill";
+nameArray2[3] = "Mark";
+nameArray2[4] = "Mary";
+
+// ARRAY DECLARATION - METHOD 3
+var nameArray3 = ["Sally", "Tom", "Jill", "Mark", "Mary"];
+
+
+// print out the contents of the three arrays
+// array declaration example 1
+document.write("Array Declaration Example 1:<br>");
+for (var subscript = 0; subscript <= 5; subscript++) {
+	document.write(nameArray1[subscript] + "<br>");
+}
+document.write("<br>");
+// array declaration example 2
+document.write("Array Declaration Example 2:<br>");
+for (var subscript = 0; subscript <= 4; subscript++) {
+	document.write(nameArray2[subscript] + "<br>");
+}
+document.write("<br>");
+// array declaration example 3
+document.write("Array Declaration Example 3:<br>");
+for (var subscript = 0; subscript <= 4; subscript++) {
+	document.write(nameArray3[subscript] + "<br>");
+}
+
+</script>
+
+</body>
+</html>

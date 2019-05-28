@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Array Looping Structures</title>
+</head>
+<body>
+<h1>Array Looping Structures</h1>
+
+<script type="text/javascript">
+
+// declare an array with ten elements
+var nameArray = new Array(10);
+
+// add values to each of the array elements
+nameArray[0] = "Sally";
+nameArray[1] = "Tom";
+nameArray[2] = "Jill";
+nameArray[3] = "Mark";
+nameArray[4] = "Mary";
+nameArray[5] = "Frank";
+nameArray[6] = "Bill";
+nameArray[7] = "Angel";
+nameArray[8] = "Julie";
+nameArray[9] = "Joe";
+
+// WHILE LOOP
+// use a while loop to display the arroy on the Web page
+document.write("While Loop Example<br>");
+// initialize counter variable
+var subscript = 0;
+// begin the loop
+while ( subscript <= 9 ) {
+	document.write( nameArray[subscript] );
+	document.write("<br>");
+	
+	// increment the counter
+	subscript = subscript + 1;  //subscript++;
+}
+document.write("<br>");
+
+
+// DO WHILE LOOP
+// use a do while loop to display the arroy on the Web page
+document.write("Do While Loop Example<br>");
+// initialize counter variable
+subscript = 0;
+do {
+	document.write( nameArray[subscript] + "<br>" );
+	// increment the counter variable
+	subscript++;
+} while (subscript <= 9)
+document.write("<br>");
+
+
+// FOR LOOP
+document.write("For Loop Example<br>");
+// use a for loop to display the array on the Web page 
+for (var subscript = 0; subscript <= 9; subscript++) {
+	document.write( nameArray[subscript] + "<br>" );
+}
+
+</script>
+
+</body>
+</html>

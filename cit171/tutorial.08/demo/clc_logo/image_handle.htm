@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Handle Example</title>
+
+<script type="text/javascript">
+function change_to_white() {
+	// declare variables
+	var image_handle;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// change the image
+	image_handle.src = "clc_logo_white.jpg";
+}
+
+function change_to_black() {
+	// declare variables
+	var image_handle;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// change the image
+	image_handle.src = "clc_logo_black.jpg";
+}
+</script>
+
+</head>
+<body>
+
+<h1>Image Handle Example</h1>
+
+<img src="clc_logo_white.jpg" name="clc_logo" id="clc_logo" alt="CLC Logo">
+
+<br><br><br>
+<input type="button" value="Change to White" onclick="change_to_white();" />
+<input type="button" value="Change to Black" onclick="change_to_black();" />
+
+</body>
+</html>

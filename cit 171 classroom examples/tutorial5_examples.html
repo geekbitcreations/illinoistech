@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form Validation Example</title>
+
+<script type="text/javascript">
+function trim(str) {
+	str = str.replace(/^\s+/, '');
+	for (var i = str.length - 1; i >= 0; i--) {
+		if (/\S/.test(str.charAt(i))) {
+			str = str.substring(0, i + 1);
+			break;
+		}
+	}
+	return str;
+}
+function isNumber(n) {
+	//The isNaN() function determines whether a value is an illegal number (Not-a-Number).
+	//The isNaN() function returns true if the value is NaN, and false if not.
+	//
+	// The parseFloat() function parses a string and returns a floating point number.
+	// The parseFloat()  function determines if the first character in the specified string is a number. 
+	// If it is, it parses the string until it reaches the end of the number, and returns the number as a number, not as a string.
+	// Only the first number in the string is returned!
+	// Leading and trailing spaces are allowed.
+	// If the first character cannot be converted to a number, parseFloat() returns NaN.
+	//
+	// The isFinite() function determines whether a number is a finite, legal number.
+	// This function returns false if the value is +infinity, -infinity, or NaN.
+	
+	return !isNaN(parseFloat(n)) && isFinite(n);
+}
+function isValidZipcode(value) {
+	/* The regular expression doesn't need a lot of explanation. 
+	^\d{5} says that the regular expression must start ("^") with exactly five ("{5}") digits ("\d"). 
+	([\-]\d{4})?$ says that the grouping (in parentheses) can appear either zero or one time ("?") 
+	and must be the end of the string ("$"). 
+	Inside the grouping is the literal dash character ("-", but since that character normally 
+	means other things in regular expressions, it needs to be "escaped" with the slash in front). 
+	After the dash is exactly four ("{4}") digits ("\d").
+	So, a value of "12345" will succeed. Any letter will cause the expression to fail. 
+	A value of "12345-6789" will succeed. 
+	If the 9 digit format is used, then the previous format (5 digits, dash, 4 digits) must be used. 
+	Other formats will fail. */
+	var regularExpression;
+	var result;
+	
+	// create a regular expression
+   regularExpression = /^\d{5}([\-]\d{4})?$/;
+   
+   result = regularExpression.test(value);
+  
+   // send back true or false to the calling procedure
+   return result;
+}
+function validateForm() {
+	// declare variables
+	var firstName;
+	var lastName;
+	var zipcode;
+	var errorMsg = new String();
+	
+	// get the user input from the input field
+	//firstName =document.myForm.firstName.value;
+	//lastName = document.myForm.lastName.value;
+	
+	firstName = document.forms["myForm"].firstName.value;
+	lastName = document.forms["myForm"].lastName.value;	
+	zipcode = document.forms["myForm"].zipcode.value;	
+	
+	//firstName = document.forms["myForm"].elements["firstName"].value;
+	//firstName = document.forms[0].elements[1].value;
+	//firstName = document.myForm.firstName.value;
+
+	// remove leading and trailing spaces from the user input
+	firstName = trim(firstName);
+	lastName = trim(lastName);
+	zipcode = trim(zipcode);
+	
+	// check the length of the first name
+	if (firstName.length > 0 && firstName.length <= 30) {
+		document.getElementById("firstNameLabel").style.color = "black";
+	}
+	else {
+		document.getElementById("firstNameLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		if (firstName.length == 0) {
+			errorMsg = errorMsg + "First Name Missing";
+		}
+		else {
+			errorMsg = errorMsg + "First Name Must Be 30 Characters or Less";
+		}
+	}
+
+	// check the length of the last name
+	if (lastName.length > 0 && lastName.length <= 30) {
+		document.getElementById("lastNameLabel").style.color = "black";
+	}
+	else {
+		document.getElementById("lastNameLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		if (lastName.length == 0) {
+			errorMsg = errorMsg + "Last Name Missing";
+		}
+		else {
+			errorMsg = "Last Name Must Be 30 Characters or Less";
+		}
+	}
+
+	// check the state dropdown
+	if (document.getElementById("state").selectedIndex > 0) {
+		// no error
+		document.getElementById("stateLabel").style.color = "black";
+	}
+	else {
+		// display an error message
+		document.getElementById("stateLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		errorMsg = errorMsg + "State Not Selected";
+	}
+
+	// check the zipcode 
+	if (zipcode.length == 0) {
+		// zip code missing
+		document.getElementById("zipcodeLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		errorMsg = errorMsg + "Zip Code Missing";
+	}
+	else {
+		// check the zip code against a regular expression
+		if (isValidZipcode(zipcode) == true) {
+			// no error
+			document.getElementById("zipcodeLabel").style.color = "black";
+		}
+		else {
+			// display an error message
+			document.getElementById("zipcodeLabel").style.color = "red";
+			if (errorMsg.length > 0) {
+				errorMsg = errorMsg + "\n";
+			}
+			errorMsg = errorMsg + "Invalid Zip Code";
+		}
+	}
+
+	// check the radio buttons
+	if (document.getElementById("answerYes").checked == true || 
+		document.getElementById("answerNo").checked == true ) {
+		// no error
+		document.getElementById("answerLabel").style.color = "black";
+	}
+	else {
+		// display an error message
+		document.getElementById("answerLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		errorMsg = errorMsg + "Answer Not Selected";
+	}	
+	
+
+	// check the check boxes
+	if (document.getElementById("mon").checked == true || 
+		document.getElementById("tue").checked == true ||
+		document.getElementById("wed").checked == true ) {
+		// no error
+		document.getElementById("daysLabel").style.color = "black";
+	}
+	else {
+		// display an error message
+		document.getElementById("daysLabel").style.color = "red";
+		if (errorMsg.length > 0) {
+			errorMsg = errorMsg + "\n";
+		}
+		errorMsg = errorMsg + "Day Not Selected";
+	}	
+
+
+	
+	
+	if (errorMsg.length > 0) {
+		// display the error message
+		alert(errorMsg);
+	}
+	else {
+		// submit the form to the server
+		document.myForm.submit();
+	}
+}
+
+</script>
+</head>
+<body>
+<h1>Form Validation Example</h1>
+<form id="myForm" name="myForm" action="http://www.google.com" method="post">
+
+<label id="firstNameLabel" for="firstName">First Name: </label>
+<input type="text" id="firstName" name="firstName"/>	   
+<br>
+
+<label id="lastNameLabel" for="lastName">Last Name: </label>
+<input type="text" id="lastName" name="lastName"/>			   
+<br>
+
+<label id="stateLabel" for="state">State:</label>
+<select id="state" name="state">
+	<option value="" selected="selected">(Select State)</option>
+	<option value="IL">Illinois</option>
+	<option value="WI">Wisconsin</option>
+	<option value="MI">Michigan</option>
+	<option value="IN">Indiana</option>
+</select>
+<br>
+
+<label id="zipcodeLabel" for="zipcode">Zip Code:</label>
+<input type="text" name="zipcode" id="zipcode" size="10" value="" />
+<br>
+
+<label id="answerLabel" for="answerYes">Answer:</label>
+Yes<input type="radio" id="answerYes" name="answer" value="Y">
+No<input type="radio" id="answerNo" name="answer" value="N">
+<br>
+
+<label id="daysLabel" for="mon">Days:</label>
+Mon<input type="checkbox" id="mon" name="mon" value="M" >
+Tues<input type="checkbox" id="tue" name="tue" value="T">
+Wed<input type="checkbox" id="wed" name="wed" value="W">
+<br><br>
+
+<input type="button" value="Submit" onclick="validateForm();" />
+<input type="button" value="Reset" onclick="resetForm();" />
+
+</form>
+</body>
+</html>

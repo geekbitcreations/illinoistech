@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Information</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function confirmReset() {
+        var resetForm = confirm("Are you sure you want to reset the form?");
+        if (resetForm == true)
+                return true;
+        return false;
+}
+function nextForm() {
+        /*   METHOD : 1 ,     Saving state information using HIDDEN FORM FIELDS.
+		     the statements use the parent property to copy the values of the customer information form to the corresponding hidden form fields in the topframe
+		      below code is from the product registracion.htm - just to see the name - anita
+		     <frameset rows="60, *">
+	                       <frame src="top_frame.htm"     name="topframe" scrolling="no" />
+	                      <frame src="customer_info.htm" name="bottomframe" />
+                           </frameset>			   
+	           */
+	    parent.topframe.document.forms[0].name.value      = document.forms[0].name.value;		   
+		parent.topframe.document.forms[0].address.value   = document.forms[0].address.value;
+        parent.topframe.document.forms[0].city.value      = document.forms[0].city.value;
+        parent.topframe.document.forms[0].state.value     = document.forms[0].state.value;
+        parent.topframe.document.forms[0].zip.value       = document.forms[0].zip.value;
+        parent.topframe.document.forms[0].email.value     = document.forms[0].email.value;
+        parent.topframe.document.forms[0].telephone.value = document.forms[0].telephone.value;
+        for (var i=0; i<document.forms[0].platform.length; ++i){
+		     if (document.forms[0].platform[i].checked == true)
+			      parent.topframe.document.forms[0].platform.value = document.forms[0].platform[i].value;
+                      }
+		if (document.forms[0].quality.checked == true)
+		          parent.topframe.document.forms[0].quality.value = true;
+	 	if (document.forms[0].speed.checked == true)
+		          parent.topframe.document.forms[0].speed.value = true;
+	 	if (document.forms[0].functions.checked == true)
+		          parent.topframe.document.forms[0].functions.value = true;
+	 	if (document.forms[0].price.checked == true)
+		          parent.topframe.document.forms[0].price.value = true;
+	 	if (document.forms[0].design.checked == true)
+		          parent.topframe.document.forms[0].design.value = true;
+	 	parent.topframe.document.forms[0].location.value   = document.forms[0].location.value;
+                     parent.topframe.document.forms[0].comments.value   = document.forms[0].comments.value;   
+			     
+		location.href="product_info.htm";
+}
+</script>
+
+</head>
+<body>
+<h3>Customer Information</h3>
+<form action="" method="get" enctype="application/x-www-form-urlencoded" onreset="return confirmReset();">
+    <p>Name<br>            <input type="text" name="name" size="50" /></p>
+    <p>Address<br>         <input type="text" name="address" size="50" /></p>
+    <p>City, state, zip<br><input type="text" name="city" size="32" /> <input type="text" name="state" size="2" maxlength="2" /> <input type="text" name="zip" size="5" maxlength="5" /></p>
+    <p>E-mail<br>          <input type="text" name="email" size="50" /></p>
+    <p>Telephone<br>       <input type="text" name="telephone" size="50" /></p>
+    <p>On which platform will you use this printer?<br>
+         <input type="radio" name="platform" value="windows" />Windows
+         <input type="radio" name="platform" value="linux" />Linux
+         <input type="radio" name="platform" value="unix" />UNIX
+         <input type="radio" name="platform" value="mac" />Macintosh</p>
+    <p>What features most influenced your selection of this model? (check all that apply)<br>
+        <input type="checkbox" name="quality" />Output quality <br>
+        <input type="checkbox" name="speed" />Print speed<br>
+        <input type="checkbox" name="functions" />Print functions<br>
+        <input type="checkbox" name="price" />Price/value<br>
+        <input type="checkbox" name="design" />Appearance/design</p>
+    <p>Where will you use this printer?
+        <select name="location">
+                <option value="work">Work</option>
+                <option value="school">School</option>
+                <option value="home">Home</option>
+                <option value="home_office">Home Office</option>
+         </select></p>
+    <p>Comments<br>
+    <textarea name="comments" cols="40" rows="5">Enter any additional comments here </textarea></p>
+    <p><input type="reset" /> <input type="button" name="next" value=" Next" onclick="nextForm()" /></p>
+</form>
+</body>
+</html>

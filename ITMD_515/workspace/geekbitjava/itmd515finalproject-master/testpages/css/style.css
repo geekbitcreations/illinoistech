@@ -1,0 +1,157 @@
+
+.toggle {
+  background-color:black;
+  color:white;
+  height:40px;
+  background-color:#F79361;
+  width:100%;
+  font-family: tahoma;
+  font-weight:bold;
+  font-size:25px;
+}
+
+.close {
+  color:white;
+  float:right;
+  cursor:pointer;
+  margin-right:30px;
+  margin-top:10px;
+  font-weight:bold;
+  font-size:30px;
+  font-family: tahoma;
+}
+
+.contain {
+  background-color:black;
+  height:50px; 
+}
+
+.main {
+  background-color: black;
+  color: white;
+  text-align: center;
+  height: 60px;
+  margin-top: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.main h1 {
+  padding-top: 10px;
+}
+
+.icons {
+  float: left;
+  width: 25%;
+  padding-bottom: 15px;
+}
+
+.icons img {
+  width: 60px;
+  padding-bottom: 20px;
+}
+
+.services {
+  float: left;
+  width: 75%;
+  padding-bottom: 15px;
+}
+
+.services h2 {
+  padding-top: 8px;
+  padding-bottom: 30px;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #5F2C7D;
+}
+
+h3 {
+  width: 100%;
+  text-align: center;
+}
+
+.containmain {
+  background-color:#ffffff;
+  width:100%;
+  display:none; 
+}
+
+.center {
+  margin: 0 auto;
+  width:400px;
+  padding-top:1%;
+  padding-bottom:100%;
+}
+
+.profile {
+  margin-top:30px;
+  margin-left:140px;
+  width:200px;
+  height:200px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*background: no-repeat;*/
+  background-position:20% 30%;
+  background-size:10%;
+}
+
+img  {
+  width: 170px;
+}
+
+input {
+  width:100%;
+  outline: none;
+  padding: 25px;
+  border:none;
+}
+
+input[type=submit] {
+  
+  background: black;
+  border:none;
+  color:white;
+  width:300px;
+  font-size:15px;
+
+}
+
+input[type=submit]:hover{ 
+  color:grey;
+}
+
+.form {
+  width:250px;
+  margin: 0 auto;
+  margin-top:10px;
+}
+
+.topform {
+  border-bottom:2px solid lightgrey;
+  margin:0px;
+  background-image: url('http://www.flaticon.com/png/256/16612.png');
+  background-repeat: no-repeat;
+  background-color:white;
+  background-size: 7%;
+  background-position: 50% 50%;
+}
+
+.bottomform {
+  margin-top:0px;
+  margin-bottom:20px;
+  background-image: url('http://www.flaticon.com/png/256/25239.png');
+  background-repeat: no-repeat;
+  background-color:white;
+  background-size: 11%;
+  background-position: 50% 50%;
+}

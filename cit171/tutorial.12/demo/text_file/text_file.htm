@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX with Text File Example</title>
+
+<script type="text/javascript">
+/* AJAX is a technique rather than a technology: It describes how JavaScript can be used to pull data 
+from the server using the XML HTTP Request object and then insert this data into the website using DOM. 
+This is done asynchronously - that is, in the background, without having to refresh the whole page. 
+The technology which AJAX is based on has already been available for a while, the combination is what makes it new 
+reference: http://daniel.lorch.cc/docs/ajax_simple/    */
+
+function document_object_model() {
+	/* The Document Object Model is the internal representation of your website. 
+	The DOM is accessible by JavaScript and provides a way to programmatically insert, remove and modify tags 
+	in your website (except that they are called elements or nodes instead of tags, because the DOM manipulates 
+	the data model in memory and not the representation as XML). 
+	This example shows how to set the content of the <span> element with the id "outputLabel" to what ever 
+	the user types in as input:  */
+
+	// declare variables
+	var user_input;
+	var image_handle;
+
+	// get the user input
+	user_input = prompt("Type your input here", "Hello");
+	
+	// get a reference to the <span> element
+	image_handle = document.getElementById("outputLabel");
+	
+	// update the <span> element on the Web page
+	image_handle.innerHTML = user_input;
+}
+
+function xml_http_request_object() {
+	/* The XML HTTP Request object is used to make HTTP requests. 
+	The following code will download the file text.txt  and display the contents in a message box */
+
+	// declare variables
+	var http = false;
+	
+	// clear out the <span> element
+	clear_span_element();
+
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	http.open("GET", "text.txt");
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			// display the contents of the text file to the user in a dialog box
+			alert(http.responseText);
+		}
+	}
+	
+	http.send(null);
+}
+
+function ajax() {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+
+	// declare variables
+	var http = false;
+	
+	// clear out the <span> element
+	clear_span_element();
+
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "text.txt", true);
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			// display the contents of the text file in the <span> element on the Web page
+			document.getElementById("outputLabel").innerHTML = http.responseText;
+		}
+	}
+	
+	http.send(null);
+}
+
+function clear_span_element() {
+	// clear out the contents of the <span> element on the Web page
+	document.getElementById("outputLabel").innerHTML = "";	
+}
+</script>
+
+</head>
+<body>
+<h1>AJAX with Text File Example</h1>
+
+<input type="button" value="Document Object Model (DOM)" onclick="document_object_model();" />
+<input type="button" value="XML HTTP Request Object" onclick="xml_http_request_object();" />
+<input type="button" value="AJAX" onclick="ajax();" />
+<input type="button" value="Reset" onclick="clear_span_element();" />
+<br><br>
+<span id="outputLabel" style="color:blue"></span>
+
+</body>
+</html>

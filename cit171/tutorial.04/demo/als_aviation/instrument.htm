@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Al's Aviation</title>
+<link rel="stylesheet" href="aviation.css" type="text/css">
+
+<script type="text/javascript">
+var leftPosition = 250;
+var topPosition = 40;
+var verticalDirection = "up";
+function flightCoordinates() {
+	var flight = document.getElementById("airplane");
+	flight.style.left = leftPosition + "px";
+	flight.style.top = topPosition + "px";
+	if (verticalDirection == "up")
+		--topPosition;
+	else if (verticalDirection == "down")
+		++topPosition;
+	if (topPosition == 0)
+		verticalDirection = "down";
+	else if (topPosition == 40)
+		verticalDirection = "up";
+	++leftPosition;
+	if (leftPosition == 800) {
+		leftPosition = 250;
+		topPosition = 40;
+		verticalDirection = "up"
+	}
+}
+</script>
+
+<style type="text/css">
+div.collapseInfo { display: none }
+</style>
+</head>
+
+<body onload="setInterval('flightCoordinates()', 25);">
+
+<script type="text/javascript">
+function underlineOn(curLink) {
+     var selectedLink = document.getElementById(curLink);
+     selectedLink.style.textDecoration="underline";
+}
+function underlineOff(curLink) {
+     var selectedLink = document.getElementById(curLink);
+     selectedLink.style.textDecoration="none";
+}
+function showInfo(heading) {
+      var curHeading = document.getElementById(heading);
+        if (curHeading.style.display == "block")
+              curHeading.style.display = "none";
+        else
+            curHeading.style.display = "block";
+      return false;
+}
+</script>
+
+<table border="0" width="100%">
+  <colgroup span="1" width="25%" />
+  <colgroup span=" 1" width="75%" />
+  <tr>
+    <td>
+		<script type="text/javascript">
+		document.open();
+		document.write("<h1>" + document.title + "</h1>");
+		document.close();
+		</script>
+		
+        <h2>Instrument Training</h2>
+    </td>
+    <td>
+<p><img src="airplane.gif" id="airplane" style="position:
+absolute; left: 250px; top: 40px" alt="Image of an airplane" height="63" width="114"></p>
+</td>
+  </tr>
+</table>
+<hr />
+<table border="0" width="100%">
+  <colgroup span="1" width="25%" valign="top" />
+  <colgroup span="1" width="75%" valign="top" />
+  <tr>
+	<td valign="top"><a href="aviation_home.htm" id="home"
+	onmouseover="underlineOn('home');"
+	onmouseout="underlineOff('home');">Home</a><br>
+	<a href="private_pilot.htm" id="pilot"
+	onmouseover="underlineOn('pilot');" onmouseout="underlineOff('pilot');">Private Pilot
+	Training</a><br>
+	<a href="instrument.htm" id="inst"
+	onmouseover="underlineOn('inst');"
+	onmouseout="underlineOff('inst');">Instrument Training</a>
+	</td>
+    <td valign="top">Instrument training prepares you to test for the Instrument Rating
+      Certificate, which significantly adds to the value of a Private
+      Certificate by removing &quot;bad weather&quot; limitations. Holders of
+      the Rating are permitted to fly in virtually any weather conditions,
+      limited only by their own judgment and the equipment installed in their
+      aircraft.
+      <h3><a href="" id="fe" onmouseover="underlineOn('fe');"
+	  onmouseout="underlineOff('fe');" onclick="return showInfo('experience');">Flight Experience</a></h3>
+	  <div id="experience" class="collapseInfo">
+	  <p>An applicant for an Instrument rating must have 40 hours of
+      &quot;instrument&quot; time. Fifteen hours of this requirement can be
+      accomplished in an approved Flight Training Device. Students must also log
+      50 hours of pilot-in-command cross-country time.</p>
+	  </div>
+      <h3><a href="" id="ac" onmouseover="underlineOn('ac');"
+	  onmouseout="underlineOff('ac');" onclick="return showInfo('aircraft');">Aircraft</a></h3>
+	  <div id="aircraft" class="collapseInfo">
+      <p>The FAA Approved Instrument course at Skyward is taught in Cessna 172's
+      and in Flight Simulators. The aircraft are all equipped with intercoms and
+      headsets to assist you in communications with Air Traffic Control (ATC).</p>
+	  </div>
+      <h3><a href="" id="sy" onmouseover="underlineOn('sy');"
+	  onmouseout="underlineOff('sy');" onclick="return showInfo('syllabus');">Syllabus</a></h3>
+	  <div id="syllabus" class="collapseInfo">
+      <p>Our training provides for mastery of the necessary skills for the
+      Instrument Rating in 35 to 45 hours of airplane and simulator time, a
+      realistic range for the student who flies intensively (two to three times
+      a week). The course is divided into three stages, with checks by the Chief
+      CFI's to assure that each level has been thoroughly taught.</p>
+	  </div>
+      <h3><a href="" id="tkt" onmouseover="underlineOn('tkt');"
+	  onmouseout="underlineOff('tkt');" onclick="return showInfo('theory');">Theory and Knowledge Testing</a></h3>
+	  <div id="theory" class="collapseInfo">
+      <p>Skyward offers two choices for mastering IFR theory: a full IFR
+      classroom ground school and the Cessna Computer based interactive
+      Instruction System. Both are designed to complement the flight instruction
+      syllabus and greatly reduce the time spent in one-on-one instruction. For
+      your convenience, we have a Test Center that offers FAA Computer Exam
+      testing on the premises.</p>
+	  </div>
+      <h3><a href="" id="ec" onmouseover="underlineOn('ec');"
+	  onmouseout="underlineOff('ec');" onclick="return showInfo('cost');">Estimated Cost of a Private Pilot Certificate</a></h3>
+	  <div id="cost" class="collapseInfo">
+      <table border="0" width="100%">
+        <colgroup span="1" width="70%" align="left" valign="top" />
+        <colgroup span="1" width="30%" align="right" valign="top" />
+        <tr>
+          <td>30 hours dual C-172</td>
+          <td>$3,750.00</td>
+        </tr>
+        <tr>
+          <td>15 hours dual simulator</td>
+          <td>$1,020.00</td>
+        </tr>
+        <tr>
+          <td>15 hours pre- and post-flight instruction</td>
+          <td>$540.00</td>
+        </tr>
+        <tr>
+          <td>Supplies (including Jepp IFR Charts)</td>
+          <td>$200.00</td>
+        </tr>
+        <tr>
+          <td>Ground School</td>
+          <td>$225.00</td>
+        </tr>
+        <tr>
+          <td>FAA Computer Exam</td>
+          <td>$90.00</td>
+        </tr>
+        <tr>
+          <td>FAA Flight Test</td>
+          <td>$300.00</td>
+        </tr>
+        <tr>
+          <td><b>TOTAL</b></td>
+          <td><b>$6,125.00</b></td>
+        </tr>
+      </table>
+	 </div>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

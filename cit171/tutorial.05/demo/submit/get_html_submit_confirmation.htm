@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chapter 5 GET Example with HTML Submit Button</title>
+
+<script type="text/javascript">
+
+function confirmSubmit() {
+	// declare a variable
+	var response;
+	
+	// determine if the user really wants to submit the form
+	response = window.confirm("Are you sure you want to submit the form?");
+	
+	// check user response to the question
+    if (response == true) {
+		// pass back the value of true to the calling procedure
+        return true;
+	}
+	else {
+		// pass back the value of false to the calling procedure
+		return false;
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>GET Example with HTML Submit Button with Confirmation</h1>
+<p>This is an example of how to use GET HTTP Method with an HTML submit button with Confirmation.</p>
+<p>When you use GET the contents of your form will become url encoded into a <span style="color:blue">query string</span> appended after a ? as name=value pairs. For example if your form was submitted to form_processor.html and took your firstName and your lastName - the corresponding query string attached to the URL would be…..  <br>form_processor.html<span style="color:blue">?firstName=Santa&lastName=Claus</span></p>
+
+<p>After you click the Submit button look to see how the form data was passed as a query string in the Web browser address bar.</p> 
+
+<!--
+note that the  form's method attribute contains the "get" value  
+IMPORTANT: note that this form has the event onsubmit.event. when the user clicks the 
+submit button on this form, the onsubmit event is triggered and the user defined javascript
+function named confirmSubmit is executed. the function named confirmSubmit will then return 
+back either the value of true of false, which is then passed to the onsubmit event here in the form 
+tag. if the value of false is passed to the onsubmit function the form will not be submitted. if the
+value of true is passed to the onsubmit event the form will be submitted. -->
+<form name="myForm"
+      onsubmit="return confirmSubmit();"
+      action="form_processor.html" 
+      method="get"
+      enctype="application/x-www-form-urlencoded">
+
+<!--
+IMPORTANT: note that you must have the name attribute here in the input tag for the
+querystring to be passed when the submit button is clicked. if you don't give your 
+input box a name the value will not be passed when the form is submitted -->
+firstName: <input type="text" name="firstName" value="Santa" />
+<br>
+lastName:  <input type="text" name="lastName" value="Claus" />
+<br>
+
+<!-- note that we are submitting this form using the HMTL submit button -->
+<input type="submit"/>
+
+</form>
+
+</body>
+</html>

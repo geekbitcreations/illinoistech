@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chapter 4 Example</title>
+<script type="text/javascript">
+function increaseFontSize() {
+	// document.getElementById("myHeading").style.fontSize = "50pt";
+	
+	//declare variables
+	var elementHandle;
+	var fontSize;
+	
+	// get a reference to the h1 elementHandle
+	elementHandle = document.getElementById("myHeading");
+	
+	// get the font size of the element
+	fontSize = elementHandle.style.fontSize;
+	
+	// get rid of the "px" in the font size value
+	fontSize = parseInt(fontSize);
+	
+	// add one to the fontSize 
+	fontSize = fontSize + 1;
+	
+	// put the "px" back into the variable value
+	fontSize = fontSize + "px";
+	
+	// apply the new font size to element
+	elementHandle.style.fontSize = fontSize;
+	
+}
+
+function increaseFontSize2() {
+	// declare variables
+	var fontSize;
+	var elementsArray;
+	
+	// get an array of all of the h1 elements on the web page
+	elementsArray = document.getElementsByTagName("h1");
+	
+	// get the font size of the first h1 element in the array
+	fontSize = elementsArray[0].style.fontSize;
+	
+	// get rid of the "px" in the font size value
+	fontSize = parseInt(fontSize);
+	
+	// add one to the fontSize 
+	fontSize = fontSize + 1;
+	
+	// put the "px" back into the variable value
+	fontSize = fontSize + "px";
+	
+	// apply new font size to element
+	elementsArray[0].style.fontSize = fontSize;
+}
+
+function increaseFontSize3() {
+	// declare variables
+	var fontSize;
+	var elementsArray;
+	
+	// get an array of all of the h1 elements on the web page with the class name of "myClass"
+	elementsArray = document.getElementsByClassName("myClass");
+	
+	// get the font size of the first element in the array
+	fontSize = elementsArray[0].style.fontSize;
+	
+	// get rid of the "px" in the font size value
+	fontSize = parseInt(fontSize);
+	
+	// add one to the fontSize 
+	fontSize = fontSize + 1;
+	
+	// put the "px" back into the variable value
+	fontSize = fontSize + "px";
+	
+	// apply new font size to element
+	for (var subscript = 0; subscript <= elementsArray.length - 1; subscript++) {
+		elementsArray[subscript].style.fontSize = fontSize;
+	}
+}
+</script>
+</head>
+<body>
+<h1 id="myHeading"style="font-size:24px">Chapter 4 Example</h1>
+
+<p class="myClass" style="font-size:24px">Chapter 4 Example</p>
+<address class = "myClass" style="font-size:24px">Chapter 4 Example</address>
+<input type="button" 
+	   value="Click Me" 
+	   onclick="increaseFontSize();"/>
+	   
+<input type="button" 
+	   value="Click Me 2" 
+	   onclick="increaseFontSize2();"/>
+	   
+<input type="button" 
+	   value="Click Me 3" 
+	   onclick="increaseFontSize3();"/>
+</body>
+</html>

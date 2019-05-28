@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- 
+   New Perspectives on JavaScript 2nd Edition
+   Tutorial 3 Additional Project Solution
+
+   Kira's Place
+   Author: John Q. Student
+   Date:   
+
+   Filename:         puppies.htm
+   Supporting files: puppies.js, puppies.css, "all_the_kids.jpg, cartoon_pup.jpg, princess.jpg
+                     susie.jpg, wichet_and_carlos.jpg, wicket_and_george.jpg
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Kira's Place</title>
+<link href="puppies.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="puppies.js"></script>
+</head>
+
+<body class="twoColLiqLtHdr">
+
+<div id="container"> 
+  <div id="header">
+    <table>
+      <tr>
+        <td>
+          <img src="cartoon_pup.jpg" alt="My first computer drawn puppy" width="117" height="94" />
+          </td>
+        <td>
+         <h1>Kira's Puppy Log</h1>
+        </td>
+      </tr>
+    </table>
+  <!-- end #header --></div>
+  <div id="sidebar1">
+    <p class="twoColLiqLtHdr"><a href="#"><h3>Home</h3></a></p>
+    <p class="twoColLiqLtHdr"><a href="#"><h3>About Me</h3></a></p>
+    <p class="twoColLiqLtHdr"><a href="#"><h3>Cool Places</h3></a></p>
+    <p class="twoColLiqLtHdr"><a href="#"><h3>Fav Links</h3></a></p>
+    <p class="twoColLiqLtHdr"><a href="#"><h3>Puppy Pics</h3></a></p>
+      <!-- end #sidebar1 -->
+    </div>
+  <div id="mainContent">
+    <h1> My Puppies</h1>
+    <p>I made this page to show off my wonderful puppies! I hope you enjoy their pictures.
+       <script type="text/javascript" >
+          document.write("<table id='puppypics' >");
+          document.write("<tr>");
+          document.write("<th>Picture</th>");
+          document.write("<th>My Comments</th>");
+          document.write("<th>Date Taken</th>");
+          document.write("</tr>");
+          for(i=0; i<5; i++)
+          {
+               if ((i % 2) == 0)
+                  document.write("<tr class='even' id='even'>");
+               else
+                  document.write("<tr class='odd' id='odd'>");
+               document.write("<td> <img src='"+puppyPics[i]+"' /></td>");
+               document.write("<td> " + pictureDesc[i] + "</td>");
+               document.write("<td> " + pictureDate[i] + "</td>");
+               document.write("</tr>");
+          }
+          document.write("<caption>There are " + puppyPics.length + " so far! </caption>");
+          docuemnt.write("</table>");
+       </script>
+       </p>
+	<!-- end #mainContent --></div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+ 
+<!-- end #container --></div>
+</body>
+</html>

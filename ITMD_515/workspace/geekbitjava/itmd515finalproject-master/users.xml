@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="users.xsl" ?>
+
+<!-- Deborah Barndt
+ 	 Thomas Boller
+ 	 2-23-18
+ 	 users.xml
+ 	 Programming Assignment 2
+ 	 This xml file holds the user information for the car services.
+ 	 Written by Deborah Barndt & Thomas Boller. -->
+
+<users>
+	
+	<user>
+		<user_id>flcon</user_id>
+		<password>harlem</password>
+		<first_name>Sam</first_name>
+		<last_name>Wilson</last_name>
+		<user_type>customer</user_type>
+		<rating>5</rating>
+		<email>flcon@email.com</email>
+		<current_loc>Chicago</current_loc>
+	</user>
+	
+	<user>
+		<user_id>daredvl</user_id>
+		<password>hellskitchen</password>
+		<first_name>Matt</first_name>
+		<last_name>Murdock</last_name>
+		<user_type>customer</user_type>
+		<rating>5</rating>
+		<email>ddevil@email.com</email>
+		<current_loc>Chicago</current_loc>
+	</user>
+	
+	<user>
+		<user_id>storm</user_id>
+		<password>lightning</password>
+		<first_name>Ororo</first_name>
+		<last_name>Munroe</last_name>
+		<user_type>customer</user_type>
+		<rating>5</rating>
+		<email>xstorm@email.com</email>
+		<current_loc>Chicago</current_loc>
+	</user>
+	
+	<user>
+		<user_id>beast</user_id>
+		<password>doctor</password>
+		<first_name>Hank</first_name>
+		<last_name>McCoy</last_name>
+		<user_type>customer</user_type>
+		<rating>5</rating>
+		<email>blubeast@email.com</email>
+		<current_loc>Chicago</current_loc>
+	</user>
+	
+	<user>
+		<user_id>blkcat</user_id>
+		<password>spider</password>
+		<first_name>Felicia</first_name>
+		<last_name>Hardy</last_name>
+		<user_type>customer</user_type>
+		<rating>5</rating>
+		<email>blkcatspy@email.com</email>
+		<current_loc>Chicago</current_loc>
+	</user>
+	
+
+</users>

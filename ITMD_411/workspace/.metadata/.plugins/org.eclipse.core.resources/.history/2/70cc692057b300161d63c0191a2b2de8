@@ -1,0 +1,18 @@
+/**
+ * Deborah Barndt
+ * 11-22-16
+ * ViewTicket.java
+ * Final Project
+ * This program will allow you to view the tickets in the database.
+ * Written by Deborah Barndt. */
+
+
+public class ViewTicket 
+{
+
+	public ViewTicket() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+}

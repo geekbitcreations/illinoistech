@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0069)http://mypages.iit.edu/~shamsuddin/itm311/AbstractsAndInterfaces.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                               
+  
+                               
+  <meta name="Author" content="sheikh shamsuddin">
+                               
+  <meta name="GENERATOR" content="Mozilla/4.73 [en]C-CCK-MCD EMS-1.4  (Windows NT 5.0; U) [Netscape]">
+  <title>Abstracts and Interfaces</title></head>
+<body>
+        <small><font color="#000000"><br></font></small>
+          
+<p><big><b><font color="#000000"><font size="+2"><big><span style="text-decoration: underline;">Abstracts and Interfaces</span> </big></font></font></b></big><br>
+        </p>
+               
+<p><big><big>Polymorphism allows a derived class object to be passed to a
+    function that accepts a reference or a pointer to a base class. A function 
+   that receives such objects is a polymorphic function. </big></big></p>
+               
+<p><big><big>The real power of object-oriented programming isn't just inheritance;
+    it's the <span style="text-decoration: underline;">ability to treat objects of derived classes as if they were
+objects     of the base class</span>. Polymorphism and dynamic binding are the mechanisms
+ that  support this. </big></big></p>
+               
+<p><big><big>Polymorphism and dynamic binding allow old code to call new code
+in a substitutable fashion. <br>
+        </big></big></p>
+               
+<p><big><big>The sole purpose of an abstract class is to provide an appropriate 
+   superclass from which other classes may inherit interface and/or implementation. 
+   <span style="text-decoration: underline;">A class is made abstract by declaring it with the keyword </span><i style="text-decoration: underline;">abstract</i><span style="text-decoration: underline;">.</span> 
+   </big></big></p>
+               
+<p><big><big><b><font color="#ff0000">Note</font></b>: If you inherit from 
+   an abstract class and you want to make objects of the new type, <b><i>you
+    MUST provide method</i></b> <b><i>definitions for all the abstract methods 
+   in the base class</i></b>. If you don't, then the derived class is also 
+ abstract  and the compiler will force you to qualify that class with the 
+abstract keyword.  <br>
+        </big></big></p>
+               
+<hr size="2" width="100%"><br>
+  <div style="margin-left: 80px;"><u style="font-weight: bold;"><big><big>Abstract Class</big></big></u><br><br><pre style="font-weight: bold;" class="codeBox"><big><big><big>public abstract MyAbstractProcess {<br><br>    public void process() {<br>        stepBefore();<br>        action();<br>        stepAfter();<br>    }<br><br>    public void stepBefore() {<br>        //implementation directly in abstract superclass<br>    }<br><br>    <br></big></big></big><big><big><big>    // implemented by subclasses<br></big></big></big><big><big><big>    <span style="color: rgb(51, 51, 255);">public abstract void action();</span><br><br><br>    public void stepAfter() {<br>        //implementation directly in abstract superclass<br>    }<br>}</big></big></big></pre><br></div><p>
+  <br>
+  </p>
+   
+<p><br>
+  </p>
+    
+<hr size="2" width="100%">  
+<p>      <big><big><br>
+        </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>// <b>Shapes.java</b> <br>
+        // <b>Polymorphism in Java - <i>"late binding"</i></b> <br>
+        // <b><i>"Send a message to an object and let the object figure out 
+ the   right thing to do"</i></b> </big></big></p><pre style="font-weight: bold; margin-left: 80px;" class="prettyprint linenums"><big><big><big>abstract class AbsDemo<br>{<br>&nbsp;&nbsp;&nbsp; double len;<br>&nbsp;&nbsp;&nbsp; double width;<br>&nbsp;&nbsp;&nbsp; AbsDemo(double num, double num1)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; len = num;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width = num1;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>    // Calculate area of object's shape <br>&nbsp;&nbsp;&nbsp; <span style="color: rgb(51, 51, 255);">abstract double area();</span><br>}<br><br>class Square extends AbsDemo<br>{<br>&nbsp;&nbsp;&nbsp; Square(double num, double num1)<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(num, num1);<br>&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; double area()<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Area of the Square is : ");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return len * width;<br>&nbsp;&nbsp;&nbsp; }<br>}<br><br>class Rectangle extends AbsDemo<br>{<br>&nbsp;&nbsp;&nbsp; Rectangle(double num, double num1)<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(num, num1);<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; double area()<br>&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Area of the Rectangle is : ");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return len * width;<br>&nbsp;&nbsp;&nbsp; }<br>}<br><br>class AreaDemo<br>{<br>&nbsp;&nbsp;&nbsp; public static void main(String args[])<br>&nbsp;&nbsp;&nbsp; {<br></big></big></big></pre><div style="margin-left: 160px;"><big><big>&nbsp;&nbsp;&nbsp; AbsDemo aObj;</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; Square sObj = new Square(10, 10);</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; Rectangle rObj = new Rectangle(20, 25);</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; aObj = sObj;</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; System.out.println("Calculated : " + aObj.area());</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; aObj = rObj;</big></big><small><br></small><big><big>&nbsp;&nbsp;&nbsp; System.out.println("Calculated : " + aObj.area());</big></big><br></div><pre style="font-weight: bold; margin-left: 80px;" class="prettyprint linenums"><big><big><big>&nbsp;&nbsp;&nbsp; }<br>}</big></big></big></pre><p style="margin-left: 80px;"><big><big>Area of the Square is :&nbsp;<br>Calculated: 100.0<br>Area of Rectangle is :<br>Calculated : 500.0</big></big></p><p><big><big>
+        </big></big></p><hr width="100%"> <span style="text-decoration: underline;"><span style="font-weight: bold;"><br>
+        </span></span>        
+<p><big><big><b style="text-decoration: underline;"><font size="+1"><big><big>Program
+    exercises</big></big></font></b> <br>
+        &nbsp; </big></big></p>
+               
+<p><big><big><b><font size="+1"><big><big>Question-1</big></big></font></b>
+    </big></big></p>
+               
+<p><big><big>The abstract <b>Fruit</b> class has four subclasses named <b>Apple</b>
+    , <b>Banana</b>, <b>Orange</b>, and <b>Strawberry</b>. Write an application
+    that demonstrates how to establish this class hierarchy. Declare one
+instance     variable of type <b>String</b> that indicates the color of a
+fruit. Create     and display instances of these objects. Overrides the <b>toString()</b>
+  method of <b>Object</b> to return a string with the name of the fruit and
+  its color.&nbsp;  <br>
+        </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">abstract class Fruit</font></b> { <br>
+        &nbsp;&nbsp; String color; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public String toString() { <br>
+        &nbsp;&nbsp;&nbsp; return getClass().getName() + ": " + color;&nbsp;</big></big><br clear="all">
+&nbsp; &nbsp; &nbsp; // Note: getClass() method from class Object, getName()
+method from class Class<br>
+</p>
+<p style="margin-left: 80px;"><big><big>        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class Apple extends Fruit </font></b>{
+    <br>
+        &nbsp;&nbsp;&nbsp; Apple() { color = "Red"; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class Banana entends Fruit</font></b>
+    { <br>
+        &nbsp;&nbsp;&nbsp; Banana() { color = "Yellow"; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class Orange extends Fruit </font></b>{
+    <br>
+        &nbsp;&nbsp;&nbsp; Orange() { color = "Orange"; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class Strawberry entends Fruit</font></b>
+    { <br>
+        &nbsp;&nbsp;&nbsp; Strawberry() { color = "Red"; } <br>
+        } <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class FruitTypes </font></b>{ <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String args[]) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fruit[]&nbsp; X = new
+Fruit[5];    </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Fill up the array 
+   with fruits <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt;
+X.length;    i++)&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    switch((int)(Math.random() * 4))&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    case 0: X[i] =&nbsp; new Apple(); break; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    case 1: X[i] =&nbsp; new Banana(); break; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    case 2: X[i] =&nbsp; new Orange(); break; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    case 3: X[i] =&nbsp; new Strawberry(); break; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    default: // To quiet the compiler <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    } <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Make polymorphic 
+   method calls <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(int i = 0; i &lt;
+X.length;    i++) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;System.out.println(X[i]); 
+   <br>
+        }&nbsp; <br>
+        </big></big></p>
+               
+<p><br>
+        <big><big><br>
+        </big></big></p>
+               
+<p><big><big><b><font size="+1"><big><big>Question-2</big></big></font></b>
+    </big></big></p>
+               
+<p><big><big>Declare an abstract class <b>Vehicle</b> with an abstract method
+    named <b>numWheels()</b>. Provide subclasses <b>Car</b> and <b>Truck</b> 
+   that each implements this method. Create instances of these subclasses 
+and   demonstrate the use of this method.<br>
+        </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><i>abstract class Vehicle {</i></b> <br>
+        <b><i>&nbsp;&nbsp;&nbsp; abstract int numWheels();</i></b> <br>
+        <b><i>}</i></b> <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><i><font color="#3333ff">class Car extends Vehicle {</font></i></b>
+    <br>
+        <b><i><font color="#3333ff">&nbsp;&nbsp;&nbsp; int numWheels() {</font></i></b>
+    <br>
+        <b><i><font color="#3333ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   return 4;</font></i></b> <br>
+        <b><i><font color="#3333ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   }</font></i></b>  <br>
+        <b><i><font color="#3333ff">}</font></i></b> <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><i><font color="#cc0000">class Truck extends Vehicle {</font></i></b>
+    <br>
+        <b><i><font color="#cc0000">&nbsp;&nbsp;&nbsp; int numWheels() {</font></i></b>
+    <br>
+        <b><i><font color="#cc0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   return 8;</font></i></b> <br>
+        <b><i><font color="#cc0000">&nbsp;&nbsp;&nbsp; }</font></i></b> <br>
+        <b><i><font color="#cc0000">}</font></i></b> <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><i><font color="#993366">class VehicleTest {</font></i></b>
+    <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp; public static void 
+main(   String args[] )&nbsp; {</font></i></b> <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Vehicle v1 = new Car();</font></i></b> <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   System.out.println("A car has " + v1.numWheels() + "wheels");</font></i></b>
+   <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Vehicle v2 = new Truck();</font></i></b> <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   System.out.println("A truck has " + v2.numWheels() + "wheels");</font></i></b>
+   <br>
+        <b><i><font color="#993366">&nbsp;&nbsp;&nbsp; }</font></i></b> <br>
+        <b><i><font color="#993366">}</font></i></b> <br>
+        </big></big></p>
+               
+<p style="margin-left: 40px;"></p><div style="margin-left: 40px;"><br></div><p><big><big>
+        <br>
+        </big></big></p>
+               
+<hr width="100%">        
+<p><b><br></b></p><div style="margin-left: 80px;"><b>
+        <big><big>// instanceOfExample.java</big></big></b><big><big> </big></big><br><big><big>
+        <b>// Demonstrate <i>abstract</i> and <i><font color="#3333ff">instanceof</font></i></b>
+    </big></big><br><big><big>
+        <b>//</b> </big></big><br><big><big>
+        abstract class Fish { </big></big><br><big><big>
+        &nbsp; abstract void display(); </big></big><br><big><big>
+        } </big></big></div><p style="margin-left: 40px;"></p>
+               
+<p style="margin-left: 80px;"><big><big><small>// Note:&nbsp; a derived class can also be an abstract 
+   class if <br>
+        // it doesn't use the abstract methods from the superclass</small><br>
+        abstract class FreshWaterFish extends Fish { <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>abstract class SaltWaterFish extends Fish { <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class Trout extends FreshWaterFish { <br>
+        &nbsp; void display() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("Trout"); <br>
+        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class Flounder extends SaltWaterFish { <br>
+        &nbsp; void display() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("Flounder"); <br>
+        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class Tuna extends SaltWaterFish { <br>
+        &nbsp; void display() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("Tuna"); <br>
+        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class iClass { <br>
+        &nbsp; public final static int NUMFISH = 4; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public static void main(String args[]) { </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Create an array of fish <br>
+        &nbsp;&nbsp;&nbsp; Fish fx[] = new Fish[NUMFISH]; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Create objects <br>
+        &nbsp;&nbsp;&nbsp; fx[0] = new Trout(); <br>
+        &nbsp;&nbsp;&nbsp; fx[1] = new Flounder(); <br>
+        &nbsp;&nbsp;&nbsp; fx[2] = new Tuna(); <br>
+        &nbsp;&nbsp;&nbsp; fx[3] = new Trout(); </big></big></p>
+               
+<p style="margin-left: 40px;"></p><div style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Demonstrate <font color="#000000">instanceof</font>
+    operator </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp; for(int i = 0; i &lt; NUMFISH; i++) { </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fish whatFish = fx[i]; </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (whatFish&nbsp; <b><font color="#3333ff">instanceof</font></b>&nbsp; SaltWaterFish) { </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; whatFish.display(); </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </big></big><br><big><big>
+        &nbsp;&nbsp;&nbsp; } </big></big><br><big><big>
+        &nbsp; } </big></big><br><big><big>
+        }</big></big><br></div><p><big><big>
+        <br>
+        </big></big></p>
+               
+<hr width="100%">        
+<p><b><u><font size="+1"><br>
+        <big><big>Interfaces - the <i>"pure"</i> abstract class</big></big></font></u></b>
+    </p>
+               
+<p><big><big>Interface allows the creator to establish the form for a class:
+    method names, argument lists and return types, but no method bodies.
+An   interface  can also contain data members but these are <i>static </i>and<i>
+  final</i>  . An interface provides only a form, but no implementation.
+An   interface says: <i>"This is what all classes that implement this particular
+  interface will look like".</i> </big></big></p><br><pre style="font-weight: bold; margin-left: 80px;" class="prettyprint prettyprinted"><big><big><span class="com">/* File name : Animal.java */</span><span class="pln"><br></span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">Animal</span><span class="pln"> </span><span class="pun">{</span><span class="pln"><br><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> eat</span><span class="pun">();</span><span class="pln"><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> travel</span><span class="pun">();</span><span class="pln"><br></span><span class="pun">}</span></big></big></pre>
+<h2>Implementing Interfaces:</h2>
+<p><big><big>When a class implements an interface, you can think of the class as 
+signing a contract, agreeing to perform&nbsp;<br>the specific behaviors of the 
+interface.&nbsp;If a class
+does not perform all the behaviors of the interface, the class&nbsp;<br>must 
+declare itself as abstract.</big></big></p>
+<p><big><big>A class uses the <b>implements</b> keyword to implement an interface. The implements keyword appears in the class&nbsp;<br>declaration following the extends&nbsp;portion
+of the declaration.</big></big></p>
+<pre style="margin-left: 80px; font-weight: bold;" class="prettyprint prettyprinted"><big><big><big><span class="com">// File name : MammalInt.java </span><span class="pln"><br></span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MammalInt</span><span class="pln"> </span><span class="kwd">implements</span><span class="pln"> </span><span class="typ">Animal</span><span class="pun">{</span><span class="pln"><br><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> eat</span><span class="pun">(){</span><span class="pln"><br>      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Mammal eats"</span><span class="pun">);</span><span class="pln"><br>   </span><span class="pun">}</span><span class="pln"><br><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> travel</span><span class="pun">(){</span><span class="pln"><br>      </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Mammal travels"</span><span class="pun">);</span><span class="pln"><br>   </span><span class="pun">}</span><span class="pln"> <br><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> noOfLegs</span><span class="pun">(){</span><span class="pln"><br>      </span><span class="kwd">return</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"><br>   </span><span class="pun">}</span><span class="pln"><br><br>   </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> args</span><span class="pun">[]){</span><span class="pln"><br>      </span><span class="typ">MammalInt</span><span class="pln"> m </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">MammalInt</span><span class="pun">();</span><span class="pln"><br>      m</span><span class="pun">.</span><span class="pln">eat</span><span class="pun">();</span><span class="pln"><br>      m</span><span class="pun">.</span><span class="pln">travel</span><span class="pun">();</span><span class="pln"><br>   </span><span class="pun">}</span><span class="pln"><br></span><span class="pun">}</span><span class="pln"> </span></big></big></big></pre>
+<p style="margin-left: 80px;"><big><big><big><br></big></big></big></p>
+<pre style="margin-left: 80px; font-weight: bold;" class="prettyprint prettyprinted"><big><big><big><span class="typ">Mammal</span><span class="pln"> eats<br></span><span class="typ">Mammal</span><span class="pln"> travels</span></big></big></big></pre><p>
+        &nbsp; </p>
+               
+<hr width="100%"><br>
+        &nbsp;        
+<p><big><big><b><u><font size="+2"><big><big>Example1:&nbsp; Multiple interfaces</big></big></font></u></b>
+    </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b>// RobotT.java</b> <br>
+        <b>//</b> <br>
+        <b><font color="#3333ff">interface</font></b> Locomotion { <br>
+        &nbsp;public&nbsp; void forward(); <br>
+        &nbsp;public void reverse(); <br>
+        &nbsp;public void stop(); <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">interface</font></b> Sound { <br>
+        &nbsp; public void beep(); <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>abstract class Robot { <br>
+        } <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class RobotB extends Robot <b><font color="#3333ff">implements
+    Locomotion</font></b> { </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void forward() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotB: forward"); <br>
+        &nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void reverse() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotB: reverse"); <br>
+        &nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void stop() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotB: stop"); <br>
+        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class RobotB1 extends RobotB <b><font color="#3333ff">implements
+    Sound</font></b> { </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void beep() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotB1: beep"); <br>
+        &nbsp; } <br>
+        } <br>
+        &nbsp; <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><b><font color="#3333ff">class RobotC extends Robot </font><font color="#000099">implements </font><font color="#ff0000">Locomotion</font><font color="#3333ff"> , </font><font color="#ff0000">Sound</font></b><font color="#000000">{</font> </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void forward() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotC: forward"); <br>
+        &nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void reverse() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotC: reverse"); <br>
+        &nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void stop() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotC: stop"); <br>
+        &nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public void beep() { <br>
+        &nbsp;&nbsp;&nbsp; System.out.println("RobotC: beep"); <br>
+        &nbsp; } <br>
+        } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class RobotC1 extends RobotC { <br>
+        } <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>class RobotT { <br>
+        &nbsp; private final static int NROBOTS = 4; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp; public static void main(String args[]) { </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Declare and allocate space for an array
+    <br>
+        &nbsp;&nbsp;&nbsp; Robot&nbsp; X[] = new Robot[NROBOTS]; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Initialize array entries <br>
+        &nbsp;&nbsp;&nbsp; X[0] = new RobotB(); <br>
+        &nbsp;&nbsp;&nbsp; X[1] = new RobotB1(); <br>
+        &nbsp;&nbsp;&nbsp; X[2] = new RobotC(); <br>
+        &nbsp;&nbsp;&nbsp; X[3] = new RobotC1(); </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Exercise the 'beep' method on all robots
+    <br>
+        &nbsp;&nbsp;&nbsp; // that implement the Sound interface <br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; NROBOTS; i++) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp; r1 = X[i]; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( r1&nbsp; instanceof&nbsp; Sound 
+ )  { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sound s = (Sound) X[i];
+ <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s.beep(); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+        &nbsp;&nbsp;&nbsp; } </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big>&nbsp;&nbsp;&nbsp; // Exercise the 'stop' method on all robots
+    <br>
+        &nbsp;&nbsp;&nbsp; // that implement the Locomotion interface <br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; NROBOTS; i++) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Robot&nbsp; r2 = X[i]; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ( r2&nbsp; instanceof&nbsp; Locomotion
+    )&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Locomotion&nbsp; lc =
+(Locomotion)     X[i]; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lc.stop(); <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+        &nbsp;&nbsp;&nbsp; } <br>
+        &nbsp; } <br>
+        } <br>
+        &nbsp; </big></big></p>
+               
+<p style="margin-left: 80px;"><big><big><i>A&gt; java RobotT</i> </big></big></p>
+               
+<p style="margin-left: 40px;"></p><div style="margin-left: 80px;"><big><big><i>RobotB1: beep</i> </big></big><br><big><big>
+        <i>RobotC: beep</i> </big></big><br><big><big>
+        <i>RobotC: beep</i> </big></big><br><big><big>
+        <i>RobotB: stop</i> </big></big><br><big><big>
+        <i>RobotB: stop</i> </big></big><br><big><big>
+        <i>RobotC: stop</i> </big></big><br><big><big>
+        <i>RobotC: stop</i> </big></big><br></div><p><big><big></big></big><br>
+        &nbsp; </p>
+               
+<hr size="2" width="100%"><br>
+       <br>
+       <big><big><u>Summary</u><br>
+       </big></big>       
+<ul>
+         <li><big><big>Abstract classes are like regular classes with data
+ and   methods, but you cannot create instances of abstract classes using
+the new   operator</big></big></li>
+         <li><big><big>An abstract method cannot be contained in a nonabstract
+   class. If a subclass of an abstract superclass does not implement all
+the    inherited abstract methods of the superclass, the subclass must be
+declared    abstract</big></big></li>
+         <li><big><big>A class that contains abstract methods must be abstract. 
+   However, it is possible to declare an abstract class that contains no abstract
+   methods.</big></big></li>
+         <li><big><big>A subclass can be abstract even if its superclass
+is  concrete</big></big></li>
+         <li><big><big>An interface is a classlike construct that contains
+ only   constants and abstract methods. In many ways, an interface is similar
+ to  an abctract class, but an abstract class can contain constants and abstract 
+  methods as well as variables and concrete methods.</big></big></li>
+         <li><big><big>An interface is treated like a special class in java.
+  Each  interface is compiled into a separate bytecode file, just like a
+regular   class</big></big></li>
+         <li><big><big>A class can extend only one superclass but can implement 
+   one or more interfaces</big></big></li>
+         <li><big><big>An interface can extend one or more interfaces</big></big></li>
+             
+</ul>
+       <br>
+       <br>
+      <br>
+     <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body></html>

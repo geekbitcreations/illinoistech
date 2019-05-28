@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+G:\ITMD 566 Service Oriented Architectures\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3289371712.index
+3514778553.index
+1149327647.index
+944114125.index
+1856820170.index
+2821063477.index
+3219279518.index
+1196383737.index

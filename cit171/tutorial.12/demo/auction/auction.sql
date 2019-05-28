@@ -1,0 +1,40 @@
+DROP DATABASE auction;
+
+CREATE DATABASE auction;
+
+SHOW DATABASES;
+
+USE auction;
+
+SELECT DATABASE();
+
+CREATE TABLE bid (
+bid_id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+bid FLOAT
+);
+
+DESCRIBE bid;
+
+LOAD DATA LOCAL INFILE 'c:/cit173/chapter.08/demo/ajax/auction/bid.txt'
+INTO TABLE bid
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON auction.bid
+TO student@localhost
+IDENTIFIED BY 'mysql';
+
+SHOW GRANTS FOR student@localhost;
+
+SELECT * FROM bid;
+
+
+
+
+
+
+
+
+
+

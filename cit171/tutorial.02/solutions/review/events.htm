@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<!-- 
+   New Perspectives on JavaScript, 2nd Edition
+   Tutorial 2
+   Review Assignment
+
+   Events in Tulsa
+   Author: Hector Sadler
+   Date:   3/1/2011
+
+   Filename:         events.htm
+   Supporting files: dates.js, logo.jpg, tulsa.css
+-->
+
+   <title>Upcoming Events at Tulsa</title>
+   <link href="tulsa.css" rel="stylesheet" type="text/css" />
+
+   <script type="text/javascript" src="dates.js"></script>
+
+   <script type="text/javascript">
+      function showCountdown() {
+         today = new Date();
+         Date1 = new Date("January 14, 2011 10:00");
+         Date2 = new Date("May 21, 2011 12:00");
+         Date3 = new Date("July 4, 2011 19:00");
+         Date4 = new Date("September 1, 2011 12:00");
+         Date5 = new Date("December 1, 2011 11:30");
+         Date6 = new Date("December 31, 2011 15:30");
+
+         document.eventform.thisDay.value=showDateTime(today);
+
+         changeYear(today, Date1);
+         changeYear(today, Date2);
+         changeYear(today, Date3);
+         changeYear(today, Date4);
+         changeYear(today, Date5);
+         changeYear(today, Date6);
+
+         document.eventform.count1.value = countdown(today, Date1);
+         document.eventform.count2.value = countdown(today, Date2);
+         document.eventform.count3.value = countdown(today, Date3);
+         document.eventform.count4.value = countdown(today, Date4);
+         document.eventform.count5.value = countdown(today, Date5);
+         document.eventform.count6.value = countdown(today, Date6);
+      }
+   </script>
+</head>
+
+<body onload="setInterval('showCountdown()',100)">
+<form name="eventform" id="eventform" action="">
+
+<div id="logo">
+   <img src="logo.jpg" alt="Tulsa Events" />
+</div>
+
+<div id="links">
+   <a href="#">Home</a>
+   <a href="#">City Services</a>
+   <a href="#">City Agencies</a>
+   <a href="#">Mayor's Office</a>
+   <a href="#">News Today</a>
+   <a href="#">Upcoming Events</a>
+   <a href="#">Site Map</a>
+   <a href="#">Search Engine</a>
+   <a href="#">Public Notices</a>
+   <a href="#">Survey Form</a>
+   <a href="#">Contact Us</a>
+   <a href="#">E-Government</a>
+</div>
+
+
+<div id="main">
+   <h3>Countdown to Upcoming Events</h3>
+   <table>
+      <tr>
+         <th colspan="2" style="text-align: right">Current Date and Time</th>
+         <td><input name="thisDay" id="thisDay" readonly="readonly" size="40" /></td>
+      </tr>
+      <tr>
+         <th>Event</th>
+         <th>Starting Time</th>
+         <th>Countdown to Event</th>
+      </tr>
+      <tr>
+         <td><input value="Heritage Day" readonly="readonly" size="20" /></td>
+         <td><input value="Jan 14 at 10:00 a.m." readonly="readonly" size="20" /></td>
+         <td><input name="count1" id="count1" size="40" /></td>
+      </tr>
+      <tr>
+         <td><input value="Spring Day Rally" readonly="readonly" size="20" /></td>
+         <td><input value="May 21 at 12:00 p.m." readonly="readonly" size="20" /></td>
+         <td><input name="count2" id="count2" size="40" /></td>
+      </tr>
+      <tr>
+         <td><input value="July 4th Fireworks" readonly="readonly" size="20" /></td>
+         <td><input value="Jul 4 at 9:00 p.m." readonly="readonly" size="20" /></td>
+         <td><input name="count3" id="count3" size="40" /></td>
+      </tr>
+      <tr>
+         <td><input value="Summer Bash" readonly="readonly" size="20" /></td>
+         <td><input value="Sep 1 at 12:00 p.m." readonly="readonly" size="20" /></td>
+         <td><input name="count4" id="count4" size="40" /></td>
+      </tr>
+      <tr>
+         <td><input value="Holiday Party" readonly="readonly" size="20" /></td>
+         <td><input value="Dec 1 at 11:30 a.m." readonly="readonly" size="20" /></td>
+         <td><input name="count5" id="count5" size="40" /></td>
+      </tr>
+      <tr>
+         <td><input value="New Year's Bash" readonly="readonly" size="20" /></td>
+         <td><input value="Dec 31 at 3:30 p.m." readonly="readonly" size="20" /></td>
+         <td><input name="count6" id="count6" size="40" /></td>
+     </tr>
+  </table>
+</div>
+
+</form>
+</body>
+</html>

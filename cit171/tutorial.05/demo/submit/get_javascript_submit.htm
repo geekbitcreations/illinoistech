@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chapter 5 GET Example with JavaScript Submit Command</title>
+
+</head>
+<body>
+
+<h1>GET Example with JavaScript Submit Command</h1>
+<p>This is an example of how to use GET HTTP Method with the JavaScript submit command.</p>
+<p>When you use GET the contents of your form will become url encoded into a <span style="color:blue">query string</span> appended after a ? as name=value pairs. For example if your form was submitted to form_processor.html and took your firstName and your lastName - the corresponding query string attached to the URL would be…..  <br>form_processor.html<span style="color:blue">?firstName=Santa&lastName=Claus</span></p>
+
+<p>After you click the Submit button look to see how the form data was passed as a query string in the Web browser address bar.</p> 
+
+<!--
+note that the  form's method attribute contains the "get" value  -->
+<form name="myForm"
+      action="form_processor.html" 
+      method="get"
+      enctype="application/x-www-form-urlencoded">
+
+<!--
+IMPORTANT: note that you must have the name attribute here in the input tag for the
+querystring to be passed when the submit button is clicked. if you don't give your 
+input box a name the value will not be passed when the form is submitted -->
+firstName: <input type="text" name="firstName" value="Santa" />
+<br>
+lastName:  <input type="text" name="lastName" value="Claus" />
+<br>
+
+<!-- note that we are submitting this form using javascript's submit command -->
+<input type="button" value="Submit" onclick="document.myForm.submit();" />
+
+</form>
+
+</body>
+</html>
+
+
+
+

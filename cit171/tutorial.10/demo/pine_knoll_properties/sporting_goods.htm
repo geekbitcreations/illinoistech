@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Banner Advertising</title>
+<style type="text/css">
+body { font-family: "Trebuchet MS" }
+</style>
+
+<script type="text/javascript">
+var curBanner="soccer1";
+function changeBanner() {
+	if (curBanner == "soccer2") {
+		document.images[0].src = "soccer1.gif";
+		curBanner = "soccer1";
+	}
+	else {
+		document.images[0].src = "soccer2.gif";
+		curBanner = "soccer2";
+	}
+}
+</script>
+
+</head>
+<body onload="var begin=setInterval('changeBanner()',2000);">
+<p><img src="soccer1.gif" alt="Changing banner image for Central Valley Sporting Goods"></p>
+</body>
+</html>

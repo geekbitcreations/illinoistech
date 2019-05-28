@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date Time Example</title>
+<script type="text/javascript">
+
+function init() {
+	//display the date and time every one seconds
+	setInterval("displayDateTime()",1000);
+
+}
+
+function displayDateTime() {
+	// declare variables
+	var theDate;
+	var theTime;
+	
+	// get the date and time
+	theDate = getDate();
+	theTime = getTime();
+	
+	// display the date and time
+	document.getElementById("myDate").firstChild.nodeValue = theDate;
+	document.getElementById("myTime").firstChild.nodeValue = theTime;
+
+
+}
+
+function getDate() {
+	// declare variables
+	var objDate;
+	var fourDigitYear;
+	var monthNum; // 1-12
+	var dayNum; // 1-31
+	var yearMonthDay;
+	
+	// instantiate a date object
+	objDate = new Date();
+	
+	//get the year from the date object (using a method)
+	fourDigitYear = objDate.getFullYear();
+	
+	// get the month number from the date object (method)
+	monthNum = objDate.getMonth();
+	
+	// add one to the month number
+	monthNum = monthNum + 1;
+	
+	// we could have also done it this way
+	// monthNum++;
+	
+	// get the day number from the date object (method)
+	dayNum = objDate.getDate();
+	
+	// add a leading zero to the day number if necessary
+	dayNum = (dayNum<10)? dayNum = "0" + dayNum: dayNum;
+	
+	// could also 
+	
+	// build the date yyyy/mm/dd
+	yearMonthDay = fourDigitYear + "/" + monthNum + "/" + dayNum;
+	
+	//next is temporary
+	// yearMonthDay = objDate;
+	
+	// send the date back to the calling procedure
+	return yearMonthDay;
+
+}
+
+function getTime() {
+	// declare variables
+	var objDate;
+	var hours;
+	var minutes;
+	var seconds;
+	var ampm;
+	var hoursMinutesSeconds;
+	
+	// instantiate the date object
+	objDate = new Date();
+	
+	// get the hours (using a method of the date object)
+	hours = objDate.getHours();
+	
+	// convert military time to normal time
+	hours = (hours <=12)? hours: hours = hours - 12;
+	
+	// determine if am or pm
+	ampm = (hours<12)?ampm = "a.m.":ampm = "p.m.";
+	
+	//get the minutes
+	minutes = objDate.getMinutes();
+	
+	// add a leading zero to minutes if necessary
+	minutes = (minutes < 10)? minutes = "0" + minutes:minutes;
+	
+	// get the seconds
+	seconds = objDate.getSeconds();
+	
+	// add a leading zero to minutes if necessary
+	seconds = (seconds < 10)? seconds = "0" + seconds:seconds;
+	
+	// next is temporary
+	hoursMinutesSeconds = hours + ":" + minutes + ":" + seconds + " " + ampm;
+	
+	// send the time back to the calling procedure
+	return hoursMinutesSeconds;
+
+}
+
+
+</script>
+
+</head>
+<body onload="init();">
+
+Date:<span id="myDate">&nbsp;</span>
+<br />
+Time:<span id="myTime">&nbsp;</span>
+
+</body>
+</html>

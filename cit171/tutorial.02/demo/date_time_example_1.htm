@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date Time Example 1</title>
+<!-- this example uses an <input> element to display the date and time -->
+
+<script type="text/javascript">
+// declare a global variable
+var timerHandle;
+
+function init() {
+	// set the Web page color to light yellow
+	document.body.style.background = 'lightyellow';
+
+	// display the date only once after the Web page is rendered (after 1 second delay);
+	setTimeout("displayDate()",1000);
+	
+	// start the timer and update the time every one second
+	timerHandle = setInterval("displayTime()",1000);
+}
+function displayDate() {
+	// declare some variables
+	var objDate;
+	var fourDigitYear;
+	var monthNum;
+	var dayNum;
+	var yearMonthDay;
+
+	// instantate a date object
+	objDate = new Date();
+	
+	// get the year from the date object
+	fourDigitYear = objDate.getFullYear();
+	
+	// get the month number from the date object
+	monthNum = objDate.getMonth();
+	// add one to the month number because javascript month numbers go from 0 to 11
+	monthNum = monthNum + 1;
+	
+	// get the day number (1 - 31)
+	dayNum = objDate.getDate();
+	// add a leading zero to the day number if the length of the day number is just one character
+	dayNum = (dayNum < 10) ? dayNum = "0" + dayNum : dayNum;
+		
+	// build a string with the yyyy/mm/dd date
+	yearMonthDay = fourDigitYear + "/" + monthNum + "/" + dayNum;
+	
+	// display the date on the Web page in an <input> element
+	document.forms[0].mydate.value = yearMonthDay;
+}
+function displayTime() {
+	// declare variables
+	var objDate;
+	var hours;
+	var minutes;
+	var seconds;
+	var ampm;
+	var hoursMinutesSeconds;
+	
+	// instantiate a date object
+	objDate = new Date();
+	
+	// get the hour
+	hours = objDate.getHours();
+	// convert military time to normal time
+	hours = (hours <= 12) ? hours : hours = hours - 12;
+	//note: conditional statement alternative -->  hours = (hours <= 12) ? hours : hours -= 12;
+	// determine if it is am or pm
+	ampm = (hours < 12) ? ampm = "am" : ampm = "pm";	
+
+	// get the minutes
+	minutes = objDate.getMinutes();
+	// add a leading zero to the minutes if the length of minutes is just one character
+	minutes = (minutes < 10) ? minutes = "0" + minutes : minutes;
+	
+	// get the seconds
+	seconds = objDate.getSeconds();
+	// add a leading zero to the seconds if the length of seconds is just one character
+	seconds = (seconds < 10) ? seconds = "0" + seconds : seconds;
+
+	// build the time into a string variable
+	hoursMinutesSeconds = hours + ":" + minutes + ":" + seconds + " " + ampm;
+	
+	// display the time on the Web page in an <input> element
+	document.forms[0].mytime.value = hoursMinutesSeconds;
+}
+function myMessage() {
+	alert('Hi');
+}
+</script>
+</head>
+
+<body onload="init();">
+<h1>This example uses an &lt;input&gt; element to display the date and time</h1>
+
+<form>
+Date: 
+<input type="text" name="mydate" id="mydate" value=""  size="30" />
+<br>
+Time:
+<input type="text" name="mytime" id="mytime" value=""  size="30" />
+<br><br>
+
+<input type="button" 
+	   value="Stop Timer" 
+	   onclick="clearInterval(timerHandle);" />
+	   
+<input type="button" 
+	   value="Click Me" 
+	   onclick="myMessage();" />
+
+</form>
+
+</body>
+</html>

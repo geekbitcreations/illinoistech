@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Change Example</title>
+
+<script type="text/javascript">
+// declare global variables
+var imageNumber = 0;
+var timerHandle;
+var timerHandleByID;
+
+function rightstr(s,c) {
+	L = s.lastIndexOf(c);
+	L=L+1;
+	return s.slice(L);
+}
+
+function changeImage() {
+	document.images[0].src = "clc_logo_black.jpg";
+}
+
+function nextImage() {
+	if (imageNumber == 0) {
+		document.images[1].src = "clc_logo_black.jpg";
+		imageNumber = 1;
+	}
+	else {
+		document.images[1].src = "clc_logo_white.jpg";
+		imageNumber = 0;	
+	}
+}
+
+function nextImageByID() {
+	// declare variable
+	var imageHandle;
+	var imagePath;
+	var imageName;
+
+	// get a reference to the image on the Web page
+	imageHandle = document.getElementById("myImage");
+	
+	// using the image reference, get the name of the current image
+	imagePath = imageHandle.src;
+	
+	// get just the image name from the path
+	imageName = rightstr(imagePath,'/'); 
+	
+	if (imageName == "clc_logo_white.jpg") {
+		imageHandle.src = "clc_logo_black.jpg";
+	}
+	else {
+		imageHandle.src = "clc_logo_white.jpg";
+	}
+}
+</script>
+
+</head>
+<body>
+
+<br>
+<h1>Image Change Example</h1>
+<br>
+<h4>Status Bar Change</h4>
+Watch status bar in I.E. when moving mouse over link: 
+<a href="http://www.google.com" 
+   onmouseover="window.status='Mouse Over Link'; return true;"
+   onmouseout="window.status='Mouse Not Over Link'; return true;">Google</a>
+<br><br>	
+
+
+<h4>One Time Image Change</h4>
+<img src="clc_logo_white.jpg">
+<br>
+<input type="button" 
+		   value="Change" 
+		   onclick="changeImage();" />
+<br><br>
+
+<h4>Image Change using File Name</h4>
+<img src="clc_logo_white.jpg">
+<br>
+<input type="button" 
+		   value="Manual" 
+		   onclick="nextImage();" />
+<input type="button" 
+		   value="Start Auto" 
+		   onclick="timerHandle = setInterval('nextImage()', 1000);" />	
+<input type="button" 
+		   value="Stop Auto" 
+		   onclick="clearInterval(timerHandle);" />	 
+<br><br>
+
+<h4>Image Change Using Element ID</h4>
+<img src="clc_logo_white.jpg" id="myImage">
+<br>
+<input type="button" 
+		   value="Manual" 
+		   onclick="nextImageByID();" />
+<input type="button" 
+		   value="Start Auto" 
+		   onclick="timerHandleByID = setInterval('nextImageByID()', 1000);" />	 
+<input type="button" 
+		   value="Stop Auto" 
+		   onclick="clearInterval(timerHandleByID);" />	 
+
+</body>
+</html>
+
+
+
+

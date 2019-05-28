@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>List Box Example 1</title>
+
+<script type="text/javascript">
+function display_student_number() {
+	// declare variables
+	var list_box_handle;
+	var list_box_index;
+	var list_box_contents;
+	var list_box_length;
+	var alert_message;
+
+	// get a reference to the list box
+	list_box_handle = document.getElementById("students");
+	
+	// get the number of the selected student 
+	list_box_index = list_box_handle.selectedIndex;
+	
+	if (list_box_index >= 0) {
+		// get the contents of the currently selected item
+		list_box_contents = list_box_handle.options[list_box_index].value;
+		
+		// display the contents of the selected item to the user
+		window.alert(list_box_contents);
+	}
+	else {
+		alert("List box item not selected");
+	}
+}
+
+function display_student_name() {
+	// declare variables
+	var list_box_handle;
+	var list_box_index;
+	var list_box_contents;
+	var list_box_length;
+	var alert_message;
+
+	// get a reference to the list box
+	list_box_handle = document.getElementById("students");
+	
+	// get the number of the selected student 
+	list_box_index = list_box_handle.selectedIndex;
+	
+	if (list_box_index >= 0) {
+		// get the contents of the currently selected item
+		list_box_contents = list_box_handle.options[list_box_index].text;
+		
+		// display the contents of the selected item to the user
+		window.alert(list_box_contents);
+	}
+	else {
+		alert("List box item not selected");
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>List Box Example 1</h1>
+
+<form>
+
+<select name="students" 
+        id="students"
+		size="4" 
+		style="width: 265px">
+	<option value="654564">Tim</option>
+	<option value="245233">Joe</option>
+	<option value="123412">Mary</option>
+	<option value="123544">Sue</option>
+</select>
+<br>
+<input type="button" value="Display Student Number" onclick="display_student_number();" />
+<br>
+<input type="button" value="Display Student Name" onclick="display_student_name();" />
+</form>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+activeProfiles=mvn eclipse\:eclipse -Dwtpversion\=2.0
+eclipse.preferences.version=1
+resolveWorkspaceProjects=true
+version=1

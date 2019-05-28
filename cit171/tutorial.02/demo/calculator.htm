@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+
+<script type="text/javascript">
+// declare a global variable
+var inputString = "";
+
+function updateString(value) {	
+	inputString += value;
+	document.Calculator.Input.value = inputString;
+}
+</script>
+
+</head>
+<body>
+
+<div style="text-align:center">
+<form name="Calculator" action="">
+
+<input type="text" name="Input" /><br>
+<input type="button" name="plus" value = " + " onclick="updateString(' + ')" />
+<input type="button" name="minus" value = " - " onclick="updateString(' - ')" />
+<input type="button" name="times" value = " * " onclick="updateString(' * ')" />
+<input type="button" name="div" value = " / " onclick="updateString(' / ')" />
+<input type="button" name="mod" value = " % " onclick="updateString(' % ')" /><br>
+
+<input type="button" name="zero" value = " 0 " onclick="updateString('0')" />
+<input type="button" name="one" value = " 1 " onclick="updateString('1')" />
+<input type="button" name="two" value = " 2 " onclick="updateString('2')" />
+<input type="button" name="three" value = " 3 " onclick="updateString('3')" />
+<input type="button" name="four" value = "4 " onclick="updateString('4')" /><br>
+
+<input type="button" name="five" value = " 5 " onclick="updateString('5')" />
+<input type="button" name="six" value = " 6 " onclick="updateString('6')" />
+<input type="button" name="seven" value = " 7 " onclick="updateString('7')" />
+<input type="button" name="eight" value = " 8 " onclick="updateString('8')" />
+<input type="button" name="nine" value = "9 " onclick="updateString('9')" /><br>
+
+<input type="button" name="point" value = " . " onclick="updateString('.')" />
+<input type="button" name="clear" value = " clear "onclick="document.Calculator.Input.value = ''; inputString=''" />
+<input type="button" name="calc" value = " = " onclick="document.Calculator.Input.value = eval(inputString); inputString=''" />
+
+</form>
+</div>
+
+</body>
+</html>

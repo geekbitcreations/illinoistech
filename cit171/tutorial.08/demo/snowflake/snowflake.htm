@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Animated Snowflake Example</title>
+
+<script type="text/javascript">
+// declare global variables
+var bodyHeight;
+var bodyWidth;
+var snowflakeImage = new Image();
+var snowflakeHeight = 85;
+var snowflakeWidth = 85;
+var snowflakeCount = 0;
+var moveInterval;
+var createInterval;
+
+function init() {
+	// initialize the snowflake image
+	snowflakeImage.src = "snowflake.gif";
+
+	// get the width and height of the body
+	getWindowSize();
+	
+	// enable/disable buttons
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("reset").disabled = true;
+}
+
+function getWindowSize() {
+	if (typeof (window.innerWidth) == 'number') {
+		//Non-IE
+		bodyWidth = window.innerWidth;
+		bodyHeight = window.innerHeight;
+	} else if (document.documentElement && (document.documentElement.clientWidth || document.documentElement.clientHeight)) {
+		//IE 6+ in 'standards compliant mode'
+		bodyWidth = document.documentElement.clientWidth;
+		bodyHeight = document.documentElement.clientHeight;
+	} else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+		//IE 4 compatible
+		bodyWidth = document.body.clientWidth;
+		bodyHeight = document.body.clientHeight;
+	}
+}
+
+function startSnow() {
+	// note: i.e. does not allow a function to be named 'startSnow'
+	if (snowflakeCount == 0) {
+		// create a snowflake
+		createSnowflake();
+	}
+
+	// move the snowflake every one-tenth of a second
+	moveInterval = setInterval("moveSnowflakes()", 100);
+
+	// create a new snowflake every second
+	createInterval = setInterval("createSnowflake()", 1000);
+
+	// enable/disable buttons
+	document.getElementById("start").disabled = true;
+	document.getElementById("stop").disabled = false;
+	document.getElementById("reset").disabled = false;
+}
+
+function stopSnow() {
+	// stopSnow all of the animations
+	clearInterval(moveInterval);
+	clearInterval(createInterval);
+	
+	// enable/disable buttons
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("reset").disabled = false;
+}
+
+function resetSnow() {
+	// declare local variables
+	var element_handle;
+	var counter;
+
+	// stopSnow all of the animations
+	clearInterval(moveInterval);
+	clearInterval(createInterval);
+
+	// remove all of the image elements from the DOM
+	for (counter = 1; counter <= snowflakeCount; counter++) {
+		element_handle = document.getElementById("snowflake" + counter);
+		element_handle.parentNode.removeChild(element_handle);
+	}
+	
+	// resetSnow the number of snowflakes to zero
+	snowflakeCount = 0;
+	
+	// enable/disable buttons
+	document.getElementById("start").disabled = false;
+	document.getElementById("stop").disabled = true;
+	document.getElementById("reset").disabled = true;
+}
+
+function createSnowflake() {
+	//declare local variables
+	var newImg;
+	var element_handle;
+	var randomNumber;
+	
+	// increment the number of snowflake visible on Web page
+	snowflakeCount = snowflakeCount + 1;
+	
+	// create a new img element and give it a picture
+	newImg = document.createElement("img");
+	
+	// give the new image an id
+	newImg.id = "snowflake" + snowflakeCount;
+	
+	// give the new image a picture
+	newImg.src = snowflakeImage.src;
+	
+	// add the newly created image into the DOM
+	element_handle = document.getElementById("bottom");
+	document.body.insertBefore(newImg, element_handle);
+
+	// set the beginning location of the newly created image
+	newImg.style.position = "absolute";
+	newImg.style.top = "-" + snowflakeHeight + "px";
+	newImg.style.left = getRandomLeft() + "px";
+	// set the image to be visible
+	newImg.style.visibility = "visible";
+	
+	// set the new image behind the heading and buttons
+	newImg.style.zIndex = -1 * snowflakeCount;
+}
+
+function getRandomLeft() {
+	// generate a random startSnowing left position for the snowflake
+	
+	// generate a random number between 0 and the width of the body element
+	randomNumber = Math.floor(Math.random() * bodyWidth);
+	
+	// shift the snowflake falling zone to the left ( startSnow 1/2 way off the page to the left and continue to the fist one-half of the visible page)
+	randomNumber = randomNumber - (bodyWidth / 2);
+	
+	// return the random left value back to the calling procedure
+	return randomNumber;
+}
+
+function moveSnowflakes() {
+	// declare variables
+	var counter;
+	var snowflakeTop;
+	var snowflakeLeft;
+	var snowflakeHandle;
+	
+	for (counter = 1; counter <= snowflakeCount; counter++) {
+		// get a reference to the snowflake
+		snowflakeHandle = document.getElementById("snowflake" + counter);
+		
+		// get the current coordinates of the snowflake
+		snowflakeTop = snowflakeHandle.style.top;
+		snowflakeLeft = snowflakeHandle.style.left;
+		
+		// get rid of the "px" in the variables
+		snowflakeTop = parseInt(snowflakeTop);
+		snowflakeLeft = parseInt(snowflakeLeft);
+		
+		// set the new coordinates of the snowflake
+		snowflakeTop = snowflakeTop + 20;
+		snowflakeLeft = snowflakeLeft + 8;
+		
+		// check if snowflake is at bottom of page
+		if (snowflakeTop > bodyHeight) {
+			snowflakeTop = -1 * snowflakeHeight;
+		}
+		if (snowflakeLeft > bodyWidth) {
+			snowflakeLeft = getRandomLeft();
+		}	
+		
+		// reposition the snowflake
+		snowflakeHandle.style.top = snowflakeTop + "px";
+		snowflakeHandle.style.left = snowflakeLeft + "px";
+	}
+}
+</script>
+</head>
+
+<body onload="init();" >
+<h1>Animated Snowflakes Example</h1>
+<input type="button" id="start" value="Start" onclick="startSnow();" />
+<input type="button" id="stop" value="Stop" onclick="stopSnow();" />
+<input type="button" id="reset" value="Reset" onclick="resetSnow();" />
+</body id="bottom">
+
+</html>
+
+

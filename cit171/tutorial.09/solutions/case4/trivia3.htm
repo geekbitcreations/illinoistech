@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<!-- 
+   New Perspectives on JavaScript, 2nd Edition
+   Tutorial 9
+   Case Problem 4
+
+   Trivia Masters Quiz 3
+   Author:           Todd Ferris
+   Date:             3/1/2012
+
+   Filename:         trivia3.htm
+   Supporting files: quiz.css, results.js, score.js, trivia3.htm
+
+-->
+
+   <title>Trivia Master Quiz 3</title>
+   <link href="quiz.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="score.js"></script>
+
+</head>
+
+<body>
+   <div id="page">
+
+   <h1>Trivia Masters</h1>
+   <h2>Sports</h2>
+
+   <ol>
+      <li>He is the career NBA scoring leader</li>
+         <ol>
+            <li><input type="radio" id="q31a" name="question31" value="false" />Wilt Chamberlain</li>
+	    <li><input type="radio" id="q31b" name="question31" value="false" />Michael Jordan</li>
+	    <li><input type="radio" id="q31c" name="question31" value="true" />Kareem Abdul-Jabbar</li>
+	    <li><input type="radio" id="q31d" name="question31" value="false" />George Mikan</li>
+         </ol>
+
+      <li>He is the NFL career rushing leader</li>
+         <ol>
+            <li><input type="radio" id="q32a" name="question32" value="false" />Walter Payton</li>
+	    <li><input type="radio" id="q32b" name="question32" value="false" />Jim Brown</li>
+	    <li><input type="radio" id="q32c" name="question32" value="false" />Barry Sanders</li>
+	    <li><input type="radio" id="q32d" name="question32" value="true" />Emmitt Smith</li>
+         </ol>
+      <li>He scored the most points in a single NFL season</li>
+         <ol>
+            <li><input type="radio" id="q33a" name="question33" value="true" />LaDainan Tomlinson</li>
+	    <li><input type="radio" id="q33b" name="question33" value="false" />Paul Hornung</li>
+	    <li><input type="radio" id="q33c" name="question33" value="false" />Emmitt Smith</li>
+	    <li><input type="radio" id="q33d" name="question33" value="false" />Don Hutson</li>
+         </ol>
+      <li>He holds the record for most consecutive wins on the PGA tour</li>
+         <ol>
+            <li><input type="radio" id="q34a" name="question34" value="false" />Tiger Woods</li>
+	    <li><input type="radio" id="q34b" name="question34" value="false" />Jack Nicklaus</li>
+	    <li><input type="radio" id="q34c" name="question34" value="true" />Byron Nelson</li>
+	    <li><input type="radio" id="q34d" name="question34" value="false" />Bobby Jones</li>
+         </ol>
+      <li>He is the only man to win 3 straight U.S. Amatuer titles</li>
+         <ol>
+            <li><input type="radio" id="q35a" name="question35" value="false" />Bobby Jones</li>
+	    <li><input type="radio" id="q35b" name="question35" value="true" />Tiger Woods</li>
+	    <li><input type="radio" id="q35c" name="question35" value="false" />Jack Nicklaus</li>
+	    <li><input type="radio" id="q35d" name="question35" value="false" />Walter Hagan</li>
+         </ol>
+      <li>He was the oldest man to make the cut in a PGA event at the age of 67</li>
+         <ol>
+            <li><input type="radio" id="q36a" name="question36" value="false" />Byron Nelson</li>
+	    <li><input type="radio" id="q36b" name="question36" value="true" />Sam Snead</li>
+	    <li><input type="radio" id="q36c" name="question36" value="false" />Tom Morris</li>
+	    <li><input type="radio" id="q36d" name="question36" value="false" />Ben Hogan</li>
+         </ol>
+      <li>He is the only man to pitch back-to-back nohitters</li>
+         <ol>
+            <li><input type="radio" id="q37a" name="question37" value="false" />Harvey Haddix</li>
+	    <li><input type="radio" id="q37b" name="question37" value="false" />Nolan Ryan</li>
+	    <li><input type="radio" id="q37c" name="question37" value="false" />Tom Seaver</li>
+	    <li><input type="radio" id="q37d" name="question37" value="true" />Johnny Vander Meer</li>
+         </ol>
+      <li>He was the first official Designated Hitter</li>
+         <ol>
+            <li><input type="radio" id="q38a" name="question38" value="false" />Babe Ruth</li>
+	    <li><input type="radio" id="q38b" name="question38" value="false" />Harmon Killebrew</li>
+	    <li><input type="radio" id="q38c" name="question38" value="false" />Gorman Thomas</li>
+	    <li><input type="radio" id="q38d" name="question38" value="true" />Ron Blomberg</li>
+         </ol>
+      <li>Who is the most decorated U.S. Winter Olympic Athlete?</li>
+         <ol>
+            <li><input type="radio" id="q39a" name="question39" value="true" />Bonnie Blair</li>
+	    <li><input type="radio" id="q39b" name="question39" value="false" />Eric Heiden</li>
+	    <li><input type="radio" id="q39c" name="question39" value="false" />Peggy Fleming</li>
+	    <li><input type="radio" id="q32d" name="question39" value="false" />Bodie Miller</li>
+         </ol>
+      <li>Whom of the following did NoT win an Olympic Gold medal?</li>
+         <ol>
+            <li><input type="radio" id="q310a" name="question310" value="false" />Muhammad Ali</li>
+	    <li><input type="radio" id="q310b" name="question310" value="false" />George Foreman</li>
+	    <li><input type="radio" id="q310c" name="question310" value="false" />Lennox Lewis</li>
+	    <li><input type="radio" id="q310d" name="question310" value="true" />Mike Tyson</li>
+         </ol>
+   </ol>
+
+   <p>
+      <input type="button" id="submit" value="Submit my Answers" />
+   </p>
+   
+   </div>
+</body>
+</html>

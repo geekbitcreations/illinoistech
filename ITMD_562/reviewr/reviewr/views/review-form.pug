@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+  h1.mt-5= title
+  form(method="POST")
+    .form-group
+      label(for='title') Title
+      input#name.form-control(type='text', placeholder='Enter title', name="title", value=review.title)
+    .form-group
+      label(for='author') Author
+      input#author.form-control(type='text', placeholder='Enter author', name="author", value=review.author)
+    .form-group
+      label(for='content') Content
+      textarea#content.form-control(type='text', placeholder='Enter content', name="content", value=review.content)
+    .form-group
+      label(for='movie') Movie
+      input#movie.form-control(type='text', placeholder='Enter movie', name="movie", value=review.movie)
+    button.btn.btn-primary(type='submit') Submit

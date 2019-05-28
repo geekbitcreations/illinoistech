@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Array Number Sort</title>
+
+<script type="text/javascript">
+
+function numSort(a , b) {
+	// compare the array elements contained in a and b
+	// if a-b is a negative or zero number no swap of array elements is performed
+	// if a-b is positive array elements a and b are switched
+	
+	// here is some debug code to see what is in array elements a and b
+	//message = (a - b > 0) ? "a - b is positive so swap array elements" : "a - b is zero or negative so don't swap array elements";
+	//alert("a=" + a + ", b=" + b + ", a-b=" + (a-b) + " \n\n" + message);
+	
+	// send back to the calling procedure a positive, zero, or negative number
+	return a-b;
+}
+function numSortDesc(a , b) {
+	// compare the array elements contained in a and b
+	// if b-a is a negative or zero number no swap of array elements is performed
+	// if b-a is positive array elements a and b are switched
+	
+	// here is some debug code to see what is in array elements a and b
+	//message = (b - a > 0) ? "b - a is positive so swap array elements" : "b - a is zero or negative so don't swap array elements";
+	//alert("a=" + a + ", b=" + b + ", b-a=" + (b-a) + " \n\n" + message);
+	
+	// send back to the calling procedure a positive, zero, or negative number
+	return b-a;
+}
+</script>
+
+</head>
+<body>
+<h1>Array Number Sort</h1>
+
+<script type="text/javascript">
+
+// declare an array with ten elements
+var number_array = new Array(10);
+
+// assign numbers to each of the ten elements
+number_array[0] = 3;
+number_array[1] = 45;
+number_array[2] = 1234;
+number_array[3] = 24;
+number_array[4] = 1;
+number_array[5] = 10;
+number_array[6] = 100;
+number_array[7] = 2223;
+number_array[8] = 101;
+number_array[9] = 111;
+
+// sort the array in ascending order
+number_array.sort(numSort);
+
+// sort the array in descending order
+//number_array.sort(numSortDesc);
+
+// display the array on the Web page
+for (var subscript = 0; subscript <= 9; subscript++) {
+	document.write(number_array[subscript] + "<br>");
+}
+
+</script>
+
+</body>
+</html>

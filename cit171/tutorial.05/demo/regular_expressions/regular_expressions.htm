@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Regular Expressions Example</title>
+
+<script type="text/javascript">
+function validate_zip_code() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var return_value;
+	var regular_expression;
+	var result;	
+	var alert_message;
+	
+	// get a reference to the text box
+	text_box_handle = document.getElementById("zip_code");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	/*  create a regular expression
+	^\d{5} says that the regular expression must start ("^") with exactly five ("{5}") digits ("\d"). 
+	([\-]\d{4})?$ says that the grouping (in parentheses) can appear either zero or one time ("?") 
+	and must be the end of the string ("$"). 
+	Inside the grouping is the literal dash character ("-", but since that character normally 
+	means other things in regular expressions, it needs to be "escaped" with the slash in front). 
+	After the dash is exactly four ("{4}") digits ("\d").
+	So, a value of "12345" will succeed. Any letter will cause the expression to fail. 
+	A value of "12345-6789" will succeed. 
+	If the 9 digit format is used, then the previous format (5 digits, dash, 4 digits) must be used. 
+	Other formats will fail. */
+    regular_expression = /^\d{5}([\-]\d{4})?$/;
+   
+    // check if the zip code is valid
+    return_value = regular_expression.test(text_box_contents);
+
+	// display the message to the user
+	if (return_value == true) {
+		window.alert("The Zip Code is Valid");
+	}
+	else {
+		window.alert("The Zip Code is NOT Valid");
+	}
+}
+
+function validate_number() {
+	// referene textbook page 418 and 354
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var return_value;
+	var regular_expression;
+	var result;	
+	var alert_message;
+	
+	// get a reference to the text box
+	text_box_handle = document.getElementById("numbers");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	/*  create a regular expression
+	/d Numeric characters */
+	regular_expression = /\d/;
+   
+    // check if the number is valid
+    return_value = regular_expression.test(text_box_contents);
+
+	// display the message to the user
+	if (return_value == true) {
+		window.alert("The Number is Valid");
+	}
+	else {
+		window.alert("The Number is NOT Valid");
+	}
+}
+
+function validate_not_alphanumeric() {
+	// referene textbook page 418 and 354
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var return_value;
+	var regular_expression;
+	var result;	
+	var alert_message;
+	
+	// get a reference to the  text box
+	text_box_handle = document.getElementById("not_alphanumeric");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	/*  create a regular expression 
+	/W Any character that is not an alphanumeric character */
+	regular_expression = /\W/;
+   
+    // check if the number is valid
+    return_value = regular_expression.test(text_box_contents);
+
+	// display the message to the user
+	if (return_value == true) {
+		window.alert("The Character is NOT Alphanumeric");
+	}
+	else {
+		window.alert("The Character is Alphanumeric");
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>Regular Expressions Example</h1>
+
+<form>
+
+<br><br>
+Zip Code <input type="text" name="zip_code" id="zip_code" size="10" value="60030-1234" />
+&nbsp;/^\d{5}([\-]\d{4})?$/ 
+<br><br>
+<input type="button" value="Validate Zip Code" onclick="validate_zip_code();" />
+<br><br><br><br>
+
+Number<input type="text" name="numbers" id="numbers" size="1" value="0" maxlength="1" />
+&nbsp; \d 
+<br><br>
+<input type="button" value="Validate Number" onclick="validate_number();" />
+<br><br><br><br>
+
+Not Alphanumeric <input type="text" name="not_alphanumeric" id="not_alphanumeric" size="1" value="%" maxlength="1" />
+&nbsp;\W 
+<br><br>
+<input type="button" value="Validate Not Alphanumeric" onclick="validate_not_alphanumeric();" />
+<br><br><br><br>
+
+</form>
+
+</body>
+</html>

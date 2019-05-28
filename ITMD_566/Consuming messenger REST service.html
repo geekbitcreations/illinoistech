@@ -1,0 +1,30 @@
+
+<!-- saved from url=(0112)https://blackboard.iit.edu/bbcswebdav/pid-753713-dt-content-rid-13930984_1/courses/X9200065.201920/Footable.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Consuming messenger REST service</title>
+	<!-- Bootstrap core CSS -->
+	<link href="./Consuming messenger REST service_files/bootstrap.min.css" rel="stylesheet">
+	<link href="./Consuming messenger REST service_files/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>In this example, I would like to display the output from the messenger REST service.</h1>
+<div>
+<table class="table" data-paging="true"></table>
+</div>
+
+<script src="./Consuming messenger REST service_files/jquery.min.js.download"></script>
+<script src="./Consuming messenger REST service_files/bootstrap.min.js.download"></script>
+<!-- Add in any FooTable dependencies we may need -->
+<script src="./Consuming messenger REST service_files/moment.min.js.download"></script>
+<!-- Add in FooTable itself -->
+<script src="./Consuming messenger REST service_files/footable.min.js.download"></script>
+<script src="./Consuming messenger REST service_files/footable.js.download"></script>
+<script>
+jQuery(function($){
+	$('.table').footable({
+		"columns": $.get('column.json'),
+		"rows": $.get('http://localhost:8080/messenger/webapi/messages/')
+	});
+});
+</script>
+</body></html>

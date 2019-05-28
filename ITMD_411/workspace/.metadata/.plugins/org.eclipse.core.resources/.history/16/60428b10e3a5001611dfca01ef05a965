@@ -1,0 +1,324 @@
+/**
+ * Deborah Barndt
+ * 10-31-16
+ * Dao.java
+ * Lab 4
+ * This program will allow for CRUD database connectivity and operations. 
+ * Written by Deborah Barndt. */
+
+package bankofiit;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+
+public class Dao extends BankRecords
+{
+
+	private static final int EXIT_ON_CLOSE = 0;
+
+	public Dao() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	// The JDBC driver name and the database URL.
+	final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	final String url = "jdbc:mysql://www.papademas.net:3306/411labs";
+	
+	// Credentials for the database.
+	final String user = "db411";
+	final String password = "411";
+	
+	Connection connect = null;
+	Statement stmnt = null;
+	
+	// Create a table of the database when called.
+	public void createTable()
+	{
+		String pep;		// value of whether the client is a politically exposed person
+		
+		int id;			// the clients' id number
+		
+		double income;	// the amount of income the client has
+		
+		// Create a Text Area
+		JTextArea outputArea = new JTextArea (20, 30);
+		
+		try
+		{
+			// Register the JDBC driver.
+		    Class.forName("com.mysql.jdbc.Driver");
+
+		    // Open a connection to the database.
+		    outputArea.append("Connecting to the selected database....");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		    outputArea.append("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    outputArea.append("Creating a table in the given database....");
+		    stmnt = (Statement) connect.createStatement();
+		      
+		    String sql = "CREATE TABLE d_barn_tab " 
+		    		+ "(id VARCHAR(7), " 
+		            + " income numeric(8, 2), " 
+		            + " pep VARCHAR(3), " 
+		            + " PRIMARY KEY ( id ))"; 
+
+		    stmnt.executeUpdate(sql);
+		      
+		    outputArea.append("Created a table in the given database....");
+		}
+		
+		// Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		// Add a finally block used to close resources.
+		finally
+		{
+		    try
+		    {
+		    	if(stmnt != null)
+		        {
+		    		connect.close();
+		        }
+		    }
+		      
+		    // Do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      		      
+		    try
+		    {
+		        if(connect != null)
+		        {
+		        	connect.close();
+		        }
+		    }
+		      
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+
+		}
+		   
+		outputArea.append("Goodbye!");
+		
+		// Display with results in a dialog box and to the file.
+		JOptionPane.showMessageDialog(null, outputArea, "Bank of IIT Loan Analysis Report", 
+				JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
+	
+	// Insert the records into the database.
+	public void insertRecords(BankRecords[] clientInfo) 
+	{
+		// Create a Text Area
+		JTextArea outputArea = new JTextArea (20, 30);
+		
+		try
+		{
+			// Register the JDBC driver.
+			Class.forName("com.mysql.jdbc.Driver");
+
+			// Open a connection to the database.
+			outputArea.append("Connecting to a selected database...");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		      
+		    outputArea.append("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    outputArea.append("Inserting records into the table....");
+		    stmnt = (Statement) connect.createStatement();
+		      
+		    for (int i = 0; i < clientInfo.length; i++)
+		    {
+		    	String sql = "INSERT INTO d_barn_tab" 
+		    			+ "VALUES ('" + clientInfo[i].getId() + "' ,"
+		                + " '" + clientInfo[i].getIncome() + "' ,"
+		                + " '" + clientInfo[i].getPep() + "')";
+		    	stmnt.executeUpdate(sql);
+		    }
+		      
+		    outputArea.append("Inserted records into the table....");
+		}
+		
+		//Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		 
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+		    e.printStackTrace();
+		}
+		 
+		// Add a finally block used to close resources.
+		finally
+		{
+			try
+		    {
+				if(stmnt != null)
+		    	{
+					connect.close();
+		    	}
+		    }
+		      
+		    // Do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      
+		    try
+		    {
+		    	if(connect != null)
+		    	{
+		    		connect.close();
+		    	}
+		    }
+		      
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+		}
+		   
+		outputArea.append("Goodbye!");
+		
+		// Display with results in a dialog box and to the file.
+		JOptionPane.showMessageDialog(null, outputArea, "Bank of IIT Loan Analysis Report", 
+				JOptionPane.INFORMATION_MESSAGE);
+		
+		// Create a prepared statement.
+		//PreparedStatement stmnt = (PreparedStatement) connect.prepareStatement("Select * from jpapa_tab"
+				//+ " where id > ? and income > ? and pep=?");
+	}
+	
+	// Retrieve the records from the database and return a result set.
+	public ResultSet retrieveRecords()
+	{
+		// Create a Text Area
+		JTextArea outputArea = new JTextArea (20, 30);
+			
+		try
+		{
+			// Register the JDBC driver.
+		    Class.forName("com.mysql.jdbc.Driver");
+		    
+		    // Open a connection to the database.
+			outputArea.append("Connecting to a selected database...");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		    
+		    outputArea.append("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    outputArea.append("Creating a statement...");
+		    stmnt = (Statement) connect.createStatement();
+
+		    // Sort the data for pep in descending order.
+		    String sql = "SELECT id, income, pep FROM d_barn_tab ORDER BY pep desc";
+		    ResultSet result = stmnt.executeQuery(sql);
+		    
+		    // Extract the data from the result set.
+		    while(result.next())
+		    {
+		    	//Retrieve the data by column name
+		        int id  = result.getInt("id");
+		        double income = result.getDouble("income");
+		        String pep = result.getString("pep");
+		
+		        //Display the values in a table.
+		        outputArea.append("ID: " + id);
+		        outputArea.append(", INCOME: " + income);
+		        outputArea.append(", PEP: " + pep);
+		    }
+		    
+		   
+		    result.close();
+		}
+		
+		// Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+		    e.printStackTrace();
+		}
+		
+		// Add a finally block used to close resources.
+		finally
+		{
+		    try
+		    {
+		    	if(stmnt != null)
+		    	{
+		    		connect.close();
+		    	}
+		    }
+		    
+		    // do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      
+		    try
+		    {
+		        if(connect != null)
+		        {
+		        	connect.close();
+		        }
+		    }
+		    
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+		}
+		   
+		outputArea.append("Goodbye!"); 
+		
+		// Display with results in a dialog box and to the file.
+		JOptionPane.showMessageDialog(null, outputArea, "Bank of IIT Loan Analysis Report", 
+				JOptionPane.INFORMATION_MESSAGE);
+		
+		return null;
+	}
+}

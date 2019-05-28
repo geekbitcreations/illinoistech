@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<!-- 
+   New Perspectives on HTML and XHTML 5th Edition
+   Tutorial 10
+   Case Problem 4
+
+   HappyBirthday.com
+   Author: Linda Chi
+   Date:   3/1/2010
+
+   Filename:         births.htm
+   Supporting files: functions.js, logo.jpg
+-->
+   <title>Welcome to Happy Birthday.com</title>
+   <link href="styles.css" rel="stylesheet" type="text/css" />
+
+   <script type="text/javascript" src="functions.js"></script>
+
+</head>
+
+<body>
+<p id="logo">
+   <img src="logo.jpg" alt="HappyBirthday.com" /><br />
+</p>
+<div id="welcome">
+   <script type="text/javascript">
+      /*
+         Variables
+         ---------
+         thisDay:      Contains the text string of a given date. If a value of
+                       null is used for the variable, the current date will be displayed by the 
+                       program
+  
+         dayCount:     Contains the day number (1 - 366) of a given date
+
+         birth:        Contains a text string describing a famous birthday
+
+
+         functions
+         ---------
+         showDate      Returns a date in the form "Weekday, Month Day, Year"
+         dayNumber     Returns the day number of a given date
+         showBirthDay  Returns a famouns birthday falling on a given date
+      */
+
+   
+         var thisDay = null;
+         document.write("Today is<br />");
+         document.write(showDate(thisDay)+"<br /><br />");
+
+        var dayCount = dayNumber(thisDay);
+        var birth = showBirthDay(dayCount);
+        document.write("Born today<br />");
+        document.write(birth);
+   </script>
+</div>
+<p><a href="#">Enter</a></p>
+</body>
+
+</html>

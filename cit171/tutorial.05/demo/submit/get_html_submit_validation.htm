@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GET Example with HTML Submit Button Non-DOM Style</title>
+
+<script type="text/javascript">
+// this javascript example will trap the submit button and validate the form input using non Document Object Model (DOM) style
+
+function validateForm() {
+	// declare variables
+	var firstNameHandle;
+	var firstNameValue;
+	var lastNameHandle;
+	var lastNameValue;
+	var validFormInput;
+	var errorMessage;
+
+	// assume the form input is all valid
+	validFormInput = true;
+
+	// initialize error message
+	errorMessage = "";
+
+	// get a reference to the text box on the Web page
+	firstNameHandle = document.getElementById("firstName");
+	lastNameHandle = document.getElementById("lastName");
+
+	// get the contents of the text box into a variable
+	firstNameValue = firstNameHandle.value;
+	lastNameValue = lastNameHandle.value;
+
+	// check if the user input was blank (a zero length string)
+	if (firstNameValue == "") {
+		if (errorMessage.length > 0) {
+			errorMessage = errorMessage + "\n";
+		}
+		errorMessage = errorMessage + "First Name Missing";
+		document.getElementById('firstNameLabel').style.color="red";
+		validFormInput = false;
+	}
+	else {
+		document.getElementById('firstNameLabel').style.color="black";
+	}
+
+	if (lastNameValue == "") {
+		if (errorMessage.length > 0) {
+			errorMessage = errorMessage + "\n";
+		}
+		errorMessage = errorMessage + "Last Name Missing";
+		document.getElementById('lastNameLabel').style.color="red";
+		validFormInput = false;
+	}
+	else {
+		document.getElementById('lastNameLabel').style.color="black";
+	}
+	
+	// send back true or false to the calling procedure
+	if (validFormInput == true) {
+		// no error
+		alert("no error");	
+		return true; 
+	}
+	else {
+		// error was found
+		alert(errorMessage);
+		return false; 
+	}
+}
+
+function resetTextColor() {
+	// declare variables
+	var firstNameHandle;
+	var lastNameHandle;
+
+	// get a reference to the text box on the Web page
+	firstNameHandle = document.getElementById("firstName");
+	lastNameHandle = document.getElementById("lastName");
+
+	// change the color of the input box descriptions back to black
+	document.getElementById('firstNameLabel').style.color="black";
+	document.getElementById('lastNameLabel').style.color="black";
+}
+</script>
+
+</head>
+<body>
+
+<h1>GET Example with HTML Submit Button with Validation Non-DOM Style</h1>
+<p>After you click the Submit button look to see how the form data was passed as a query string in the Web browser address bar.</p> 
+
+<!-- 
+note that the  form's method attribute contains the "get" value. 
+note also that there is no "onsubmit" attribute here -->
+<form id="myForm"
+	  onsubmit="return validateForm();" 
+      action="form_processor.htm" 
+      method="get"
+      enctype="application/x-www-form-urlencoded" >
+
+<!--
+IMPORTANT: note that you must have the name attribute here in the input tag for the
+querystring to be passed when the submit button is clicked. if you don't give your 
+input box a name the value will not be passed when the form is submitted -->
+<span id="firstNameLabel">firstName:</span>&nbsp;
+<input type="text" name="firstName" id="firstName" value="Santa" />
+<br>
+<span id="lastNameLabel">lastName:</span>&nbsp;
+<input type="text" name="lastName" id="lastName" value="Claus" />
+<br>
+
+<!-- note that we are submitting this form using the HMTL submit button -->
+<input type="submit" /><input type="reset" onclick="resetTextColor();" />
+
+</form>
+
+</body>
+</html>

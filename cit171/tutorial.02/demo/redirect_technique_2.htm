@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Redirector</title>
+
+<script type="text/javascript">
+function delayer() {
+    window.location = "http://www.google.com"
+}
+</script>
+
+</head>
+
+<!-- one second redirect delay because the second argument to the setTimeout function is 1000 miliseconds  -->
+<body onLoad="setTimeout('delayer()', 1000)">
+
+<font face="Tahoma, Verdana, Arial" size="6">Sending you to Google.com...</font>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dynamic Query String Example with JavaScript Location Object</title>
+
+<script type="text/javascript">
+
+function submitForm() {
+	// declare variables;
+	var firstNameHandle;
+	var lastNameHandle;
+	var firstName;
+	var lastName;
+	var response;
+	
+	// get a reference to the text boxes on the Web page
+	firstNameHandle = document.getElementById("firstName");
+	lastNameHandle = document.getElementById("lastName");
+	
+	// using the text box references, get the user input values
+	firstName = firstNameHandle.value;
+	lastName = lastNameHandle.value;
+	
+	// navigate to the next form using javascript's location object.
+	// note that we are dynamically building the query string in the following command
+	document.location.href="form_processor.htm?firstName=" + firstName + "&lastName=" + lastName;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Dynamic Query String Example with JavaScript Location Object</h1>
+<p>This is an example of how to build a dynamic query string and use it with the JavaScript location object.</p>
+<p>The contents of your form will become url encoded into a <span style="color:blue">query string</span> appended after a ? as name=value pairs. For example if your form was submitted to form_processor.html and took your firstName and your lastName - the corresponding query string attached to the URL would be…..  <br>form_processor.html<span style="color:blue">?firstName=Santa&lastName=Claus</span></p>
+
+<p>After you click the Submit button look to see how the form data was passed as a query string in the Web browser address bar.</p> 
+
+<!--
+IMPORTANT: note that this form does NOT  have a method attribute or an action attribute or even the name attribute -->
+<form>
+
+<!--
+IMPORTANT: note that you must have the id attribute here in the input tag for the
+value to be retrieved by the javascript getElementByID method -->
+firstName: <input type="text" id="firstName" value="Santa" />
+<br>
+lastName:  <input type="text" id="lastName" value="Claus" />
+<br>
+
+<!-- note that we are submitting this form using javascript's location object -->
+<input type="button" value="Submit" onclick="submitForm();" />
+
+</form>
+
+</body>
+</html>
+
+
+
+

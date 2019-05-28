@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Move Example 3</title>
+
+<script type="text/javascript">
+function moveImage(direction) {
+	// declare variables
+	var imageHandle;
+	var imageLocation;
+
+	// get a reference to the image
+	imageHandle = window.document.getElementById("clc_logo");
+
+	// get the current location of the image
+	if (direction == "up" || direction == "down") {
+		imageLocation = imageHandle.style.top;
+	}
+	else {
+		imageLocation = imageHandle.style.left;
+	}
+	
+	// get rid of the 'px' in the string and convert it to a number
+	imageLocation = parseInt(imageLocation);
+	
+	// add 20 to the  position
+	if (direction == "up" || direction == "left") {
+		imageLocation = imageLocation - 20;
+	}
+	else {
+		imageLocation = imageLocation + 20;
+	}
+	
+	// add the 'px' back to the position value
+	imageLocation = imageLocation + "px";
+	
+	// assign the new value to the image location
+	if (direction == "up" || direction == "down") {
+		imageHandle.style.top = imageLocation;
+	}
+	else {
+		imageHandle.style.left = imageLocation;
+	}
+}
+function init() {
+	//set the image in back of all of the other page objects
+	document.getElementById("astronaut").style.zIndex = -1;
+}
+</script>
+</head>
+<body onload="init();">
+<h1>Image Move Example 3</h1>
+<img src="clc_logo.gif" name="clc_logo" id="clc_logo" style="position: absolute; left: 10px; top: 75px" alt="CLC Logo">
+<br><br><br>
+<input type="button" value="Move Right" onclick="moveImage('right');">
+<input type="button" value="Move Left" onclick="moveImage('left');">
+<input type="button" value="Move Up" onclick="moveImage('up');">
+<input type="button" value="Move Down" onclick="moveImage('down');">
+<p>This example uses an improved JavaScript 'move' function</p>
+</body>
+</html>

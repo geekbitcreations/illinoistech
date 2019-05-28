@@ -1,0 +1,1734 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+
+<!-- Style sheet -->
+<link href="https://www.bleepstatic.com/css/redesign/font-awesome.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://www.bleepstatic.com/css/redesign/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+
+<link href="https://www.bleepstatic.com/css/redesign/main.css" rel="stylesheet" type="text/css" media="all">
+<link href="https://www.bleepstatic.com/css/redesign/home.css" rel="stylesheet" type="text/css" media="screen"><link href="https://www.bleepstatic.com/css/redesign/news.css" rel="stylesheet" type="text/css" media="screen,print">
+<link rel="stylesheet" href="https://www.bleepstatic.com/js/redesign/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+
+<!-- Meta -->
+<meta name="Owner" content="Lawrence Abrams/BleepingComputer.com" />
+<link rel="shortcut icon" href="https://www.bleepstatic.com/favicon/bleeping.ico" />
+<meta http-equiv="Pragma" content="no-cache" />
+<META NAME="ROBOTS" CONTENT="NOODP" />
+<meta property="og:site_name" content="BleepingComputer" />
+<meta property="og:locale" content="en_us" />
+<meta name="application-name" content="BleepingComputer"/>
+<title>JavaScript Attack Breaks ASLR on 22 CPU Architectures</title>
+<meta name="Description" content="Five researchers from the Vrije University in the Netherlands have put together an attack that can be carried out via JavaScript code and break ASLR protection on at least 22 processor micro-architectures from vendors such as Intel, AMD, ARM, Allwinner, Nvidia, and others." />
+<meta name="Abstract" content="Five researchers from the Vrije University in the Netherlands have put together an attack that can be carried out via JavaScript code and break ASLR protection on at least 22 processor micro-architectures from vendors such as Intel, AMD, ARM, Allwinner, Nvidia, and others." />
+<meta name="Keywords" content="computers, windows, linux, mac, support, tech support, spyware, malware, virus, security, ASLR, Browser, CPU, Hardware, JavaScript,virus removal, malware removal, computer help, technical support" />
+<link rel="canonical" href="https://www.bleepingcomputer.com/news/security/javascript-attack-breaks-aslr-on-22-cpu-architectures/" />
+<link rel="prev" href="https://www.bleepingcomputer.com/news/security/cerber-ransomware-doesnt-encrypt-files-belonging-to-security-products/" />
+<link rel="next" href="https://www.bleepingcomputer.com/news/security/mac-malware-linked-to-infamous-russian-cyber-espionage-group/" />
+<meta name="news_keywords" content="ASLR, Browser, CPU, Hardware, JavaScript, Security, InfoSec, Computer Security">
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="JavaScript Attack Breaks ASLR on 22 CPU Architectures" />
+<meta property="og:url" content="https://www.bleepingcomputer.com/news/security/javascript-attack-breaks-aslr-on-22-cpu-architectures/" />
+<meta property="og:image" content="https://www.bleepstatic.com/content/hl-images/2017/01/12/hardware.jpg" />
+<meta property="og:description" content="Five researchers from the Vrije University in the Netherlands have put together an attack that can be carried out via JavaScript code and break ASLR protection on at least 22 processor micro-architectures from vendors such as Intel, AMD, ARM, Allwinner, Nvidia, and others." />
+<meta property="fb:app_id" content="517620508265293" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@BleepinComputer" />
+<meta name="twitter:creator" content="@BleepinComputer" />
+<meta name="twitter:title" content="JavaScript Attack Breaks ASLR on 22 CPU Architectures" />
+<meta name="twitter:description" content="Five researchers from the Vrije University in the Netherlands have put together an attack that can be carried out via JavaScript code and break ASLR protection on at least 22 processor micro-architectures from vendors such as Intel, AMD, ARM, Allwinner, Nvidia, and others." />
+<meta name="twitter:image" content="https://www.bleepstatic.com/content/hl-images/2017/01/12/hardware.jpg" />
+
+<link href="https://plus.google.com/+bleepingcomputer" rel="publisher" />
+<LINK REL="alternate" TITLE="Bleeping Computer's News" HREF="https://www.bleepingcomputer.com/feed/" TYPE="application/rss+xml">
+
+<script type="text/javascript" src="https://www.bleepstatic.com/js/redesign/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://www.bleepstatic.com/js/redesign/bleep.js?t=1488145474"></script>
+
+
+<script type="text/javascript" src="https://www.bleepstatic.com/js/redesign/news.js"></script>
+<script type="text/javascript" id="nsgpt" data-channel="homepage" src="//cdn.nsstatic.net/ns/bleepingcomputer.com.js" async="true"></script>
+
+<!--BEGIN FIRSTIMPRESSION TAG -->
+<script data-cfasync='false' type='text/javascript'>
+	window.apd_options = { 'websiteId': 5971, 'runFromFrame': false };
+	(function() {
+		var w = window.apd_options.runFromFrame ? window.top : window;
+		if(window.apd_options.runFromFrame && w!=window.parent) w=window.parent;
+		if (w.location.hash.indexOf('apdAdmin') != -1){if(typeof(Storage) !== 'undefined') {w.localStorage.apdAdmin = 1;}}
+		var adminMode = ((typeof(Storage) == 'undefined') || (w.localStorage.apdAdmin == 1));
+		w.apd_options=window.apd_options;
+		var apd = w.document.createElement('script'); apd.type = 'text/javascript'; apd.async = true;
+		apd.src = '//' + (adminMode ? 'cdn' : 'ecdn') + '.firstimpression.io/' + (adminMode ? 'fi.js?id=' + window.apd_options.websiteId : 'fi_client.js') ;
+		var s = w.document.getElementsByTagName('head')[0]; s.appendChild(apd);
+	})();</script>
+<!-- END FIRSTIMPRESSION TAG -->
+
+<script type='text/javascript'>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  googletag.cmd.push(function() {
+    
+    googletag.defineSlot('/1006593/ROS_Side_2', [[300, 600], [300, 250]], 'div-gpt-ad-1474727680612-0').addService(googletag.pubads());
+ 
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+</head>
+
+<body>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N3FCGQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N3FCGQ');</script>
+<!-- End Google Tag Manager -->
+
+
+<div class="bc_wrapper">
+
+<!-- Start Header Section -->
+
+<header>
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-4">
+            	<a class="bc_logo" href="https://www.bleepingcomputer.com/"><img src="https://www.bleepstatic.com/images/site/logo.png" alt=""></a>
+            </div>
+            <div class="col-md-8">
+            	<ul class="bc_social_icons">
+                    <li><a href="https://www.facebook.com/BleepingComputer"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/BleepinComputer"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://plus.google.com/+bleepingcomputer/posts"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="/feed/"><i class="fa fa-rss"></i></a></li>
+                </ul>
+                <div class="bc_search_box">
+                    <form action="https://www.bleepingcomputer.com/search/">
+			<input type="hidden" name="cx" value="partner-pub-0920899300397823:3529943228" />
+			<input type="hidden" name="cof" value="FORID:10" />
+			<input type="hidden" name="ie" value="UTF-8" />
+                        <input type="search" name="q" placeholder="Search Site" />
+                    </form>
+		    <script type="text/javascript" src="https://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+                </div>
+                                <div class="bc_login">
+	            <input type="submit" value="Login" class="bc_login_btn">
+                    <input type="submit" value="Sign up" class="bc_signup_btn" onclick="window.location='https://www.bleepingcomputer.com/forums/index.php?app=core&module=global&section=register';" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ <!-- Start Navigation -->
+    
+    <nav class="bc_navigation">
+    	<div class="container">
+               <span id="toggle-nav" class="toggle-site-nav">
+                	<span></span>
+                </span>
+            	<div class="site-nav" id="nav" role="navigation">
+                    <ul class="bc_social_icons bc_mob">
+                        <li><a href="https://www.facebook.com/BleepingComputer"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/BleepinComputer"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/+bleepingcomputer/posts"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="/feed/"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                    <div class="bc_search_box bc_mob">
+                        <form action="https://www.bleepingcomputer.com/search/">
+                         <input type="hidden" name="cx" value="partner-pub-0920899300397823:3529943228" />
+                         <input type="hidden" name="cof" value="FORID:10" />
+                         <input type="hidden" name="ie" value="UTF-8" />
+                         <input type="search" name="q" placeholder="Search Site" />
+                        </form>
+                        <script type="text/javascript" src="https://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+                    </div>
+                    		    <div class="bc_login bc_mob">
+                        <input type="submit" value="Login" class="bc_login_btn">
+                        <input type="submit" value="Sign up" class="bc_signup_btn">
+                    </div>
+
+                      <ul class="nav-menu">
+			
+                        <li class="bc_dropdown"><a href="https://www.bleepingcomputer.com/">News</a>
+                            <div class="bc_sub_menu">
+                                <div role="tabpanel">
+                                  <ul class="nav nav-tabs" role="tablist" id="bc_drop_tab">
+                                    
+                                    <li class="active"><a href="#nfeatured" role="tab" data-toggle="tab">Featured</a></li>
+
+                                    <li><a href="#nlatest" role="tab" data-toggle="tab">Latest</a></li>
+
+                                  </ul>
+                                  <div class="tab-content">
+				   
+                                    <div role="tabpanel" class="tab-pane active" id="nfeatured">
+                                        <ul>
+					  
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/database-ransom-attacks-have-now-hit-mysql-servers/">
+                                                 <img src="https://www.bleepstatic.com/content/hl-images/2016/11/07/thumb/211x130_MySQL.jpg" alt="">
+                                                 <p>Database Ransom Attacks Have Now Hit MySQL Servers</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/google-goes-public-with-unpatched-microsoft-edge-and-ie-vulnerability/">
+                                                 <img src="https://www.bleepstatic.com/content/hl-images/2016/12/14/thumb/211x130_Edge.jpg" alt="">
+                                                 <p>Google Goes Public with Unpatched Microsoft Edge and IE Vulnerability</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/new-raas-portal-preparing-to-spread-unlock26-ransomware/">
+                                                 <img src="https://www.bleepstatic.com/content/posts/2017/02/25/thumb/211x130_Unlock26-payment-site-2.png" alt="">
+                                                 <p>New RaaS Portal Preparing to Spread Unlock26 Ransomware</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/typo-in-cloudflare-server-source-code-leaks-customer-info-cookies-passwords/">
+                                                 <img src="https://www.bleepstatic.com/content/posts/2017/02/24/thumb/211x130_cloudbleed.jpg" alt="">
+                                                 <p>Typo in Cloudflare Server Source Code Leaks Customer Info, Cookies, Passwords</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="nlatest">
+                                        <ul>
+					  
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/legal/mininova-torrent-portal-will-be-shutting-down-on-april-4th-2017/">
+                                                 <img src="https://www.bleepstatic.com/content/posts/2017/02/26/thumb/211x130_Mininova.png" alt="">
+                                                 <p>Mininova Torrent Portal Will Be Shutting Down on April 4th, 2017</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/sha1-collision-attack-makes-its-first-victim-subversion-repositories/">
+                                                 <img src="https://www.bleepstatic.com/content/posts/2017/02/26/thumb/211x130_SHAttered.png" alt="">
+                                                 <p>SHA1 Collision Attack Makes Its First Victim: Subversion Repositories</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/software/mozillas-plans-for-firefox-themes-in-2017/">
+                                                 <img src="https://www.bleepstatic.com/content/hl-images/2016/11/02/thumb/211x130_firefox-292-176.png" alt="">
+                                                 <p>Mozilla's Plans for Firefox Themes in 2017</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/news/security/hacker-group-defaces-hundreds-of-websites-after-hacking-uk-hosting-firm/">
+                                                 <img src="https://www.bleepstatic.com/content/posts/2017/02/25/thumb/211x130_NHA.png" alt="">
+                                                 <p>Hacker Group Defaces Hundreds of Websites After Hacking UK Hosting Firm</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+
+			
+                        <li class="bc_dropdown"><a href="https://www.bleepingcomputer.com/download/">Downloads</a>
+                            <div class="bc_sub_menu">
+                                <div role="tabpanel">
+                                  <ul class="nav nav-tabs" role="tablist" id="bc_drop_tab">
+                                    
+                                    <li class="active"><a href="#dlatest" role="tab" data-toggle="tab">Latest</a></li>
+
+                                    <li><a href="#most" role="tab" data-toggle="tab">Most Downloaded</a></li>
+
+                                  </ul>
+                                  <div class="tab-content">
+				   
+                                    <div role="tabpanel" class="tab-pane active" id="dlatest">
+                                        <ul>
+					  
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/download/potplayer/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/1/172-potplayer.jpg" alt="">
+                                                 <p class="center">PotPlayer</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/download/rainmeter-desktop-customization-tool/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/1/171-rainmeter-desktop-customization-tool.jpg" alt="">
+                                                 <p class="center">Rainmeter Desktop Customization Tool</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/download/chrome-cleanup-tool/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/1/170-chrome-cleanup-tool.jpg" alt="">
+                                                 <p class="center">Chrome Cleanup Tool</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://www.bleepingcomputer.com/download/crypt38decrypter/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/1/169-crypt38decrypter.jpg" alt="">
+                                                 <p class="center">Crypt38Decrypter</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="most">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/download/adwcleaner/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/0/96-adwcleaner.jpg" alt="">
+                                                 <p class="center">AdwCleaner</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/download/combofix/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/0/9-combofix.jpg" alt="">
+                                                 <p class="center">ComboFix</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/download/potplayer/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/1/172-potplayer.jpg" alt="">
+                                                 <p class="center">PotPlayer</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/download/rkill/">
+                                                 <img src="https://www.bleepstatic.com/download/nav-header-images/0/8-rkill.jpg" alt="">
+                                                 <p class="center">RKill</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+
+			
+                        <li class="bc_dropdown"><a href="https://www.bleepingcomputer.com/virus-removal/">Virus Removal Guides</a>
+                            <div class="bc_sub_menu">
+                                <div role="tabpanel">
+                                  <ul class="nav nav-tabs" role="tablist" id="bc_drop_tab">
+                                    
+                                    <li class="active"><a href="#vlatest" role="tab" data-toggle="tab">Latest</a></li>
+
+                                    <li><a href="#vmost" role="tab" data-toggle="tab">Most Viewed</a></li>
+
+                                    <li><a href="#ransomware" role="tab" data-toggle="tab">Ransomware</a></li>
+
+                                  </ul>
+                                  <div class="tab-content">
+				   
+                                    <div role="tabpanel" class="tab-pane active" id="vlatest">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/virus-removal/remove-searchinme.com-hijacker">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/s/searchinme.com/searchinme.com-hijacker-thmb-350.png" alt="">
+                                                 <p>Remove the Searchinme.com Browser Hijacker</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/remove-faststartpage.com-browser-hijacker">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/f/faststartpage.com/faststartpage-hijack-thmb-350.jpg" alt="">
+                                                 <p>Remove the Faststartpage.com Browser Hijacker (Removal Guide)</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/remove-net-quick.com-browser-hijacker">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/n/net-quick.com/net-quick.com-hijacker-thmb-350.jpg" alt="">
+                                                 <p>Remove the Net-quick.com Browser Hijacker (Removal Guide)</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/remove-funnysearching.com-hijacker">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/f/funnysearching.com/funnysearching.com-hijacker-thmb-350.jpg" alt="">
+                                                 <p>Remove the Funnysearching.com Browser Hijacker</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="vmost">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/virus-removal/remove-security-tool">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/s/securitytool/security-tool-thmb-350.jpg" alt="">
+                                                 <p>Remove Security Tool and SecurityTool (Uninstall Guide)</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/uninstall-antivirus-2009">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/a/antivirus-2009/antivirus-2009-thmb-350.jpg" alt="">
+                                                 <p>How to remove Antivirus 2009 (Uninstall Instructions)</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/remove-vundo-virtumonde">
+                                                 <img src="https://www.bleepstatic.com/images/site/navigation/generic-chalkboard-211x130.jpg" alt="">
+                                                 <p>How to Remove WinFixer / Virtumonde / Msevents / Trojan.vundo</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/remove-tdss-tdl3-alureon-rootkit-using-tdsskiller">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/tools/tdsskiller/tdsskiller-start-thmb-350.jpg" alt="">
+                                                 <p>How to remove Google Redirects or the TDSS, TDL3, or Alureon rootkit using TDSSKiller</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="ransomware">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/virus-removal/locky-ransomware-information-help">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/l/locky/locky-header-thmb-350.png" alt="">
+                                                 <p>Locky Ransomware Information, Help Guide, and FAQ</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/cryptolocker-ransomware-information">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/c/cryptolocker/CryptoLocker-thmb-350.jpg" alt="">
+                                                 <p>CryptoLocker Ransomware Information Guide and FAQ</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/cryptorbit-ransomware-information">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/c/cryptorbit/howdecrypt-thmb-350.gif" alt="">
+                                                 <p>CryptorBit and HowDecrypt Information Guide and FAQ</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/virus-removal/cryptodefense-ransomware-information">
+                                                 <img src="https://www.bleepstatic.com/swr-guides/c/CryptoDefense/how_decrypt-html-thmb-350.jpg" alt="">
+                                                 <p>CryptoDefense and How_Decrypt Ransomware Information Guide and FAQ</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+
+			
+                        <li class="bc_dropdown"><a href="https://www.bleepingcomputer.com/tutorials/">Tutorials</a>
+                            <div class="bc_sub_menu">
+                                <div role="tabpanel">
+                                  <ul class="nav nav-tabs" role="tablist" id="bc_drop_tab">
+                                    
+                                    <li class="active"><a href="#tlatest" role="tab" data-toggle="tab">Latest</a></li>
+
+                                    <li><a href="#popular" role="tab" data-toggle="tab">Popular</a></li>
+
+                                  </ul>
+                                  <div class="tab-content">
+				   
+                                    <div role="tabpanel" class="tab-pane active" id="tlatest">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/tutorials/how-to-start-windows-10-in-safe-mode-with-command-prompt/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/6/314-win-10-safe-mode-command-prompt.png" alt="">
+                                                 <p>How to Start Windows 10 in Safe Mode with Command Prompt</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/close-a-program-using-task-manager/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/6/313-task-manager.png" alt="">
+                                                 <p>How to close a program using Task Manager</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/find-license-agreement-for-installed-version-of-windows/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/6/312-header-image.jpg" alt="">
+                                                 <p>How to find the License Agreement for the Installed version of Windows</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/how-to-recover-files-and-folders-using-shadow-volume-copies/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/6/311-shadow-explorer-export.png" alt="">
+                                                 <p>How to recover files and folders using Shadow Volume Copies</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="popular">
+                                        <ul>
+					  
+                                            <li>
+						<a href="/tutorials/how-to-start-windows-in-safe-mode/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/1/61-safe-mode.jpg" alt="">
+                                                 <p>How to start Windows in Safe Mode</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/how-to-remove-a-trojan-virus-worm-or-malware/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/2/101-remove-virus.jpg" alt="">
+                                                 <p>How to remove a Trojan, Virus, Worm, or other Malware</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/show-hidden-files-in-windows-7/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/3/151-win-7-show-hidden.jpg" alt="">
+                                                 <p>How to show hidden files in Windows 7</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="/tutorials/how-to-see-hidden-files-in-windows/">
+                                                 <img src="https://www.bleepstatic.com/images/site/tutorials/nav-header-images/1/62-show-hidden-files.jpg" alt="">
+                                                 <p>How to see hidden files in Windows</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+
+			
+                        <li class="bc_dropdown"><a href="https://deals.bleepingcomputer.com/">Deals</a>
+                            <div class="bc_sub_menu">
+                                <div role="tabpanel">
+                                  <ul class="nav nav-tabs" role="tablist" id="bc_drop_tab">
+                                    
+                                    <li class="active"><a href="#dcategories" role="tab" data-toggle="tab">Categories</a></li>
+
+                                  </ul>
+                                  <div class="tab-content">
+				   
+                                    <div role="tabpanel" class="tab-pane" id="bsellers">
+                                        <ul>
+					  
+                                        </ul>
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane" id="deal_latest">
+                                        <ul>
+					  
+                                        </ul>
+                                    </div>
+
+<div role="tabpanel" class="tab-pane active" id="dcategories">
+                                        <ul>
+					  
+                                            <li>
+						<a href="https://deals.bleepingcomputer.com/deals/elearning?utm_source=bleepingcomputer.com&utm_medium=dd_cat">
+                                                 <img src="https://www.bleepstatic.com/images/deals/elearning-nav.jpg" alt="eLearning Image">
+                                                 <p align='center'>eLearning</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://deals.bleepingcomputer.com/deals/certifications?utm_source=bleepingcomputer.com&utm_medium=dd_cat">
+                                                 <img src="https://www.bleepstatic.com/images/deals/it-certification-nav.jpg" alt="IT Certification Courses Image">
+                                                 <p align='center'>IT Certification Courses</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://deals.bleepingcomputer.com/deals/gear-gadgets?utm_source=bleepingcomputer.com&utm_medium=dd_cat">
+                                                 <img src="https://www.bleepstatic.com/images/deals/gear-gadgets-nav.jpg" alt="Gear &amp; Gadgets Image">
+                                                 <p align='center'>Gear + Gadgets</p>
+					        </a>
+                                            </li>
+
+                                            <li>
+						<a href="https://deals.bleepingcomputer.com/collections/tag-cyber-security?utm_source=bleepingcomputer.com&utm_medium=dd_cat">
+                                                 <img src="https://www.bleepstatic.com/images/deals/security-nav.jpg" alt="Security Image">
+                                                 <p align='center'>Security</p>
+					        </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                  </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="https://www.bleepingcomputer.com/forums/">Forums</a></li>
+                        <li class="bc_dropdown bc_more_nav"><a id="more_dd" href="#">More</a>
+                        	<ul id="bc_more-nav" class="bc_more_submenu">
+                              <li><a href="https://www.bleepingcomputer.com/startups/">Startup Database</a></li>
+			      <li><a href="https://www.bleepingcomputer.com/uninstall/">Uninstall Database</a></li>
+                              <li><a href="https://www.bleepingcomputer.com/filedb/">File Database</a></li>
+                              <li><a href="https://www.bleepingcomputer.com/glossary/">Glossary</a></li>
+                              <li><a href="https://www.bleepingcomputer.com/chat/">Chat on IRC</a></li>
+			      <li><a href="https://www.bleepingcomputer.com/welcome-guide/">Welcome Guide</a></li>
+                            </ul>
+                        </li>
+                     </ul>
+           		</div>
+         </div>
+    </nav>
+ </header>   
+<!-- End Header Section -->
+
+<section class="cz-oa-wrapp">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cz-toa-wrapp">
+	 
+ <div data-ns="billboard" data-pos="atf" data-collapse="true"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cz-breadcrumb-outer-wrapp">
+          <div class="cz-breadcrumb-left-area">
+            <div class="cz-breadcrumb">
+              <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="https://www.bleepingcomputer.com/" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name"><a href="https://www.bleepingcomputer.com/news/" itemprop="item">News</a></span><meta itemprop="position" content="2" /></li><li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name"><a href="https://www.bleepingcomputer.com/news/security/" itemprop="item">Security</a></span><meta itemprop="position" content="3" /></li><li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="name">JavaScript Attack Breaks ASLR on 22 CPU Architectures</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="cz-breadcrumb-right-area">
+            <div class="cz-like-wrapper">
+              <ul>
+                <li><div class="addthis_sharing_toolbox"></div></li>
+	                        <li class="cz-print-icon"><a href="#">&nbsp;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Start Content Section -->
+
+<section class="bc_main_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="cz-main-left-section">
+         
+	 <div itemscope itemtype="http://schema.org/NewsArticle" class="article_section">
+          <h2 itemprop="headline">JavaScript Attack Breaks ASLR on 22 CPU Architectures</h2>
+          <div class="cz-news-story-title-section">
+            <div class="cz-news-title-left-area">
+              By <h6><a rel='author' href='https://www.bleepingcomputer.com/author/catalin-cimpanu/' class='author'><span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Catalin Cimpanu</span></span></a></h6>
+            </div>
+	    <meta itemprop="articleSection" content="Security"><meta itemprop="articleSection" content="Hardware">
+            <div class="cz-news-title-right-area">
+	      <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="BleepingComputer.com"></span>
+	      <span itemprop="datePublished" content="2017-02-15T05:43:52-05:00"></span>
+              <ul>
+                <li class="cz-news-date">February 15, 2017</li>
+                <li class="cz-news-time">05:43 AM</li>
+                
+                <li class="cz-news-comment"><a href="#comment_form">0</a></li>
+              </ul>
+            </div>
+          </div>
+	  <meta itemprop="image" content="https://www.bleepstatic.com/content/hl-images/2017/01/12/hardware.jpg">
+	  <span itemprop="articleBody" class="articleBody">
+	   <p style="text-align:center"><img alt="CPU" src="https://www.bleepstatic.com/content/hl-images/2017/01/12/hardware.jpg" /></p>
+
+<p>Five researchers from the Vrije University in the Netherlands have put together an attack that can be carried out via JavaScript code and break ASLR protection on at least 22 processor micro-architectures from vendors such as Intel, AMD, ARM, Allwinner, Nvidia, and others.</p>
+
+<p>The attack, christened ASLR&oplus;Cache, or AnC, focuses on the memory management unit (MMU), a lesser known component of many CPU micro-architectures, which is tasked with improving performance for cache management operations.</p>
+
+<h2>AnC attack targets CPU cache management component</h2>
+
+<p>What researchers discovered was that this component shares some of its cache with untrusted applications, including browsers. This meant that researchers could send malicious JavaScript that specifically targeted this shared memory space and attempted to read its content.</p>
+
+<p>&quot;We have built a side-channel attack, specifically an EVICT+TIME cache attack, that can detect which locations in the page table pages are accessed during a page table walk performed by the MMU,&quot; <a href="https://www.vusec.net/projects/anc/" rel="nofollow" target="_blank">researchers said</a>.</p>
+
+<p>&quot;For example, on the x86_64 architecture, our attack can find the offsets that are accessed by the MMU for each of the four-page table pages. The offset within each page breaks nine bits of entropy so even a perfect ASLR implementation with 36 bits of entropy is not safe.&quot;</p>
+
+<p>In layman&#39;s terms, this means an AnC attack can break ASLR and allow the attacker to read portions of the computer&#39;s memory, which he could then use to launch more complex exploits and escalate access to the entire OS.</p>
+
+<p>ASLR is a memory protection mechanism deployed with all major operating systems, which randomizes the location where code is executed in the memory. By breaking ASLR, an attacker will know where code executes, and prepare an attack that targets the same area of the memory, stealing sensitive information stored in the PC&#39;s memory.</p>
+
+<h2>AnC attacks work via Chrome and Firefox on 22 CPU micro-architectures</h2>
+
+<p>Researchers said they successfully tested AnC JavaScript attacks via Chrome and Firefox on 22 different CPU micro-architectures, even despite several protections built within those browsers, such as broken JavaScript timers.</p>
+
+<p>Even worse, researchers say AnC attacks can be used to revive previously blocked cache attacks, opening the door for many-years-old bugs, which vendors thought to have mitigated.</p>
+
+<p>According to researchers, the only way users can protect themselves against AnC attacks is to deploy an extension like NoScript, which stops untrusted JavaScript code from running in the browser.</p>
+
+<p>Issues with AnC attacks are tracked via several CVE identifiers.</p>
+
+<ul>
+	<li>CVE-2017-5925 is assigned to track the developments for Intel processors</li>
+	<li>CVE-2017-5926 is assigned to track the developments for AMD processors</li>
+	<li>CVE-2017-5927 is assigned to track the developments for ARM processors</li>
+	<li>CVE-2017-5928 is assigned to track the JavaScript timer issues in different browsers</li>
+</ul>
+
+<p>Below are the 22 CPU models and micro-architectures that researchers tested and found vulnerable to AnC attacks. More micro-architectures could be vulnerable as well, as not all were tested.</p>
+
+<table style="width:100%">
+	<tbody>
+		<tr>
+			<td><strong>CPU Model</strong></td>
+			<td><strong>Microarchitecture</strong></td>
+			<td><strong>Year</strong></td>
+		</tr>
+		<tr>
+			<td>Intel Xeon E3-1240 v5</td>
+			<td>Skylake</td>
+			<td>2015</td>
+		</tr>
+		<tr>
+			<td>Intel Core i7-6700K</td>
+			<td>Skylake</td>
+			<td>2015</td>
+		</tr>
+		<tr>
+			<td>Intel Celeron N2840</td>
+			<td>Silvermont</td>
+			<td>2014</td>
+		</tr>
+		<tr>
+			<td>Intel Xeon E5-2658 v2</td>
+			<td>Ivy Bridge EP</td>
+			<td>2013</td>
+		</tr>
+		<tr>
+			<td>Intel Atom C2750</td>
+			<td>Silvermont</td>
+			<td>2013</td>
+		</tr>
+		<tr>
+			<td>Intel Core i7-4500U</td>
+			<td>Haswell</td>
+			<td>2013</td>
+		</tr>
+		<tr>
+			<td>Intel Core i7-3632QM</td>
+			<td>Ivy Bridge</td>
+			<td>2012</td>
+		</tr>
+		<tr>
+			<td>Intel Core i7-2620QM</td>
+			<td>Sandy Bridge</td>
+			<td>2011</td>
+		</tr>
+		<tr>
+			<td>Intel Core i5 M480</td>
+			<td>Westmere</td>
+			<td>2010</td>
+		</tr>
+		<tr>
+			<td>Intel Core i7 920</td>
+			<td>Nehalem</td>
+			<td>2008</td>
+		</tr>
+		<tr>
+			<td>AMD FX-8350 8-Core</td>
+			<td>Piledriver</td>
+			<td>2012</td>
+		</tr>
+		<tr>
+			<td>AMD FX-8320 8-Core</td>
+			<td>Piledriver</td>
+			<td>2012</td>
+		</tr>
+		<tr>
+			<td>AMD FX-8120 8-Core</td>
+			<td>Bulldozer</td>
+			<td>2011</td>
+		</tr>
+		<tr>
+			<td>AMD Athlon II 640 X4</td>
+			<td>K10</td>
+			<td>2010</td>
+		</tr>
+		<tr>
+			<td>AMD E-350</td>
+			<td>Bobcat</td>
+			<td>2010</td>
+		</tr>
+		<tr>
+			<td>AMD Phenom 9550 4-Core</td>
+			<td>K10</td>
+			<td>2008</td>
+		</tr>
+		<tr>
+			<td>Allwinner A64</td>
+			<td>ARM Cortex A53</td>
+			<td>2016</td>
+		</tr>
+		<tr>
+			<td>Samsung Exynos 5800</td>
+			<td>ARM Cortex A15</td>
+			<td>2014</td>
+		</tr>
+		<tr>
+			<td>Samsung Exynos 5800</td>
+			<td>ARM Cortex A7</td>
+			<td>2014</td>
+		</tr>
+		<tr>
+			<td>Nvidia Tegra K1 CD580M-A1</td>
+			<td>ARM Cortex A15</td>
+			<td>2014</td>
+		</tr>
+		<tr>
+			<td>Nvidia Tegra K1 CD570M-A1</td>
+			<td>ARM Cortex A15; LPAE</td>
+			<td>&nbsp;2014</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Research team includes experts in RAM attacks</h2>
+
+<p>This is the same research team that in the past years has experimented with different versions of the Rowhammer attack, using it to <a href="http://www.cs.vu.nl/~herbertb/download/papers/dedup-est-machina_sp16.pdf" rel="nofollow" target="_blank">compromise PCs via Microsoft Edge</a>, <a href="http://www.cs.vu.nl/~kaveh/pubs/pdf/ffs-usenixsec16.pdf" rel="nofollow" target="_blank">attack Linux virtual machines</a> running on cloud servers, and <a href="https://vvdveen.com/publications/drammer.pdf" rel="nofollow" target="_blank">root Android devices</a>.</p>
+
+<p>The Rowhammer attack consists of blasting a constant stream of data at a line of RAM memory cells, until their electrical charge is modified, resulting in alterations to nearby cells. The technique is complex, but Rowhammer attacks can be used to modify the RAM contents of remote computers.</p>
+
+<p>Researchers have published two papers [<a href="http://www.cs.vu.nl/~herbertb/download/papers/anc_ndss17.pdf" rel="nofollow" target="_blank">1</a>, <a href="http://www.cs.vu.nl/~herbertb/download/papers/revanc_ir-cs-77.pdf" rel="nofollow" target="_blank">2</a>] detailing the AnC attack, along with two videos showing the attack in action.</p>
+
+<div class="embed-responsive embed-responsive-16by9" style="text-align: center;"><iframe allowfullscreen="allowfullscreen" class="embed-responsive-item" frameborder="0" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" scrolling="no" src="//www.youtube.com/embed/qGuZjOoArRw" webkitallowfullscreen="webkitallowfullscreen"></iframe></div>
+
+<div class="embed-responsive embed-responsive-16by9" style="text-align: center;"><iframe allowfullscreen="allowfullscreen" class="embed-responsive-item" frameborder="0" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" scrolling="no" src="//www.youtube.com/embed/aILISvZlBAU" webkitallowfullscreen="webkitallowfullscreen"></iframe></div>
+
+<p>&nbsp;</p>
+
+	  </span>
+         </div>
+          <div class="asa">
+ 
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3249370012249755";
+/* News - After Story */
+google_ad_slot = "5975899204";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+	  
+          <div class="cz-news-tags-wrap">
+            <ul>
+	     
+              <li><a href="https://www.bleepingcomputer.com/tag/aslr/">ASLR</a></li>
+
+              <li><a href="https://www.bleepingcomputer.com/tag/browser/">Browser</a></li>
+
+              <li><a href="https://www.bleepingcomputer.com/tag/cpu/">CPU</a></li>
+
+              <li><a href="https://www.bleepingcomputer.com/tag/hardware/">Hardware</a></li>
+
+              <li><a href="https://www.bleepingcomputer.com/tag/javascript/">JavaScript</a></li>
+
+            </ul>
+          </div>
+
+          <div class="cz-news-like-wrapp">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+             <div class="cz-news-like-left-area">
+              <ul>
+               <li><a class="addthis_button_facebook"></a></li>
+               <li><a class="addthis_button_twitter"></a></li>
+               <li><a class="addthis_button_google_plusone_share"></a></li>
+               <li><a class="addthis_button_linkedin"></a></li>
+              </ul>
+             </div>
+             <div class="cz-news-like-right-area">
+              <ul>
+                
+                <li><a class="addthis_button_email"></a></li>
+                <li class="cz-lg-print-icon"><a href="#"></a></li>
+              </ul>
+             </div>
+            </div>
+          </div>
+	            <div class="cz-full-bio-wrapp">
+            <div class="cz-full-bio-img-wrapp">
+		<a style="background-image:url('https://www.bleepstatic.com/author/photos/e1bde5ed1bb1075346983638c8e177b2.png');" class="author-img" href="https://www.bleepingcomputer.com/author/catalin-cimpanu/"></a>
+            </div>
+            <div class="cz-full-bio-content-wrapp">
+              <h5><a href="https://www.bleepingcomputer.com/author/catalin-cimpanu/" target="_blank">Catalin Cimpanu</a> <span> <a href="mailto:catalin@bleepingcomputer.com"><i class="fa fa-envelope email"></i></a> </span></h5>
+              Catalin covers various topics such as data breaches, software vulnerabilities, exploits, hacking news, the Dark Web, programming topics, social media, web technology, product launches, and a few more.
+            </div>
+          </div>
+
+          
+          <div class="cz-story-navigation">
+            <ul>
+	                    <li><a href="https://www.bleepingcomputer.com/news/security/cerber-ransomware-doesnt-encrypt-files-belonging-to-security-products/"><i class="fa fa-chevron-left"></i> Previous Article </a></li>
+
+              <li><a href="https://www.bleepingcomputer.com/news/security/mac-malware-linked-to-infamous-russian-cyber-espionage-group/">Next Article <i class="fa fa-chevron-right"></i></a></li>
+
+            </ul>
+          </div>
+
+          
+          
+          <div class="cz-post-comment-wrapp">
+       	    <h5>Post a Comment <span><a href="https://www.bleepingcomputer.com/forum-rules/" target="_blank">Community Rules</a></span></h5>
+            <div class="cz-comment-loggin-wrapp">
+              	<h6>You need to login in order to post a comment</h6>
+                <input type="submit" value="Login" class="bc_login_btn cz-green-bttn">
+		<p>Not a member yet? <a href="https://www.bleepingcomputer.com/forums/index.php?app=core&module=global&section=register">Register Now</a></p>
+              </div>
+          </div>
+
+          
+          <div class="cz-related-article-wrapp">
+            <h3>You may also like</h3>
+            <ul class="bc_suggested_article">
+	     
+              <li>
+                <div class="cz-related-article-inner-wrapp">
+                  <div class="cz-related-article-img-wrapp">
+                  <a href="https://www.bleepingcomputer.com/news/security/cerber-ransomware-doesnt-encrypt-files-belonging-to-security-products/">
+                  <img src="https://www.bleepstatic.com/content/hl-images/2016/08/02/thumb/170x170_cerber-ransomware-292-176.jpg" alt="Cerber Ransomware Doesn't Encrypt Files Belonging to Security Products Image">
+                  </a>
+                  </div>
+                  <div class="cz-related-article-content-wrapp">
+                    <h5><a href="https://www.bleepingcomputer.com/news/security/cerber-ransomware-doesnt-encrypt-files-belonging-to-security-products/">Cerber Ransomware Doesn't Encrypt Files Belonging to Security Products</a></h5>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="cz-related-article-inner-wrapp">
+                  <div class="cz-related-article-img-wrapp">
+                  <a href="https://www.bleepingcomputer.com/news/security/mac-malware-linked-to-infamous-russian-cyber-espionage-group/">
+                  <img src="https://www.bleepstatic.com/content/hl-images/2017/02/15/thumb/170x170_Mac-malware.jpg" alt="Mac Malware Linked to Infamous Russian Cyber-Espionage Group Image">
+                  </a>
+                  </div>
+                  <div class="cz-related-article-content-wrapp">
+                    <h5><a href="https://www.bleepingcomputer.com/news/security/mac-malware-linked-to-infamous-russian-cyber-espionage-group/">Mac Malware Linked to Infamous Russian Cyber-Espionage Group</a></h5>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="cz-related-article-inner-wrapp">
+                  <div class="cz-related-article-img-wrapp">
+                  <a href="https://www.bleepingcomputer.com/news/security/attacks-on-wordpress-sites-intensify-as-hackers-deface-over-1-5-million-pages/">
+                  <img src="https://www.bleepstatic.com/content/hl-images/2016/11/23/thumb/170x170_WordPress-Logo.png" alt="Attacks on WordPress Sites Intensify as Hackers Deface Over 1.5 Million Pages Image">
+                  </a>
+                  </div>
+                  <div class="cz-related-article-content-wrapp">
+                    <h5><a href="https://www.bleepingcomputer.com/news/security/attacks-on-wordpress-sites-intensify-as-hackers-deface-over-1-5-million-pages/">Attacks on WordPress Sites Intensify as Hackers Deface Over 1.5 Million Pages</a></h5>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="cz-related-article-inner-wrapp">
+                  <div class="cz-related-article-img-wrapp">
+                  <a href="https://www.bleepingcomputer.com/news/google/chromes-sandbox-feature-infringes-on-three-patents-so-google-must-now-pay-20m/">
+                  <img src="https://www.bleepstatic.com/content/hl-images/2016/08/09/thumb/legal-170-170.jpg" alt="Chrome's Sandbox Feature Infringes on Three Patents So Google Must Now Pay $20M Image">
+                  </a>
+                  </div>
+                  <div class="cz-related-article-content-wrapp">
+                    <h5><a href="https://www.bleepingcomputer.com/news/google/chromes-sandbox-feature-infringes-on-three-patents-so-google-must-now-pay-20m/">Chrome's Sandbox Feature Infringes on Three Patents So Google Must Now Pay $20M</a></h5>
+                  </div>
+                </div>
+              </li>
+
+	    </ul>
+	  </div>
+
+          
+
+
+        </div>
+      </div>
+      
+      <!--  side bar section    -->    
+      <div class="col-md-4 bc_right_sidebar">
+       
+	<div class="s-ou-wrap">
+ 
+ <div data-ns="portrait" data-pos="atf" data-collapse="true"></div>
+ 
+</div>
+	
+<!-- gallery placeholder -->
+<div id="tvp-gallery"></div>
+<!-- gallery placeholder -->
+
+	
+	
+	                <div class="bc_latest_topic">
+                        <div class="cz-line-heading"><div class="cz-line-heading-inner">Latest forum topics</div></div>
+                    <ul>
+                        
+                        <li>
+                                <a href="https://www.bleepingcomputer.com/forums/t/640917/avast-internet-security-keeps-opening-windows-with-no-preview-that-show-nothing/">
+                                <div class="bc_topic_text">
+                                  <p>Avast Internet Security keeps opening windows with no preview that show nothing.</p>
+                                  <span><a href="https://www.bleepingcomputer.com/forums/u/1001393/inkoalawetrust/">inkoalawetrust</a></span> in <a href="https://www.bleepingcomputer.com/forums/f/25/anti-virus-anti-malware-and-privacy-software/">Anti-Virus, Anti-Malware, and Privacy Software</a>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                                <a href="https://www.bleepingcomputer.com/forums/t/640916/microphone-odd-behaviorwifi-issues/">
+                                <div class="bc_topic_text">
+                                  <p>Microphone Odd Behavior/WIFI Issues</p>
+                                  <span><a href="https://www.bleepingcomputer.com/forums/u/1042412/foxbox/">Foxbox</a></span> in <a href="https://www.bleepingcomputer.com/forums/f/7/internal-hardware/">Internal Hardware</a>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                                <a href="https://www.bleepingcomputer.com/forums/t/640915/win-95-wont-apply-colour-settings-or-resolution/">
+                                <div class="bc_topic_text">
+                                  <p>Win 95 won&#39;t apply colour settings or resolution.</p>
+                                  <span><a href="https://www.bleepingcomputer.com/forums/u/1042411/digitalxak/">digitalxak</a></span> in <a href="https://www.bleepingcomputer.com/forums/f/9/windows-9598me/">Windows 95/98/ME</a>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+	
+                <div class="bc_news_letter_sidebar">
+                        <h4>Newsletter Sign Up</h4>
+                    <p>To receive periodic updates and news from <a href="/">BleepingComputer</a>, please use the form below. </p>
+                    <form action="//bleepingcomputer.us10.list-manage.com/subscribe/post?u=3e2b3b692f780cdff40d45346&amp;id=30c98e654e" method="post" target="_blank" novalidate>
+                        <input type="email" name="EMAIL" placeholder="Email Address...">
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_3e2b3b692f780cdff40d45346_30c98e654e" tabindex="-1" value=""></div>
+                      <input type="submit" value="Submit" class="bc_sub_btn">
+                    </form>
+                </div>
+	
+        
+	
+	<div class="s-ou-wrap">
+ 
+<!-- /1006593/ROS_Side_2 -->
+<div id='div-gpt-ad-1474727680612-0'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1474727680612-0'); });
+</script>
+</div>
+
+</div>
+        
+        <div class="bc_downloads">
+          <div class="cz-line-heading"><div class="cz-line-heading-inner">Latest Downloads</div></div>
+          <ul>
+           
+            <li> <a href="https://www.bleepingcomputer.com/download/putty/">
+              <div class="bc_download_img"><img src="https://www.bleepstatic.com/download/product-logos/2012/05/18/icon1337384925.png" alt="PuTTY Logo"></div>
+              <div class="bc_download_text">
+                <p><a href="https://www.bleepingcomputer.com/download/putty/">PuTTY</a></p>
+                <span>Version: 0.68</span></div>
+              <div class="bc_download_count"><strong>25,859 <i>Downloads</i></strong></div>
+              </a>
+            </li>
+
+            <li> <a href="https://www.bleepingcomputer.com/download/potplayer/">
+              <div class="bc_download_img"><img src="https://www.bleepstatic.com/download/product-logos/2016/08/02/icon1470147738.png" alt="PotPlayer Logo"></div>
+              <div class="bc_download_text">
+                <p><a href="https://www.bleepingcomputer.com/download/potplayer/">PotPlayer</a></p>
+                <span>Version: 1.7.461</span></div>
+              <div class="bc_download_count"><strong>10M+ <i>Downloads</i></strong></div>
+              </a>
+            </li>
+
+            <li> <a href="https://www.bleepingcomputer.com/download/heimdal-free/">
+              <div class="bc_download_img"><img src="https://www.bleepstatic.com/download/product-logos/2015/01/12/icon1421090406.png" alt="Heimdal Free Logo"></div>
+              <div class="bc_download_text">
+                <p><a href="https://www.bleepingcomputer.com/download/heimdal-free/">Heimdal Free</a></p>
+                <span>Version: NA</span></div>
+              <div class="bc_download_count"><strong>31,510 <i>Downloads</i></strong></div>
+              </a>
+            </li>
+
+            <li> <a href="https://www.bleepingcomputer.com/download/windows-repair-all-in-one/">
+              <div class="bc_download_img"><img src="https://www.bleepstatic.com/download/product-logos/2012/09/19/icon1348083463.jpg" alt="Windows Repair (All In One) Logo"></div>
+              <div class="bc_download_text">
+                <p><a href="https://www.bleepingcomputer.com/download/windows-repair-all-in-one/">Windows Repair (All In One)</a></p>
+                <span>Version: 3.9.25</span></div>
+              <div class="bc_download_count"><strong>969,515 <i>Downloads</i></strong></div>
+              </a>
+            </li>
+
+            <li> <a href="https://www.bleepingcomputer.com/download/adwcleaner/">
+              <div class="bc_download_img"><img src="https://www.bleepstatic.com/download/product-logos/2016/08/13/icon1471128781.png" alt="AdwCleaner Logo"></div>
+              <div class="bc_download_text">
+                <p><a href="https://www.bleepingcomputer.com/download/adwcleaner/">AdwCleaner</a></p>
+                <span>Version: 6.0.4.3</span></div>
+              <div class="bc_download_count"><strong>47M+ <i>Downloads</i></strong></div>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+	
+        <div class="s-ou-wrap" id="pinned">
+ 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Sidebar Sticky Ad -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:600px"
+     data-ad-client="ca-pub-0920899300397823"
+     data-ad-slot="2748485221"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Content Section --> 
+<section class="cz-boa-wrapp">
+ <div class="container">
+  <div class="row">
+   <div class="col-md-12">
+    
+<div class="cz-advertise-wrapp">
+ <script type="text/javascript"><!--
+ google_ad_client = "ca-pub-3249370012249755";
+ /* Homepage - Bottom */
+ google_ad_slot = "1089300124";
+ google_ad_width = 728;
+ google_ad_height = 90;
+ //-->
+ </script>
+ <script type="text/javascript"
+ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+ </script>
+</div>
+
+   </div>
+  </div>
+ </div>
+</section>
+<!-- Start Footer Section -->
+
+<footer id="footer">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-md-4">
+            	<h5>Newsletter Sign Up</h5>
+                    <form action="//bleepingcomputer.us10.list-manage.com/subscribe/post?u=3e2b3b692f780cdff40d45346&amp;id=30c98e654e" method="post" target="_blank" novalidate>
+                        <input type="email" name="EMAIL" placeholder="Email Address...">
+                        <div style="position: absolute; left: -5000px;"><input type="text" name="b_3e2b3b692f780cdff40d45346_30c98e654e" tabindex="-1" value=""></div
+>
+                      <input type="submit" value="Submit" class="bc_sub_btn">
+                    </form>
+                <ul class="bc_social_icons">
+                    <li>Follow us:</li>
+                    <li><a href="https://www.facebook.com/BleepingComputer"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/BleepinComputer"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://plus.google.com/+bleepingcomputer/posts"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="https://www.bleepingcomputer.com/feed/"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+            	<h5>Main Sections</h5>
+                <ul>
+                	<li><a href="https://www.bleepingcomputer.com/">News</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/download/">Downloads</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/virus-removal/">Virus Removal Guides</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/tutorials/">Tutorials</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/startups/">Startup Database</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/uninstall/">Uninstall Database</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/filedb/">File Database</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/glossary/">Glossary</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+            	<h5>Community</h5>
+                <ul>
+                  <li><a href="https://www.bleepingcomputer.com/forums/">Forums</a></li>
+	   	  <li><a href="https://www.bleepingcomputer.com/forum-rules/">Forum Rules</a></li>
+                  <li><a href="https://www.bleepingcomputer.com/chat/">Chat</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+            	<h5>Useful Resources</h5>
+                <ul>
+                    <li><a href="https://www.bleepingcomputer.com/welcome-guide/">Welcome Guide</a></li>
+		    <li><a href="https://www.bleepingcomputer.com/sitemap/">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+            	<h5>Company</h5>
+                <ul>
+                    <li><a href="https://www.bleepingcomputer.com/about/">About BleepingComputer</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/contact/">Contact Us</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/advertise/">Advertising</a></li>
+		    <li><a href="https://www.bleepingcomputer.com/write-for-bleepingcomputer/">Write for BleepingComputer</a></li>
+                    <li><a href="https://www.bleepingcomputer.com/rss-feeds/">Social & Feeds</a></li>
+		    <li><a href="https://www.bleepingcomputer.com/changelog/">Changelog</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bc_footer_bottom">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-md-6">
+                	 <p><a href="https://www.bleepingcomputer.com/user-agreement/">User Agreement</a>  - <a href="https://www.bleepingcomputer.com/privacy/"> Privacy Policy</a></p>
+                </div>
+                <div class="col-md-6 bc_copyright">
+                	<p>Copyright @ 2003 - 2017 <a href="https://www.bleepingcomputer.com/"> Bleeping Computer<sup>&reg;</sup> LLC </a> -   All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<!-- End Footer Section -->
+
+<!-- Start Go to top Section -->
+
+<div class="bc_goto_top">
+    <a href="#"><i class="fa fa-chevron-up"></i></a>
+</div> 
+    
+<!-- End Go to top Section -->
+
+
+<!-- Start Popup Section -->
+
+<div class="bc_popup">
+	<div class="bc_login_form">
+    	<a class="bc_popup_close" href="javascript:;" title="Close"></a>
+        <h4>Login</h4>
+        <form action="https://www.bleepingcomputer.com/forums/index.php?app=core&amp;module=global&amp;section=login&amp;do=process&amp;return=https://www.bleepingcomputer.com/" method="post">
+            <div class="bc_form_feild">
+                <label>Username</label>
+                <input type="text" name="ips_username"> 
+            </div>
+            <div class="bc_form_feild">
+                <label>Password</label>
+                <input type="password" name="ips_password">
+            </div>
+            <div class="bc_form_feild">
+                <div class="bc_remember">
+                    <input id="remember" type="checkbox" name="rememberMe" value="None" checked="checked">
+                    <label for="remember"></label>
+                    <span>Remember Me</span>
+                </div>
+                <div class="bc_anon">
+                     <input id="anonymous" type="checkbox" name="anonymous" value="None">
+                    <label for="anonymous"></label>
+                    <span>Sign in anonymously</span>
+                </div>
+            </div>
+            <div class="bc_btn_wrap">
+		<input type='hidden' name='auth_key' value='880ea6a14ea49e853634fbdc5015a024' />
+                <input type="submit" value="Login" class="bc_sub_btn">
+                <a href="https://www.bleepingcomputer.com/forums/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=facebook&amp;return=https://www.bleepingcomputer.com/news/security/javascript-attack-breaks-aslr-on-22-cpu-architectures/" class="bc_facebook_btn"><img src="https://www.bleepstatic.com/images/site/login/facebook.png" alt="Sign in with Facebook"> Sign in with Facebook</a>
+                <a href="https://www.bleepingcomputer.com/forums/index.php?app=core&amp;module=global&amp;section=login&amp;serviceClick=twitter&amp;return=https://www.bleepingcomputer.com/news/security/javascript-attack-breaks-aslr-on-22-cpu-architectures/" class="bc_twitter_btn"><img src="https://www.bleepstatic.com/images/site/login/twitter.png" alt="Sign in with Twitter"> Sign in with Twitter</a>
+		<hr />
+                <p>Not a member yet? <a href="https://www.bleepingcomputer.com/forums/index.php?app=core&module=global&section=register">Register Now</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- End Popup Section -->
+    
+
+<!-- Script -->
+<script type="text/javascript" src="https://www.bleepstatic.com/js/redesign/bootstrap.js"></script>
+
+<!-- tvpage code -->
+<script type="text/javascript">
+  window.TVPage = window.TVPage || {};
+  window.TVPage.config = TVPage.config || {};
+  window.TVPage.config['tvp-gallery'] = {
+
+  };
+  (function(d) {
+    var s = d.createElement('script');
+    s.src = '//www-bleeping-computer-com.tvpagecdn.com/dist/js/lib.js';
+    d.body.appendChild(s);
+  })(document);
+</script>
+<!-- tvpage code -->
+<script type="text/javascript" src="https://www.bleepstatic.com/js/redesign/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<script type="text/jscript">
+$(document).ready(function(e) {
+    $('.articleBody img').not('a>img').not('.contrib_but>img').click(function(e) {
+        e.preventDefault();
+                 $.fancybox({'href' : $(this).attr('src')});
+    });
+});
+</script>
+
+<script src="//www.bleepstatic.com/js/fixto/fixto.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+var content = $('.cz-main-left-section');
+var sidebar = $('.bc_right_sidebar');
+var count = 0;
+var myTimer;
+
+function setEqualContainer() {
+        var getContentHeight = content.outerHeight();
+        var getSidebarHeight = sidebar.outerHeight();
+
+        if ( getContentHeight > getSidebarHeight ) {
+                sidebar.css('min-height', getContentHeight);
+        }
+
+        if ( getSidebarHeight > getContentHeight ) {
+                content.css('min-height', getSidebarHeight);
+        }
+}
+
+// creating the timer which will run every 500 milliseconds
+// and will stop after the container will be loaded
+// ...or after 15 seconds to not eat a lot of memory
+
+myTimer = setInterval( function() {
+        count++;
+
+        if ( $('.testContainer').length == 0 ) {
+                setEqualContainer();
+        } else {
+                setEqualContainer();
+                clearInterval(myTimer);
+        }
+
+        if ( count == 15) {
+                clearInterval(myTimer);
+        }
+}, 500);
+
+        $('#pinned').fixTo('.bc_right_sidebar', {
+                 top: 129
+        });
+
+        $('#more_dd').click(function (e) {
+          e.preventDefault()
+        });
+
+        $('.bc_goto_top a').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+        });
+        jQuery('.bc_login_btn').on('click', function() {
+    jQuery('.bc_popup').fadeIn("slow");
+  });
+        jQuery('.bc_popup_close').on('click', function() {
+    jQuery('.bc_popup').fadeOut("slow");
+  });
+
+});
+</script>
+<script type="text/javascript">
+// validate comment box not empty
+function validate_comment_box_not_empty()
+{
+	$('#frm_comment_box').submit(function(e) {
+		if($('#comment_html_box').val().length==0)
+		{
+			alert("Please enter a comment before pressing submit");
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	});
+}
+
+function cz_strip_tags(input, allowed) {
+  allowed = (((allowed || '') + '')
+    .toLowerCase()
+    .match(/<[a-z][a-z0-9]*>/g) || [])
+    .join(''); // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+    commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+  return input.replace(commentsAndPhpTags, '')
+    .replace(tags, function($0, $1) {
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+    });
+}
+function cz_br2nl(str) {
+	var regex = /<br\s*[\/]?>/gi;
+    //var pure_str = str.replace(regex,"\n");
+    var pure_str = str.replace(regex,"");
+    return cz_strip_tags(pure_str,'');
+}
+$(document).ready(function(e) {
+// validate comment box not empty
+validate_comment_box_not_empty();
+
+
+// report comment
+$('#comment-report-other-reason-wrap').css('display','none');
+$('.cz-popup-close').click(function(e) {
+    e.preventDefault();
+	$('.cz-popup').fadeOut("slow");
+});
+$('.cz-comment-report-btn').click(function(e) {
+    e.preventDefault();
+	$('.cz-popup').css('height',$( document ).height()+'px');
+    //var comment_box_report_top = $(this).offset().top;
+	var comment_box_report_top = $(document).scrollTop();
+	$('.cz-popup-wrapp').css('top',(comment_box_report_top+100)+'px');
+  	$('#comment-id-report').val($(this).attr('data-id'));
+	$('.cz-popup').fadeIn("slow");
+});
+$("input[type='radio'][name='comment-report-reason']").click(function(e) {
+    if($(this).val()=='Other')
+	{
+		$('#comment-report-other-reason-wrap').css('display','block');
+	}
+	else
+	{
+		$('#comment-report-other-reason-wrap').css('display','none');
+	}
+});
+$('.comment-report-submit-btn').click(function(e) {
+    e.preventDefault();
+	var comment_report_reason = "";
+	var comment_report_reason = $("input[type='radio'][name='comment-report-reason']:checked").val();
+	if (comment_report_reason=='Other') {
+		comment_report_reason = $('#comment-report-other-reason').val();
+	}
+	if(comment_report_reason=='') {
+		alert('Please specify reason');
+	}
+	else
+	{
+		$('.cz-popup-report-submiting').css('display','inline-block');
+		$.ajax({
+		
+		 type: "POST",
+		 url: 'https://www.bleepingcomputer.com/article_manager/comment-ajax-report.php',
+		 data: { comment_id: $('#comment-id-report').val(), reason: comment_report_reason },
+		 success: function(data) {
+			  $('.cz-popup-report-submiting').css('display','none');
+			  $('.cz-popup').fadeOut("slow");
+		 }
+		
+		});
+	}
+});
+// report comment
+
+	
+    $('.cz_comment_reply_btn').click(function(e) {
+        e.preventDefault();
+  $('#parent_comment_id').val($(this).attr('data-id'));
+  $('#comment_html_box').attr('placeholder','Replying to '+$(this).attr('data-name'));
+  var comment_box_top = $('.cz-post-comment-wrapp').offset().top;
+  $("html, body").animate({ scrollTop: comment_box_top-100 }, 600);
+  $('#comment_html_box').focus();
+    });
+    $('.cz_comment_quote_btn').click(function(e) {
+        e.preventDefault();
+        var quote_comment_html ='';
+        if($(this).attr('data-id')!=undefined && $(this).attr('data-id')!='')
+        {
+  $('#parent_comment_id').val($(this).attr('data-id'));
+  quote_comment_html = $('#comment_html_'+$(this).attr('data-id')).html();
+  }
+  quote_comment_html = cz_br2nl(quote_comment_html);
+  $('#comment_html_box').val('"'+quote_comment_html+'"\n\n');
+  var comment_box_top = $('.cz-post-comment-wrapp').offset().top;
+  $("html, body").animate({ scrollTop: comment_box_top-100 }, 600);
+  $('#comment_html_box').focus();
+    });
+ 
+});
+
+function editForm(cid)
+{
+
+   $.ajax({
+
+     type: "GET",
+     url: window.location.href,
+     data: { f: "e", cid: cid },
+     success: function(data) {
+          $('.cz-post-comment-wrapp').html(data);
+		  validate_comment_box_not_empty();
+     }
+
+   });
+
+   var comment_box_top = $('.cz-post-comment-wrapp').offset().top;
+   $("html, body").animate({ scrollTop: comment_box_top-100 }, 600);
+
+}
+
+$(document).on('click', '.cz-subscribe-button' , function(e) {
+    e.preventDefault();
+                
+    $.ajax({
+              
+    	type: "POST",
+        url: window.location.href,
+        data: { a: 'sub' },
+        success: function(data) {
+        if(data == '1')
+        	$( "li.cz-subscribe-button" ).replaceWith( '<li class="cz-unsubscribe-button"><a href="#"></a></li>');
+        }
+                
+    });
+});
+
+$(document).on('click', '.cz-unsubscribe-button' , function(e) {
+    e.preventDefault();
+                
+    $.ajax({
+               
+         type: "POST",
+       	 url: window.location.href,
+         data: { a: 'unsub' },
+         success: function(data) {
+    	 if(data == '1')
+         	$( "li.cz-unsubscribe-button" ).replaceWith( '<li class="cz-subscribe-button"><a href="#"></a></li>');
+         }
+               
+    });
+
+});
+</script>
+
+<script type="text/javascript">
+$('.cz-print-icon, .cz-lg-print-icon').click(function(e) {
+    e.preventDefault();
+    var divToPrint = document.getElementById('.article_section'); 
+    var mywindow = window.open('','','left=0,top=0,width=950,height=600,toolbar=0,scrollbars=0,status=0,addressbar=0');
+
+    var is_chrome = Boolean(mywindow.chrome);
+    mywindow.document.write($( ".article_section" ).html());
+    mywindow.document.close(); // necessary for IE >= 10 and necessary before onload for chrome
+
+    if (is_chrome) {
+        mywindow.onload = function() { // wait until all resources loaded 
+            mywindow.focus(); // necessary for IE >= 10
+            mywindow.print();  // change window to mywindow
+            mywindow.close();// change window to mywindow
+        };
+    }
+    else {
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+        mywindow.close();
+    }
+
+    return true;
+});
+</script>
+
+<script type="text/javascript">
+
+var loginhash = '880ea6a14ea49e853634fbdc5015a024';
+var main_nav_hide_flag = true;
+var scrollTop =0;
+var main_nav_hide_timer = '';
+
+function call_main_nav_hide()
+{
+ if(main_nav_hide_flag && scrollTop >=100)
+ {
+  $('header').addClass("nav-up");
+ }
+}
+var cz_header_pos = $('header').offset().top;
+$(window).scroll(function() {
+	$('header').each(function(){
+	var cz_top_of_window = $(window).scrollTop()-100;
+		if (cz_top_of_window > cz_header_pos) {			
+			$('.bc_goto_top').fadeIn("slow");
+		} else {
+			$('.bc_goto_top').fadeOut("slow");			
+		}
+	});
+
+});
+var prevScrollTop = 0;
+$(window).scroll(function(event){
+    scrollTop = $(this).scrollTop();
+
+    if ( scrollTop < 0 ) {
+        scrollTop = 0;
+    }
+    if ( scrollTop > $('body').height() - $(window).height() ) {
+        scrollTop = $('body').height() - $(window).height();
+    }
+
+    if (scrollTop >= prevScrollTop && scrollTop) {
+        $('header').addClass("nav-up");
+    } else {
+	if (scrollTop >=100)
+	{
+	 $('header').removeClass("nav-up"); 
+	 main_nav_hide_timer = setTimeout("call_main_nav_hide()",5000);
+	}
+	else
+	{
+	 $('header').removeClass("nav-up");
+	 clearInterval(main_nav_hide_timer);
+	}
+    }
+
+    prevScrollTop = scrollTop;
+});
+$(document).ready(function(){	
+	$('#more_dd').click(function (e) {
+	  e.preventDefault()
+	});
+
+	$('.bc_goto_top a').click(function(){
+	$("html, body").animate({ scrollTop: 0 }, 600);
+	return false;
+	});
+	jQuery('.bc_login_btn').on('click', function() { 
+    jQuery('.bc_popup').fadeIn("slow");
+  });
+	jQuery('.bc_popup_close').on('click', function() {
+    jQuery('.bc_popup').fadeOut("slow");
+  });
+  
+
+});
+$('#bc_drop_tab a').hover(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+$(document).mouseup(function (e)
+{
+    var container = $(".bc_login_form");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0 && $('.bc_popup').css('display') =='block') // ... nor a descendant of the container
+    {
+        jQuery('.bc_popup').fadeOut("slow");
+    }
+});
+if($(window).width() < 767)
+{ 
+	$(".nav-menu").on('click','li', function(){
+	$(this).toggleClass('active').siblings().removeClass('active');
+ })
+}
+</script>
+
+<section class="cz-popup">
+  <div class="cz-popup-wrapp"> 
+  <a class="cz-popup-close" href="javascript:;" title="Close"> <i class="fa fa-times"></i> </a>
+    <h4>Reporter</h4>
+    <div class="cz-popup-inner-wrapp">
+     <h6>Help us understand the problem. What is going on with this comment?</h6>
+        <form>
+          <input type="hidden" id="comment-id-report" value="0">
+         <ul>
+             <li>
+                 <label><input type="radio" name="comment-report-reason" value="Spam">Spam</label>
+                </li>
+             <li>
+                 <label><input type="radio" name="comment-report-reason" value="Abusive or Harmful">Abusive or Harmful</label>
+                </li>
+             <li>
+                 <label><input type="radio" name="comment-report-reason" value="Inappropriate content">Inappropriate content</label>
+                </li>
+             <li>
+                 <label><input type="radio" name="comment-report-reason" value="Strong language">Strong language</label>
+                </li>
+             <li>
+                 <label><input type="radio" name="comment-report-reason" value="Other">Other</label>
+                </li>
+                <li id="comment-report-other-reason-wrap" style="display:none;">
+                 <textarea rows="2" cols="2" id="comment-report-other-reason"></textarea>
+                </li>
+            </ul>
+            <p><a href="https://www.bleepingcomputer.com/posting-guidelines/">Learn more</a> about what is not allowed to be posted.</p>
+        </form>
+    </div>
+    <div class="cz-popup-bottom-wrapp">
+    <div class="cz-popup-report-submiting" style="display:none;">Submitting...</div>
+     <a href="#" class="cz-next-btn comment-report-submit-btn">SUBMIT</a>
+    </div>
+  </div>
+</section>
+
+
+        <script type="text/javascript" src="//s9.addthis.com/js/300/addthis_widget.js#pubid=ra-55d5fe0cec929e88&domready=1" async="async"></script>
+
+
+</body>
+</html>

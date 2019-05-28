@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Animation Example</title>
+
+<script type="text/javascript">
+// declare a global variables
+var duckArray = new Array(16);
+var duckNumber;
+
+function init() {
+	// declare variables
+	var imageNumber;
+	var imageName;
+
+	// set each element to an image data type
+	for (var subscript = 0; subscript <= 15; subscript++) {
+		duckArray[subscript] = new Image();
+		
+		// next image number
+		imageNumber = subscript + 1;
+		
+		// dynamically create the name of the current image
+		if (imageNumber <= 9) {
+			imageName = "duck0" + imageNumber + ".jpg";
+		}
+		else {
+			imageName = "duck" + imageNumber + ".jpg";
+		}
+		
+		// load the current image into the array
+		duckArray[subscript].src = imageName;
+	}
+	
+	// initialize the duck image number to 1
+	duckNumber = 1;	
+	
+	// change the duck image every one second
+	setInterval('animateDuck()', 100);
+}
+function animateDuck() {
+	// declare variables
+	var imageHandle;
+	var imageLocation;
+	
+	// increment the duck image number
+	duckNumber++;
+	
+	if (duckNumber > 15) {
+		duckNumber = 1;
+	}
+	
+	// get a reference to the image
+	imageHandle = document.getElementById("duck");
+	
+	// change the duck image
+	imageHandle.src = duckArray[duckNumber].src;
+	
+	// change the location of the image
+	imageLocation = imageHandle.style.left;
+	
+	// get rid of the 'px' in the string and convert it to a number
+	imageLocation = parseInt(imageLocation);
+	
+	// add 1 to the  position
+	imageLocation = imageLocation + 1;
+	
+	// add the 'px' back to the position value
+	imageLocation = imageLocation + "px";
+	
+	// move the duck
+	imageHandle.style.left = imageLocation;
+}
+</script>
+</head>
+<body onload="init();">
+<h1>Animation Example</h1>
+
+<img id="duck" src="duck01.jpg"
+	 style="position:absolute; left:0px; top:75px;">
+
+</body>
+</html>

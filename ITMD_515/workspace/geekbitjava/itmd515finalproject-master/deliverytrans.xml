@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="deliverytrans.xsl" ?>
+
+<!-- Deborah Barndt
+ 	 Thomas Boller
+ 	 2-23-18
+ 	 deliverytrans.xml
+ 	 Programming Assignment 2
+ 	 This xml file holds the delivery transactions for the car services.
+ 	 Written by Deborah Barndt & Thomas Boller. -->
+
+<deliverytransactions>
+	
+	<transaction>
+		<trans_id>1001</trans_id>
+		<user_id>flcon</user_id>
+		<driver_id>bbarnes</driver_id>
+		<date>2018-02-24</date>
+		<rate>6.27</rate>
+		<pickup_time>10:34:34</pickup_time>
+		<pickup_loc>4500 S Michigan Ave</pickup_loc>
+		<drop_loc>1100 S Troy St</drop_loc>
+		<drop_time>12:34:34</drop_time>
+		<pkg_size>large</pkg_size>
+	</transaction>
+	
+	<transaction>
+		<trans_id>1002</trans_id>
+		<user_id>blkcat</user_id>
+		<driver_id>strlord</driver_id>
+		<date>2018-01-26</date>
+		<rate>8.64</rate>
+		<pickup_time>11:54:34</pickup_time>
+		<pickup_loc>1864 S Clark St</pickup_loc>
+		<drop_loc>3507 W Watts Ave</drop_loc>
+		<drop_time>14:34:36</drop_time>
+		<pkg_size>m</pkg_size>
+	</transaction>
+	
+	<transaction>
+		<trans_id>1003</trans_id>
+		<user_id>beast</user_id>
+		<driver_id>lrmiller</driver_id>
+		<date>2018-01-19</date>
+		<rate>5.88</rate>
+		<pickup_time>09:34:54</pickup_time>
+		<pickup_loc>6354 N Wacker Dr</pickup_loc>
+		<drop_loc>2405 S State St</drop_loc>
+		<drop_time>10:34:34</drop_time>
+		<pkg_size>small</pkg_size>
+	</transaction>
+
+</deliverytransactions>

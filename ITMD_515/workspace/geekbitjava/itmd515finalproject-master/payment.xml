@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="payment.xsl" ?>
+
+<!-- Deborah Barndt
+ 	 Thomas Boller
+ 	 2-23-18
+ 	 payment.xml
+ 	 Programming Assignment 2
+ 	 This xml file holds the payment information for the car services.
+ 	 Written by Deborah Barndt & Thomas Boller. -->
+
+<payment>
+	
+	<paymentinfo>
+		<pid>9001</pid>
+		<name_on_card>Sam Wilson</name_on_card>
+		<card_number>5555123455554567</card_number>
+		<exp_date>2022-02-18</exp_date>
+		<ccv>789</ccv>
+		<user_id>flcon</user_id>
+	</paymentinfo>
+	
+	<paymentinfo>
+		<pid>9002</pid>
+		<name_on_card>Matt Murdock</name_on_card>
+		<card_number>5555654923007412</card_number>
+		<exp_date>2020-02-19</exp_date>
+		<ccv>512</ccv>
+		<user_id>daredvl</user_id>
+	</paymentinfo>
+	
+	<paymentinfo>
+		<pid>9003</pid>
+		<name_on_card>Ororo Munroe</name_on_card>
+		<card_number>5555451274005124</card_number>
+		<exp_date>2019-06-18</exp_date>
+		<ccv>867</ccv>
+		<user_id>storm</user_id>
+	</paymentinfo>
+	
+	<paymentinfo>
+		<pid>9004</pid>
+		<name_on_card>Hank McCoy</name_on_card>
+		<card_number>5555632554612300</card_number>
+		<exp_date>2018-12-18</exp_date>
+		<ccv>312</ccv>
+		<user_id>beast</user_id>
+	</paymentinfo>
+	
+	<paymentinfo>
+		<pid>9005</pid>
+		<name_on_card>Felicia Hardy</name_on_card>
+		<card_number>5555742154008512</card_number>
+		<exp_date>2021-02-18</exp_date>
+		<ccv>457</ccv>
+		<user_id>blkcat</user_id>
+	</paymentinfo>
+
+</payment>

@@ -1,0 +1,14 @@
+action=ASK
+anonymizeMessages=false
+anonymizeStrackTraceElements=true
+configured=true
+eclipse.preferences.version=1
+email=
+name=
+problemsZipEtag="a26800b-b17133-542def79d3000"
+rememberSendAction=NONE
+rememberSendActionPeriodStart=0
+serverUrl=https\://dev.eclipse.org/recommenders/community/confess/0.5/reports/
+skipSimilarErrors=true
+whitelistedPackages=org.eclipse.;org.apache.;java.;javax.;javafx.;sun.;com.sun.;com.codetrails.;org.osgi.;com.google.;ch.qos.;org.slf4j.
+whitelistedPluginIds=org.eclipse.;org.apache.log4j;com.codetrails

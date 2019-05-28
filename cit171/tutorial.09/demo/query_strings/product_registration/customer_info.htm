@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Customer Information</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function confirmReset() {
+        var resetForm = confirm("Are you sure you want to reset the form?");
+        if (resetForm == true)
+                return true;
+        return false;
+}
+function nextForm() {
+        /*-------------------METHOD:  2 ,  BUILT UP QUERY STRING--------------------*/
+	   
+	   var saved_data;
+	   saved_data  = "name="       + document.forms[0].name.value;
+	   saved_data += "&address="   + document.forms[0].address.value;
+	   saved_data += "&city="      + document.forms[0].city.value;
+	   saved_data += "&state="     + document.forms[0].state.value;
+	   saved_data += "&zip="       + document.forms[0].zip.value;
+	   saved_data += "&email="     + document.forms[0].email.value;
+	   saved_data += "&telephone=" + document.forms[0].telephone.value;
+	   for (var i=0; i<document.forms[0].platform.length; ++i){
+		     if (document.forms[0].platform[i].checked == true)
+			     saved_data += "&platform=" + document.forms[0].platform[i].value;
+                      }
+		if (document.forms[0].quality.checked == true)
+		                                               saved_data += "&quality=true";
+	 	if (document.forms[0].speed.checked == true)
+		                                               saved_data += "&speed=true";
+	 	if (document.forms[0].functions.checked == true)
+		                                               saved_data += "&functions=true";
+	 	if (document.forms[0].price.checked == true)
+		                                               saved_data += "&price=true";
+	 	if (document.forms[0].design.checked == true)
+		                                               saved_data += "&design=true";
+	 	saved_data += "&location=" + document.forms[0].location.value;
+                    saved_data += "&comments=" + document.forms[0].comments.value;  
+					
+		location.href="product_info.htm" + "?" + saved_data;
+}
+</script>
+
+</head>
+<body>
+<h3>Customer Information</h3>
+<form action="" method="get" enctype="application/x-www-form-urlencoded" onreset="return confirmReset();">
+    <p>Name<br>            <input type="text" name="name" size="50" /></p>
+    <p>Address<br>         <input type="text" name="address" size="50" /></p>
+    <p>City, state, zip<br><input type="text" name="city" size="32" /> <input type="text" name="state" size="2" maxlength="2" /> <input type="text" name="zip" size="5" maxlength="5" /></p>
+    <p>E-mail<br>          <input type="text" name="email" size="50" /></p>
+    <p>Telephone<br>       <input type="text" name="telephone" size="50" /></p>
+    <p>On which platform will you use this printer?<br>
+         <input type="radio" name="platform" value="windows" />Windows
+         <input type="radio" name="platform" value="linux" />Linux
+         <input type="radio" name="platform" value="unix" />UNIX
+         <input type="radio" name="platform" value="mac" />Macintosh</p>
+    <p>What features most influenced your selection of this model? (check all that apply)<br>
+        <input type="checkbox" name="quality" />Output quality <br>
+        <input type="checkbox" name="speed" />Print speed<br>
+        <input type="checkbox" name="functions" />Print functions<br>
+        <input type="checkbox" name="price" />Price/value<br>
+        <input type="checkbox" name="design" />Appearance/design</p>
+    <p>Where will you use this printer?
+        <select name="location">
+                <option value="work">Work</option>
+                <option value="school">School</option>
+                <option value="home">Home</option>
+                <option value="home_office">Home Office</option>
+         </select></p>
+    <p>Comments<br>
+    <textarea name="comments" cols="40" rows="5">Enter any additional comments here </textarea></p>
+    <p><input type="reset" /> <input type="button" name="next" value=" Next" onclick="nextForm()" /></p>
+</form>
+</body>
+</html>

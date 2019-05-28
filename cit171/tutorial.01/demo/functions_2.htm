@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Function Example 2</title>
+
+<script type="text/javascript">
+
+// function declaration
+function printMessage(theMessage) {
+	// note: the parameter in this function is theMessage
+
+	// display the message to the Web page
+     document.write("<p>" + theMessage + "</p>");
+}
+
+// function with a return value
+function getMessageRV() {
+	// note: this function does not have any parameters
+
+	// return a value back to the calling procedure
+     return "<p>This message was returned from a function and printed outside of the function.</p>";
+}
+</script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+// call a user defined function and pass to it a string literal argument
+printMessage("This message was created outside of a function but printed inside of a function.");
+
+// call a user defined fuction that returns a value
+var returnValue;
+returnValue = getMessageRV();
+// print the return value from the function onto the Web page
+document.write(returnValue);
+
+</script>
+
+</body>
+</html>

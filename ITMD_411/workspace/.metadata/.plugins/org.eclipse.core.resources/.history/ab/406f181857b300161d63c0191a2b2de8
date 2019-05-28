@@ -1,0 +1,18 @@
+/**
+ * Deborah Barndt
+ * 11-22-16
+ * CloseTicket.java
+ * Final Project
+ * This program will allow you to close a trouble ticket.
+ * Written by Deborah Barndt. */
+
+
+public class CloseTicket 
+{
+
+	public CloseTicket() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+}

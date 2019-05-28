@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Object Oriented Programming (OOP) Example</title>
+
+<script type="text/javascript">
+// declare a constructor function
+// parameters: 1) value1 - the first property
+//                     2) value2 - the second property
+function Arithmetic(param1, param2, param3) {
+	// declare 3 properties
+	this.value1 = param1;
+	this.value2 = param2;
+	this.result = param3;
+	// declare methods (connect method to constructor function)
+	this.addIt = addValues;	
+	this.multiplyIt = multiplyValues;
+}
+
+// method for Arithmetic constructor function
+function addValues() {
+	this.result = parseFloat(this.value1) + parseFloat(this.value2);
+}
+
+
+function multiplyValues() {
+	this.result = parseFloat(this.value1) * parseFloat(this.value2);
+}
+
+function add() {
+	// instantiate a user defined object
+	var objArithmetic = new Arithmetic();
+
+	// set the object properties
+	objArithmetic.value1 = document.getElementById("value1").value;
+	objArithmetic.value2 = document.getElementById("value2").value;
+
+	// call a method of the object
+	objArithmetic.addIt();
+	
+	// update the Web page result
+	document.getElementById("resultLabel").innerHTML = objArithmetic.result;
+}
+
+function multiply() {
+	// instantiate a user defined object
+	var objArithmetic = new Arithmetic();
+
+	// set the object properties
+	objArithmetic.value1 = document.getElementById("value1").value;
+	objArithmetic.value2 = document.getElementById("value2").value;
+
+	// call a method of the object
+	objArithmetic.multiplyIt();
+	
+	// update the Web page result
+	document.getElementById("resultLabel").innerHTML = objArithmetic.result;
+}
+
+function reset() {
+	// reset the Web page
+	document.getElementById("resultLabel").innerHTML = "";
+	document.getElementById("value1").value = "2";
+	document.getElementById("value2").value = "3";
+}
+</script>
+
+</head>
+<body>
+
+<h1>Object Oriented Programming (OOP) Example</h1>
+Value 1 <input type="text" name="value1" id="value1" size="3" value="2" />
+<br>
+Value 2 <input type="text" name="value2" id="value2"  size="3" value="3" />
+<br>
+Result <span id="resultLabel"></span>
+
+<br><br>
+<input type="button" value="Add" onclick="add();" />
+&nbsp;
+<input type="button" value="Multiply" onclick="multiply();" />
+&nbsp;
+<input type="button" value="Reset" onclick="reset();" />
+<br>
+</form>
+
+</body>
+</html>

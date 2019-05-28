@@ -1,0 +1,1 @@
+﻿$(function(){$("#mainContentLink").bind("click",function(b){b.preventDefault();b.currentTarget.blur();var a=document.querySelector("#accessibleMainContent");if(a){a.focus();}else{$("body").focus();}});});

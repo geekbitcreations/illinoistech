@@ -1,0 +1,20 @@
+The Average Income: $27936.0727166667
+Inner City Maximum Age: 67
+	Rural Maximum Age: 67
+	Suburban Maximum Age: 67
+	Town Region Maximum Age: 67
+
+
+Inner City Minimum Age: 18
+	Rural Minimum Age: 18
+	Suburban Minimum Age: 18
+	Town Region Minimum Age: 19
+
+
+ Number of Females with Mortgages: 100
+Inner City Region Males with a Car and 1 Child: 15
+	Rural Region Males with a Car and 1 Child: 9
+	Suburban Region Males with a Car and 1 Child: 3
+	Town Region Males with a Car and 1 Child: 7
+
+

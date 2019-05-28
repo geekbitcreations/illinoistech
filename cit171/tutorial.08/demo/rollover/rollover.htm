@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Rollover Example</title>
+
+<script type="text/javascript">
+function MouseRollover(myImage) {
+    myImage.src = "clc_logo_white.jpg";
+}
+ 
+function MouseOut(myImage) {
+    myImage.src = "clc_logo_black.jpg";
+}
+</script>
+ 
+</head>
+<body>
+ 
+<img src="clc_logo_black.jpg"
+	 onMouseOver="MouseRollover(this)" 
+	 onMouseOut="MouseOut(this)" />
+
+</body>
+</html>

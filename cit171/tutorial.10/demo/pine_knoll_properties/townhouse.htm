@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Townhouse</title>
+<link rel="stylesheet" href="pineknoll_styles.css" type="text/css">
+
+<script type="text/javascript">
+var curImage = 1;
+function showNextPic() {
+	++curImage;
+	if (curImage == 6)
+		curImage = 1;
+	document.images[0].src = "townhouse" + curImage + ".jpg";
+}
+function showPreviousPic() {
+	--curImage;
+	if (curImage == 0)
+		curImage = 5;
+	document.images[0].src = "townhouse" + curImage + ".jpg";
+
+}
+</script>
+
+</head>
+<body>
+<table width="350">
+  <tr>
+    <td>Townhouse: <strong>$319,000</strong></td>
+    <td align="right"><a href="" onclick="self.close();">Close Window</a></td>
+  </tr>
+</table>
+<p><img src="townhouse1.jpg" height="223" width="350" alt="Photo of a townhouse"></p>
+<table width="350">
+  <tr>
+    <td><a href="" onclick="showPreviousPic();return false"><img src="previous_blue.gif" border="0" width="97" height="19" alt="Image of a Previous button" onmouseover="this.src='previous_red.gif'" onmouseout="this.src='previous_blue.gif'"></a></td>
+    <td align="right"><a href="" onclick="showNextPic();return false"><img src="next_blue.gif" border="0" width="49" height="19" alt="Image of a Next button" onmouseover="this.src='next_red.gif'" onmouseout="this.src='next_blue.gif'"></a></td>
+  </tr>
+</table>
+<p>4 bed, 2 bath, 17,33 square feet, .42 acres</p>
+</body>
+</html>

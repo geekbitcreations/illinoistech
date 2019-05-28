@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Regular Expressions Zip Code Example 2</title>
+
+<script type="text/javascript">
+function is_valid_zip_code(value) {
+	/* The regular expression doesn't need a lot of explanation. 
+	^\d{5} says that the regular expression must start ("^") with exactly five ("{5}") digits ("\d"). 
+	([\-]\d{4})?$ says that the grouping (in parentheses) can appear either zero or one time ("?") 
+	and must be the end of the string ("$"). 
+	Inside the grouping is the literal dash character ("-", but since that character normally 
+	means other things in regular expressions, it needs to be "escaped" with the slash in front). 
+	After the dash is exactly four ("{4}") digits ("\d").
+	So, a value of "12345" will succeed. Any letter will cause the expression to fail. 
+	A value of "12345-6789" will succeed. 
+	If the 9 digit format is used, then the previous format (5 digits, dash, 4 digits) must be used. 
+	Other formats will fail. */
+	var regular_expression;
+	var result;
+	
+	// create a regular expression
+   regular_expression = /^\d{5}([\-]\d{4})?$/;
+   
+   // check if the passed zip code is valid
+   result = regular_expression.test(value)
+   
+   // send back true or false to the calling procedure
+   return result;
+}
+
+function validate_zip_code() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var return_value;
+	
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("zip_code");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	   
+	// check if the passed zip code is valid using a user defined function named "is_valid_zip_code"
+	return_value = is_valid_zip_code(text_box_contents)
+
+	// display the message to the user
+	if (return_value == true) {
+		window.alert("The Zip Code is Valid");
+	}
+	else {
+		window.alert("The Zip Code is NOT Valid");
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>Regular Expressions Zip Code Example 2</h1>
+
+<form>
+
+<br>
+Zip Code <input type="text" name="zip_code" id="zip_code" size="10" value="60048-1234" />
+<br><br>
+<input type="button" value="Validate Zip Code" onclick="validate_zip_code();" /><br>
+
+</form>
+
+</body>
+</html>

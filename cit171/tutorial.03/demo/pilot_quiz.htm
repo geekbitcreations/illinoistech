@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FAA Private Pilot Quiz</title>
+
+<script type="text/javascript">
+var answers = new Array(5);
+var correctAnswers = new Array(5);
+correctAnswers[0] = "a";
+correctAnswers[1] = "c";
+correctAnswers[2] = "b";
+correctAnswers[3] = "b";
+correctAnswers[4] = "a";
+function recordAnswer(question, answer) {
+     answers[question-1] = answer;
+}
+function scoreQuiz() {
+	var totalCorrect = 0;
+	var count = 0;
+	for (var count = 0; count < correctAnswers.length; ++count) {
+		 if (answers[count] == correctAnswers[count])
+			   ++totalCorrect;
+	}
+	window.alert("You scored " + totalCorrect + " out of 5 answers correctly!");
+}
+</script>
+
+</head>
+<body>
+<h1>FAA Private Pilot Quiz</h1>
+<form action="">
+<p><b>1. The term "angle of attack" is defined as the angle</b></p><p><input type="radio" name="question1" value="a" onclick="recordAnswer(1, 'a')" />Between the wing chord line and the relative wind<br> <!-- correct answer -->
+<input type="radio" name="question1" value="b" onclick="recordAnswer(1, 'b')" />Between the airplane's climb angle and the horizon<br>
+<input type="radio" name="question1" value="c" onclick="recordAnswer(1, 'c')" />Formed by the longitudinal axis of the airplane and the chord line of the wing</p>
+
+<p><b>2. What is the purpose of the rudder on an airplane?</b></p>
+<p><input type="radio" name="question2" value="a" onclick="recordAnswer(2, 'a')" />To control roll<br>
+<input type="radio" name="question2" value="b" onclick="recordAnswer(2, 'b')" />To control overbanking tendency<br>
+<input type="radio" name="question2" value="c" onclick="recordAnswer(2, 'c')" />To control yaw</p><!-- correct answer -->
+
+<p><b>3. An airplane said to be inherently stable will?</b></p>
+<p><input type="radio" name="question3" value="a" onclick="recordAnswer(3, 'a')" />Be difficult to stall<br>
+<input type="radio" name="question3" value="b" onclick="recordAnswer(3, 'b')" />Require less effort to control<br><!-- correct answer -->
+<input type="radio" name="question3" value="c" onclick="recordAnswer(3, 'c')" />Not spin</p>
+<p><b>4. Which basic flight maneuver increases the load factor on an airplane as compared to straight-and-level flight?</b></p>
+<p><input type="radio" name="question4" value="a" onclick="recordAnswer(4, 'a')" />Climbs<br>
+<input type="radio" name="question4" value="b" onclick="recordAnswer(4, 'b')" />Turns<br><!-- correct answer -->
+<input type="radio" name="question4" value="c" onclick="recordAnswer(4, 'c')" />Stalls</p>
+<p><b>5. What is one purpose of wing flaps?</b></p>
+<p><input type="radio" name="question5" value="a" onclick="recordAnswer(5, 'a')" />To enable the pilot to make steeper approaches to a landing without increasing the airspeed<br><!-- correct answer -->
+<input type="radio" name="question5" value="b" onclick="recordAnswer(5, 'b')" />To relieve the pilot of maintaining continuous pressure on the controls<br>
+<input type="radio" name="question5" value="c" onclick="recordAnswer(5, 'c')" />To decrease wing area to vary the lift</p>
+<p><input type="button" value="Score" onclick="scoreQuiz();" /><p>
+</form>
+</body>
+</html>

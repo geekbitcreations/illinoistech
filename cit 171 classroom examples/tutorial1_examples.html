@@ -1,0 +1,80 @@
+<DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tutorial 1 Examples</title>
+
+<script type="text/javascript">
+
+function printName(firstName, lastName){
+	//print out a name
+	document.write("<br />");
+	document.write(firstName);
+	document.write(" ");
+	document.write(lastName);
+}
+
+function printName(firstName, lastName){
+	//build a full name
+	
+	//declare variables
+	var fullName;
+	
+	//build name
+	fullName = "<br/>";
+	fullName = fullName + firstName;
+	fullName = fullName + " ";
+	fullName = fullName + lastName;
+	
+	//return the full name back to the calling procedure
+	return fullName;
+}
+</script>
+
+</head>
+<body>
+<h1>Tutorial 1 Examples</h1>
+
+<script type="text/javascript">
+	// this code is to learn about the document object
+	document.write( Date());
+	document.write("<br />");
+	document.write("Hello World");
+	
+	//declare variables
+	var numItems;
+	var itemCost;
+	var totalCost;
+	
+	//assign values to variables
+	numItems = 5;
+	itemCost = 10;
+	
+	//next is temporary debug code
+	//alert("numItems contains " + numItems);
+	//alert("itemCost contains " + itemCost);
+	
+	//calculate total cost
+	totalCost = numItems * itemCost;
+	
+	//display total cost to web page
+	document.write("<br />" + "Total Cost is " + totalCost);
+	
+	//call a user defined function
+	printName("Deborah","Barndt"); 
+	printName("Santa","Claus");
+	
+	var returnValue;
+	
+	//call a user defined function with a return value
+	returnValue = buildName("Tooth","Fairy");
+	
+	//display the value returned from function on web page
+	document.write(returnValue);
+	
+	
+	</script>
+
+	
+</body>
+</html>

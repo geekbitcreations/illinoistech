@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Object References</title>
+<script type="text/javascript" src="object_references.js"></script>
+<style>
+p {line-height:1; margin-top:0.2em; margin-bottom:0.2em;}
+</style>
+
+<script type="text/javascript">
+function objectCollection1() {
+	// use an index (subscript) number to reference an element within an
+	// object collection to change its color.
+	// note that here we are using fully qualified object location (normally
+	// we don't include the window object in statements because it is not required
+	// and it makes stements longer).
+	window.document.links[0].style.color = "red";
+}
+function objectCollection2() {
+	// use an  id to reference an element within an object collection to change 
+	// its color.
+	// note how we are not indicating the document object's location within the 
+	// entire DOM hierarchy (there is no "window" object specified here).	
+	document.links["link2"].style.color = "green";
+}
+function objectCollection3() {
+	// use an  id to reference an element within an object collection to change 
+	// its color
+	document.links.link3.style.color = "purple";
+}
+function objectCollection4() {
+	// use an  id to reference an element within an object collection to change 
+	// its color.
+	// here we are saving a reference to the object in a local variable.
+	// use this technique when you need to do multiple things to the same object.
+	
+	// declare variable
+	var objectHandle;
+	
+	// get a reference to the object
+	objectHandle = document.links["link4"];
+	
+	// change the color and text of the object through the handle reference
+	objectHandle.style.color = "orange";
+	// innerHTML reference:  http://www.w3schools.com/jsref/dom_obj_all.asp
+	objectHandle.innerHTML = "This is NEW text for &lt;a&gt; element #4.";
+}
+function getElementByID1() {
+	// use the getElementByID method to change the color of an element.
+	// note that here we are using fully qualified object locations (normally
+	// we don't include the window object in statements because it is not required
+	// and it makes stements longer).
+	window.document.getElementById("paragraph1").style.color = "red";
+}
+function getElementByID2() {
+	// use the getElementByID method to change the color of an element.
+	// note how we are not indicating the document object's location within the 
+	// entire DOM hierarchy (there is no "window" object specified here)
+	document.getElementById("paragraph2").style.color = "green";
+}
+function getElementByID3() {
+	// use the getElementByID method to change the color and content of an element.
+	// here we are saving a reference to the paragraph object in a local variable.
+	// use this technique when you need to do multiple things to the same object.
+	
+	// declare variable
+	var paragraphHandle;
+	
+	// get a reference to the paragaph element
+	paragraphHandle = document.getElementById("paragraph3");
+	
+	// change the color of the paragraph text
+	paragraphHandle.style.color = "purple";
+	// innerHTML reference:  http://www.w3schools.com/jsref/dom_obj_all.asp
+	paragraphHandle.innerHTML = "This is NEW text for &lt;p&gt; element #3.";
+}
+/*
+IMPORTANT: 
+see external javascript file for getElementByID4() function 
+*/
+function getElementsByTagName1() {
+	// use the getElementsByTagName method to create an array of all
+	//  of the pararaph elements in the Web page.
+	
+	// declare a counter variable for the loop
+	var subscript;
+	
+	// declare an array
+	var elementArray = new Array();
+	
+	// create an array of all of the <p> elements on the Web page
+	elementArray = document.getElementsByTagName("p");
+	
+	// loop through the array and change the color of all paragaphs
+	for (subscript = 0; subscript < elementArray.length; subscript++) {
+		elementArray[subscript].style.color = "orange";
+	}
+}
+function getElementsByTagName2() {
+	// use the getElementsByTagName method to create an array of all 
+	// of the elements in the Web page and change the color of all non-button elements
+	
+	// declare variables
+	var subscript;
+	var tagName;
+	
+	// declare an array
+	var elementArray = new Array();
+	
+	// create an array of all of the elements on the Web page
+	elementArray = document.getElementsByTagName("*");
+	
+	// loop through the array and change the color of all non-button elements
+	for (subscript = 0; subscript < elementArray.length; subscript++) {
+		// get the name of the tag
+		tagName = elementArray[subscript].nodeName;
+		
+		if (tagName == "H1" || tagName == "P" || tagName == "ADDRESS" || 
+			tagName == "DIV" || tagName == "SPAN" || tagName == "LABEL") 
+		{
+			elementArray[subscript].style.color = "brown";
+		}
+	}
+}
+function getElementsByTagName3() {
+	// use the getElementsByTagName method to create an array of all
+	// of the elements in the Web page and toggle only the <p> element visibility state.
+	
+	// declare variables
+	var subscript;
+	var state;
+	
+	// declare an array
+	var elementArray = new Array();
+	
+	// get the current state of the first paragraph on the Web page
+	// (if first paragraph is visible, then were going to make all elements 
+	// invisible, and vice versa)
+	// important: the visibility property will not contain a value until 
+	// explicitily set through javascript code.  see related additional comments below.
+	state = document.getElementById("paragraph1").style.visibility;	
+	
+	// create an array of all of the elements on the Web page
+	elementArray = document.getElementsByTagName("*");
+	
+	// loop through the array and change the visibility state of all <p> elements
+	// on the web page
+	for (subscript = 0; subscript < elementArray.length; subscript++) {
+
+		// only toggle visibility of <p> elements
+		if (elementArray[subscript].nodeName == "P") {
+			// important: the visibility property will not contain a value until 
+			// explicitily set through javascript code, therefore when the visibility property
+			// contanis either nothing or 'visible' we want to hide the elements
+			if (state != "hidden") {
+				elementArray[subscript].style.visibility = "hidden"; 
+			}
+			else {
+				elementArray[subscript].style.visibility = "visible"; 
+			}
+		}	
+	}
+	
+}
+function getElementsByTagName4() {
+	// use the getElementsByTagName method to create an array of all
+	// of the elements in the Web page and toggle only the <p> element display state.
+
+	// Note: the display property hides the entire element while the visibility property will make  
+	// the element invisible but the element stays in its original position and size. 
+	// reference: http://www.w3schools.com/jsref/prop_style_display.asp
+	
+	// declare variables
+	var subscript;
+	var state;
+	
+	// declare an array
+	var elementArray = new Array();
+	
+	// get the current state of the first paragraph on the Web page
+	// (if first paragraph is visible, then were going to make all elements 
+	// invisible, and vice versa)
+	// important: the display property will not contain a value until 
+	// explicitily set through javascript code.  see related additional comments below.
+	state = document.getElementById("paragraph1").style.display;	
+	
+	// create an array of all of the elements on the Web page
+	elementArray = document.getElementsByTagName("*");
+	
+	// loop through the array and change the visibility state of all <p> elements
+	// on the web page
+	for (subscript = 0; subscript < elementArray.length; subscript++) {
+
+		// only toggle the display of <p> elements
+		if (elementArray[subscript].nodeName == "P") {
+			// important: the display property will not contain a value until 
+			// explicitily set through javascript code, therefore when the display 
+			// property contains either nothing or 'block' we want to hide the elements
+			if (state != "none") {
+				elementArray[subscript].style.display = "none"; 
+			}
+			else {
+				elementArray[subscript].style.display = "block"; 
+			}
+		}	
+	}
+}
+function getElementsByNameExample1() {
+	// use the getElementsByName method to create an array of all
+	// of the elements that have the value "radioName" assigned to the 
+	// name attribute and toggle the disabled state.
+	// note that usually only a server-side scripting language will reference elements
+	// by the name attribute. javascript and css use id's to reference elements.
+	
+	// declare variables
+	var subscript;
+	var state;
+	
+	// declare an array
+	var elementArray = new Array();
+	
+	// create an array of all of the elements on the Web page where the name attribute 
+	// has the value "radioName"
+	elementArray = document.getElementsByName("radioName");
+	
+	for (subscript = 0; subscript < elementArray.length; subscript++) {
+		// get the current state of the object.
+		state = elementArray[subscript].disabled;
+
+		// toggle state
+		if (state == true) {
+			elementArray[subscript].disabled = false; 
+		}
+		else {
+			elementArray[subscript].disabled = true; 
+		}	
+	}
+}
+</script>
+
+</head>
+<body>
+<h1>This is an &lt;h1&gt; element.</h1>
+<a id="link1" href="#">This is &lt;a&gt; element #1.</a><br>
+<a id="link2" href="#">This is &lt;a&gt; element #2.</a><br>
+<a id="link3" href="#">This is &lt;a&gt; element #3.</a><br>
+<a id="link4" href="#">This is &lt;a&gt; element #4.</a><br>
+<p id="paragraph1">This is &lt;p&gt; element #1.</p>
+<p id="paragraph2">This is &lt;p&gt; element #2.</p>
+<p id="paragraph3">This is &lt;p&gt; element #3.</p>
+<p id="paragraph4">This is &lt;p&gt; element #4.</p>
+<address>This is &lt;address&gt; element #1.</address>
+<div>This is &lt;div&gt; element #1.</div>
+<div>This is &lt;div&gt; element #2.</div>
+<span>This is &lt;span&gt; element #1.</span><br>
+<span>This is &lt;span&gt; element #2.</span><br>
+
+<span>&lt;input&gt; element #1 </span><input type="radio" id="radio1" name="radioName" checked="checked"><label for="radio1"> Yes</label><br>
+<span>&lt;input&gt; element #2 </span><input type="radio" id="radio2" name="radioName"><label for="radio2"> No</label><br>
+<span>&lt;input&gt; element #3 </span><input type="radio" id="radio3" name="radioName"><label for="radio3"> Don't know</label><br>
+<br>
+
+<input type="button" value="Object Collection 1" onclick="objectCollection1();">
+<input type="button" value="Object Collection 2" onclick="objectCollection2();">
+<input type="button" value="Object Collection 3" onclick="objectCollection3();">
+<input type="button" value="Object Collection 4" onclick="objectCollection4();">
+<br><br>
+<input type="button" value="getElementByID 1" onclick="getElementByID1();">
+<input type="button" value="getElementByID 2" onclick="getElementByID2();">
+<input type="button" value="getElementByID 3" onclick="getElementByID3();">
+<!-- the next button's click event is handled through external .js file -->
+<input type="button" value="getElementByID 4" id="myButton">
+<br><br>
+<input type="button" value="getElementsByTagName 1" onclick="getElementsByTagName1();">
+<input type="button" value="getElementsByTagName 2" onclick="getElementsByTagName2();">
+<input type="button" value="getElementsByTagName 3" onclick="getElementsByTagName3();">
+<input type="button" value="getElementsByTagName 4" onclick="getElementsByTagName4();">
+<br><br>
+<input type="button" value="getElementsByName 1" onclick="getElementsByNameExample1();">
+<br><br>
+<!-- note that an html reset button won't reload the Web page. An html reset button will only clear and reset input fields. -->
+<input type="button" value="Reset" onclick="document.location.reload();">
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pine Knoll Properties</title>
+<link rel="stylesheet" href="pineknoll_styles.css" type="text/css">
+
+<script type="text/javascript">
+window.defaultStatus = "Welcome to Pine Knoll Properties!";
+var propertyWindow;
+function showProperty(linkTarget) {
+	var propertyWidth=400;
+	var propertyHeight=400;
+	var winLeft = (screen.width-propertyWidth)/2;
+	var winTop = (screen.height-propertyHeight)/2;
+	var winOptions = "toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=no";
+	winOptions += ",width=" + propertyWidth;
+	winOptions += ",height=" + propertyHeight;
+	winOptions += ",left=" + winLeft;
+	winOptions += ",top=" + winTop;
+    propertyWindow = window.open(linkTarget, "propertyInfo", winOptions);
+	propertyWindow.focus();
+}
+var curImage="sell1";
+var changeImages;
+function propertyAd() {
+	if (curImage == "sell2") {
+		document.images[0].src = "sell1.jpg";
+		curImage = "sell1";
+	}
+	else {
+		document.images[0].src = "sell2.jpg";
+		curImage = "sell2";
+	}
+}
+</script>
+
+</head>
+<body onload="var changeImages=setInterval('propertyAd()',2000);">
+<table width="100%" cellpadding="0" cellspacing="0">
+  <colgroup span="1" align="left" />
+  <colgroup span="1" align="center" />
+  <tr>
+    <td>
+      <h1>Pine Knoll Properties</h1>
+      <h2>Single Family Homes</h2>
+    </td>
+    <td><img src="sell1.jpg" height="60" width="370"><br></td>
+  </tr>
+</table><hr />
+<p>
+
+<a href="cottage.htm"
+onmouseover="self.status='View this property.';return true"
+onmouseout="self.status=window.defaultStatus;return true" onclick="showProperty('cottage.htm');return false">
+Cottage: <strong>$149,000</strong></a><br>
+
+<a href="ranch.htm"
+onmouseover="self.status='View this property.';return true"
+onmouseout="self.status=window.defaultStatus;return true" onclick="showProperty('ranch.htm');return false">
+Ranch: <strong>$189,000</strong></a><br>
+<a href="townhouse.htm"
+onmouseover="self.status='View this property.';return true"
+onmouseout="self.status=window.defaultStatus;return true" onclick="showProperty('townhouse.htm');return false">
+Townhouse: <strong>$319,000</strong></a><br>
+<a href="colonial.htm"
+onmouseover="self.status='View this property.';return true"
+onmouseout="self.status=window.defaultStatus;return true" onclick="showProperty('colonial.htm');return false">
+Colonial: <strong>$389,000</strong></a><br>
+<a href="contemporary.htm"
+onmouseover="self.status='View this property.';return true"
+onmouseout="self.status=window.defaultStatus;return true" onclick="showProperty('contemporary.htm');return false">
+Contemporary: <strong>$474,000</strong></a></p>
+</body>
+</html>

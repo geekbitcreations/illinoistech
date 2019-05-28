@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX with PHP Example</title>
+
+<style type="text/css">
+	#warning {color: #C20000; background: #FFC5A8}
+    #valid   {color: #248A01; background: #CCFFBC}
+</style>
+
+<script type="text/javascript">
+function get_city_state(user_input) {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+
+	// declare variables
+	var http = false;
+	
+	// clear out the <span> element
+	clear_span_element();
+
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "get_city_state.php?zip_code=" + user_input, true);
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 0) {
+			document.getElementById("outputLabel").innerHTML = "Uninitialized";
+		}
+		if (http.readyState == 1) {
+			document.getElementById("outputLabel").innerHTML = "Open";
+		}
+		if (http.readyState == 2) {
+			document.getElementById("outputLabel").innerHTML = "Sent";
+		}
+		if (http.readyState == 3) {
+			document.getElementById("outputLabel").innerHTML = "Receiving";
+		}
+		if (http.readyState == 4) {
+			// display the contents of the text file in the <span> element on the Web page
+			document.getElementById("outputLabel").innerHTML = http.responseText;
+		}
+	}
+	
+	http.send(null);
+}
+
+function clear_span_element() {
+	// clear out the contents of the <span> element on the Web page
+	document.getElementById("outputLabel").innerHTML = "";	
+}
+</script>
+
+</head>
+<body>
+<h1>AJAX with PHP Example</h1>
+<h4>ZIP Code Lookup</h4><hr />
+<br>
+<span style="font-weight: bold">Type Zip Code here:</span> 
+<input type="text" onkeyup="get_city_state(this.value)" />
+
+<br><br>
+<span id="outputLabel"></span>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Function Example 3</title>
+
+<script type="text/javascript">
+
+// function declaration
+function addNumbers(num1, num2) {
+	// note: the parameters in this function are num1 and num2
+
+	// declare a variable
+	var total;
+
+	// add the two numbers and put the result in another variable
+	total = num1 + num2;
+	
+	// display the total to the Web page
+	document.write("The total is " + total);
+}
+
+// function with a return value
+function addNumbersRV(num1, num2) {
+	// declare a variable
+	var total;
+
+	// add the two numbers and put the result in another variable
+	total = num1 + num2;
+	
+	// return a value back to the calling procedure
+	return total;
+}
+
+</script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+// print out a heading to the Web page
+document.write("<h1>");
+document.write("CIT 171 is Fun!");
+document.write("</h1>");
+
+// declare variables
+var x;
+var y;
+var z;
+
+// assign values to variables
+x = 5;
+y = 7;
+
+// perform an addition
+z = x + y;
+
+// write out the total to the Web page
+document.write("<p>" + z + "</p>");
+
+// call a user defined function and pass to it the numeric arguments 5 and 7
+addNumbers(5, 7);
+
+// call a user defined fuction that returns a value
+var returnValue;
+returnValue = addNumbersRV(10, 15);
+// print the return value from the function onto the Web page
+document.write("<br>The total is " + returnValue);
+</script>
+
+</body>
+</html>

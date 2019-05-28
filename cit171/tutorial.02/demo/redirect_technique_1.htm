@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Yahoo Redirector</title>
+
+<!--
+SYNTAX:
+The syntax for the "refresh" meta command is  
+                <meta http-equiv="refresh" content="N; URL=other-web-address"> 
+where N is the approximate number of seconds that you want the current web page to be displayed before the browser automatically goes 
+to the other web address. If N = 0, then the browser should go immediately to the other web address. 
+
+TIP:
+In case someone's browser doesn't handle these automatic redirects (most browsers do handle them, but some allow them to be turned off, 
+as a way of discouraging "web spam", which often uses this type of "refresh" redirect), you may want to provide a second route to the intended 
+destination by way of a standard link. See the link in the <body> tag.
+-->
+
+<!-- zero second redirect delay (or as close to zero as you can get) because the attribute named content has an value beginning with 0  -->
+<meta http-equiv="refresh" content="0;URL=http://www.yahoo.com">
+
+</head>
+
+<body>
+
+Click here if you don't automatically get redirected to <a href="http://www.yahoo.com">Yahoo.com</a>.
+
+</body>
+</html>

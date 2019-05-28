@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Global Variable Example</title>
+</head>
+
+<script type="text/javascript">
+// declcare a global variable
+var myGlobalVariable = "Hi";
+
+function displayGlobalVariable() {
+	// display the contents of the global variable to the screen
+	window.alert(myGlobalVariable);
+}
+
+function changeGlobalVariable() {
+	// declare variable
+	var tempValue;
+	
+	// get a new value from the user
+	tempValue = prompt("Enter New Global Variable Value", "");
+	
+	// change the value of the global variable
+	myGlobalVariable = tempValue;
+}
+</script>
+<body>
+<h1>Global Variable Example</h1>
+<form>
+<br>
+<input type="button" value="Display Global Variable" onclick="displayGlobalVariable();" />
+<input type="button" value="Change Global Variable" onclick="changeGlobalVariable();" />
+
+</form>
+</body>
+</html>
+
+

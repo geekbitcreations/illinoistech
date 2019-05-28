@@ -1,0 +1,17 @@
+/**
+ * Deborah Barndt
+ * 11-22-16
+ * DeleteTicket.java
+ * Final Project
+ * This program will allow you to delete a ticket.
+ * Written by Deborah Barndt. */
+
+public class DeleteTicket 
+{
+
+	public DeleteTicket() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+}

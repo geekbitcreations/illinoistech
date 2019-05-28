@@ -1,0 +1,18 @@
+/**
+ * Deborah Barndt
+ * 11-22-16
+ * CreateTicket.java
+ * Final Project
+ * This program will allow you to create a trouble ticket to the table.
+ * Written by Deborah Barndt. */
+
+
+public class CreateTicket 
+{
+
+	public CreateTicket() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+}

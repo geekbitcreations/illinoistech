@@ -1,0 +1,299 @@
+/**
+ * Deborah Barndt
+ * 10-31-16
+ * Dao.java
+ * Lab 4
+ * This program will allow for CRUD database connectivity and operations. 
+ * Written by Deborah Barndt. */
+
+package bankofiit;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.Statement;
+
+public class Dao extends BankRecords
+{
+
+	private static final int EXIT_ON_CLOSE = 0;
+
+	public Dao() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
+	// The JDBC driver name and the database URL.
+	final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	final String url = "jdbc:mysql://www.papademas.net:3306/411labs";
+	
+	// Credentials for the database.
+	final String user = "db411";
+	final String password = "411";
+	
+	Connection connect = null;
+	Statement stmnt = null;
+	
+	// Create a table of the database when called.
+	public void createTable()
+	{
+		String pep;		// value of whether the client is a politically exposed person
+		
+		int id;			// the clients' id number
+		
+		double income;	// the amount of income the client has
+		
+		try
+		{
+			// Register the JDBC driver.
+		    Class.forName("com.mysql.jdbc.Driver");
+
+		    // Open a connection to the database.
+		    System.out.println("Connecting to the selected database....");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		    System.out.println("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    System.out.println("Creating a table in the given database....");
+		    stmnt = (Statement) connect.createStatement();
+		      
+		    String sql = "CREATE TABLE d_barn_tab " 
+		    		+ "(id VARCHAR(7), " 
+		            + " income numeric(8, 2), " 
+		            + " pep VARCHAR(3), " 
+		            + " PRIMARY KEY ( id ))"; 
+
+		    stmnt.executeUpdate(sql);
+		      
+		    System.out.println("Created a table in the given database....");
+		}
+		
+		// Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		// Add a finally block used to close resources.
+		finally
+		{
+		    try
+		    {
+		    	if(stmnt != null)
+		        {
+		    		connect.close();
+		        }
+		    }
+		      
+		    // Do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      		      
+		    try
+		    {
+		        if(connect != null)
+		        {
+		        	connect.close();
+		        }
+		    }
+		      
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+
+		}
+		   
+		System.out.println("Goodbye!");
+		
+	}
+	
+	
+	// Insert the records into the database.
+	public void insertRecords(BankRecords[] clientInfo) 
+	{
+		try
+		{
+			// Register the JDBC driver.
+			Class.forName("com.mysql.jdbc.Driver");
+
+		    // Open a connection to the database.
+		    System.out.println("Connecting to a selected database...");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		      
+		    System.out.println("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    System.out.println("Inserting records into the table....");
+		    stmnt = (Statement) connect.createStatement();
+		      
+		    for (int i = 0; i < clientInfo.length; i++)
+		    {
+		    	String sql = "INSERT INTO d_barn_tab" 
+		    			+ "VALUES ('" + clientInfo[i].getId() + "' ,"
+		                + " '" + clientInfo[i].getIncome() + "' ,"
+		                + " '" + clientInfo[i].getPep() + "')";
+		    	stmnt.executeUpdate(sql);
+		    }
+		      
+		    System.out.println("Inserted records into the table....");
+		}
+		
+		//Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		 
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+		    e.printStackTrace();
+		}
+		 
+		// Add a finally block used to close resources.
+		finally
+		{
+			try
+		    {
+				if(stmnt != null)
+		    	{
+					connect.close();
+		    	}
+		    }
+		      
+		    // Do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      
+		    try
+		    {
+		    	if(connect != null)
+		    	{
+		    		connect.close();
+		    	}
+		    }
+		      
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+		}
+		   
+		System.out.println("Goodbye!");
+		
+		// Create a prepared statement.
+		//PreparedStatement stmnt = (PreparedStatement) connect.prepareStatement("Select * from jpapa_tab"
+				//+ " where id > ? and income > ? and pep=?");
+	}
+	
+	// Retrieve the records from the database and return a result set.
+	public ResultSet retrieveRecords()
+	{
+		try
+		{
+			// Register the JDBC driver.
+		    Class.forName("com.mysql.jdbc.Driver");
+
+		    // Open a connection to the database.
+		    System.out.println("Connecting to a selected database...");
+		    connect = (Connection) DriverManager.getConnection(url, user, password);
+		    
+		    System.out.println("Connected to the database successfully....");
+		      
+		    // Execute a query to the database.
+		    System.out.println("Creating a statement...");
+		    stmnt = (Statement) connect.createStatement();
+
+		    // Sort the data for pep in descending order.
+		    String sql = "SELECT id, income, pep FROM d_barn_tab ORDER BY pep desc";
+		    ResultSet result = stmnt.executeQuery(sql);
+		    
+		    // Extract the data from the result set.
+		    while(result.next())
+		    {
+		    	//Retrieve the data by column name
+		        int id  = result.getInt("id");
+		        double income = result.getDouble("income");
+		        String pep = result.getString("pep");
+		
+		        //Display the values in a table.
+		        System.out.print("ID: " + id);
+		        System.out.print(", INCOME: " + income);
+		        System.out.print(", PEP: " + pep);
+		    }
+		    
+		    result.close();
+		}
+		
+		// Handle the errors for JDBC.
+		catch(SQLException se)
+		{
+			se.printStackTrace();
+		}
+		
+		// Handle the errors for Class.forName.
+		catch(Exception e)
+		{
+		    e.printStackTrace();
+		}
+		
+		// Add a finally block used to close resources.
+		finally
+		{
+		    try
+		    {
+		    	if(stmnt != null)
+		    	{
+		    		connect.close();
+		    	}
+		    }
+		    
+		    // do nothing
+		    catch(SQLException se)
+		    {
+		    }
+		      
+		    try
+		    {
+		        if(connect != null)
+		        {
+		        	connect.close();
+		        }
+		    }
+		    
+		    catch(SQLException se)
+		    {
+		        se.printStackTrace();
+		    }
+		}
+		   
+		System.out.println("Goodbye!");
+		return null;
+	}
+}

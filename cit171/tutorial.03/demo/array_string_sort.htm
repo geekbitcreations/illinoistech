@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Array String Sort</title>
+</head>
+<body>
+<h1>Array String Sort</h1>
+
+<script type="text/javascript">
+// declare an array with ten elements
+var name_array = new Array(10);
+
+// add values to each of the array elements
+name_array[0] = "Sally";
+name_array[1] = "Tom";
+name_array[2] = "Jill";
+name_array[3] = "Mark";
+name_array[4] = "Mary";
+name_array[5] = "Frank";
+name_array[6] = "Bill";
+name_array[7] = "Angel";
+name_array[8] = "Julie";
+name_array[9] = "Joe";
+
+// sort the array in ascending order (a - z)
+name_array.sort();
+
+// sote the array in descending order (z - a)
+// note: must sort array first as reverse only reverses what is in the array (reverse doesn't sort)
+name_array.reverse();
+
+// display the array on the Web page
+for (var subscript = 0; subscript <= 9; subscript++) {
+	document.write(name_array[subscript] + "<br>");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+.toggle {
+  background-color:black;
+  color:white;
+  height:40px;
+  background-color:#F79361;
+  width:100%;
+  font-family: tahoma;
+  font-weight:bold;
+  font-size:25px;
+}
+
+.close {
+  color:white;
+  float:right;
+  cursor:pointer;
+  margin-right:30px;
+  margin-top:10px;
+  font-weight:bold;
+  font-size:30px;
+  font-family: tahoma;
+}
+
+.contain {
+  background-color:black;
+  height:50px; 
+}
+
+.main {
+  background-color: black;
+  color: white;
+  text-align: center;
+  height: 60px;
+  margin-top: 15px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.main h1 {
+  padding-top: 10px;
+}
+
+.icons {
+  float: left;
+  width: 25%;
+  padding-bottom: 15px;
+}
+
+.icons img {
+  width: 60px;
+  padding-bottom: 20px;
+}
+
+.services {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  padding-bottom: 10px;
+}
+
+.services h2 {
+  padding-top: 8px;
+  padding-bottom: 30px;
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #5F2C7D;
+}
+
+h3 {
+  width: 100%;
+  text-align: center;
+}
+
+.containmain {
+  background-color:#ffffff;
+  width:100%;
+  display:none; 
+}
+
+.center {
+  margin: 0 auto;
+  width:400px;
+  padding-top:1%;
+  padding-bottom:100%;
+}
+
+.profile {
+  margin-top:30px;
+  margin-left:140px;
+  width:200px;
+  height:200px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /*background: no-repeat;*/
+  background-position:20% 30%;
+  background-size:10%;
+}
+
+img  {
+  width: 170px;
+}
+
+input {
+  width:100%;
+  outline: none;
+  padding: 25px;
+  border:none;
+}
+
+input[type=submit] {
+  
+  background: black;
+  border:none;
+  color:white;
+  width:300px;
+  font-size:15px;
+
+}
+
+input[type=submit]:hover{ 
+  color:grey;
+}
+
+.form {
+  width:250px;
+  margin: 0 auto;
+  margin-top:10px;
+}
+
+.topform {
+  border-bottom:2px solid lightgrey;
+  margin:0px;
+  background-image: url('http://www.flaticon.com/png/256/16612.png');
+  background-repeat: no-repeat;
+  background-color:white;
+  background-size: 7%;
+  background-position: 50% 50%;
+}
+
+.bottomform {
+  margin-top:0px;
+  margin-bottom:20px;
+  background-image: url('http://www.flaticon.com/png/256/25239.png');
+  background-repeat: no-repeat;
+  background-color:white;
+  background-size: 11%;
+  background-position: 50% 50%;
+}
+
+.register {
+  margin-left: 80px;
+  text-align: center;
+}
+
+body {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.myheader {
+  font-family: 'Khand', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  padding: 3px;
+}
+
+#logo {
+  display: block;
+  width: 13%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#navmenu {
+  background-color: #E0EBEE;
+  position: relative;
+  width: 100%;
+  top: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#navmenu ul {
+  list-style-type: none;
+  margin: 0;
+  width: 100%;
+  margin-left: 30%;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+#navmenu ul li {
+  float: left;
+  text-align: center;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#navmenu ul li a {
+  display: inline-block;
+  padding: 15px;
+  font-size: 30px;
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Khand', sans-serif;
+}
+
+#navmenu ul li a:hover {
+  background-color: #8F56AF;
+  color: #000000;
+}
+
+#intro {
+  text-align: center;
+  margin-left: 10px;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: 'Khand', sans-serif;
+}
+
+.homepic {
+  display: block;
+  width: 50%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+}
+
+.about {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.location {
+  font-weight: bold;
+}
+
+.delivery {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.delivery input[type=text] {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.delivery input[type=time] {
+  width: 15%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.delivery select {
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.delivery label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.ride {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ride input[type=text] {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.ride input[type=time] {
+  width: 15%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.ride select {
+  background-color: #8F56AF;
+  color: black;
+  border-radius: 4px;
+}
+
+.ride label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.request {
+  text-align: center;
+  font-family: 'Khand', sans-serif;
+  font-size: 38px;
+}
+
+.driver {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.driver input[type=text] {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+.driver select {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+.getrequests {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.getrequests textarea {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+#custprofile {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#custprofile input[type=text] {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+#custprofile input[type=email] {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+#custprofile input[type=password] {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+#custprofile input {
+  box-sizing: border-box;
+  padding: 5px;
+  border: 2px solid #8F56AF;
+  border-radius: 4px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+
+.userpic {
+  width: 50%;
+  border-radius: 50%;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+.userid {
+    color: grey;
+    font-size: 18px;
+}
+
+.email {
+    color: grey;
+    font-size: 18px;
+}

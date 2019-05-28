@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>AJAX with PHP and MySQL Example</title>
+
+<script type="text/javascript">
+
+function trim(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+
+function is_numeric(parameter){
+	// declare variables
+   var valid_chars = "0123456789.$,";
+   var is_number = true;
+   var character;
+
+   // loop through bid and look for invalid characters
+   for (i = 0; i < parameter.length && is_number == true; i++) { 
+	    character = parameter.charAt(i); 
+		if (valid_chars.indexOf(character) == -1) {
+			is_number = false;
+        }
+    }
+	
+	// send back true or false back to calling procedure
+    return is_number;
+}
+
+// use dec_sep for internationalization
+function number_decimals(x, dec_sep) {
+	// declare a string variable (typecast it)
+	var tmp = new String();
+	
+	tmp = x;
+	
+	if (tmp.indexOf(dec_sep)>-1) {
+		return tmp.length-tmp.indexOf(dec_sep)-1;
+	}
+	else {
+		return 0;
+	}
+} 
+
+function enter_new_bid() {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+	
+	// declare variables
+	var bid = 0;
+	var http = false;
+	var charArray;
+	
+	// get the contents of the text box
+	bid = document.getElementById("bid").value;
+	
+	// remove leading and trailing spaces from user input
+	bid = trim(bid);
+	
+	// get the number of dollar signs in the bid into an array
+	charArray = bid.match(/\$/g);
+	
+	// allow no more than one $ sign in the bid amount
+	if (charArray != null) {
+		// allow no more than one $ sign in the bid amount
+		if (charArray.length > 1) {
+			document.getElementById("status").innerHTML = "Invalid Bid Amount. Too many dollar signs.";
+			return;	
+		}
+	}
+	
+	// get the number of decimals in the bid into an array
+	charArray = bid.match(/\./g);
+
+	// allow no more than one decimal in the bid amount
+	if (charArray != null) {
+		if (charArray.length > 1) {
+			document.getElementById("status").innerHTML = "Invalid Bid Amount. Too many decimals.";
+			return;	
+		}
+	}
+	
+	// check if the bid is numeric
+	if (!is_numeric(bid)) {
+		document.getElementById("status").innerHTML = "Invalid Bid Amount. Invalid characters found in bid.";
+		return;	
+	}
+	
+	// remove anything other than numbers and a decimal point from the bid string
+	bid =  bid.replace(/[^0-9.]+/g,'');
+	
+	// check bid amount again after removing anything other than numbers and a decimal point
+	if (bid == ".") {
+		document.getElementById("status").innerHTML = "Invalid Bid Amount. No bid entered.";
+		return;	
+	}
+	
+	// check if there is more than two decimal places in bid
+	if (number_decimals(bid, '.') > 2) {
+		document.getElementById("status").innerHTML = "Invalid Bid Amount. Two decimal places maximum.";
+		return;		
+	}
+	
+	// instantiate the XML HTTP Request Object
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "high_bid_enter.php?bid=" + bid, true);
+	
+	http.onreadystatechange = function() {
+		switch(http.readyState) {
+			case 0: // uninitialized
+				document.getElementById("status").innerHTML = "Uninitialized.";
+				break;
+			case 1: // open
+				document.getElementById("status").innerHTML = "Open.";
+				break;
+			case 2: // sent
+				document.getElementById("status").innerHTML = "Sent.";
+				break;
+			case 3: // receiving
+				document.getElementById("status").innerHTML = "Receiving.";
+				break;
+			case 4: // loaded
+				// display the new high bid in the <span> element on the Web page
+				document.getElementById("bid").value = "";
+				document.getElementById("status").innerHTML = http.responseText;
+				break;
+		}
+	}
+	
+	http.send(null);
+}
+
+function get_high_bid() {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+
+	// declare variables
+	var http = false;
+	
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "high_bid_get.php", true);
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			// display the contents of the text file in the <span> element on the Web page
+			document.getElementById("status").innerHTML = "High Bid Retrieved.";
+			document.getElementById("high_bid").innerHTML = http.responseText;
+		}
+	}
+	http.send(null);
+}
+
+function get_bid_history() {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+
+	// declare variables
+	var http = false;
+	
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "high_bid_history.php", true);
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4) {
+			// display the contents of the text file in the <span> element on the Web page
+			document.getElementById("status").innerHTML = "Bid History Retrieved.";
+			document.getElementById("bid_history").innerHTML = http.responseText;
+		}
+	}
+	http.send(null);
+}
+
+function clear_bid_history() {
+	// just DOM manipulation in this function
+	document.getElementById("status").innerHTML = "Bid History Cleared.";
+	document.getElementById("bid_history").innerHTML = "";
+}
+
+function remove_all_bids() {
+	/* combining DOM manipulation with the XMLHttpRequest gives us AJAX. */
+	
+	// declare variables
+	var bid = 0;
+	var http = false;
+
+	clear_bid_history()
+	
+	if (navigator.appName == "Microsoft Internet Explorer") {
+		http = new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		http = new XMLHttpRequest();
+	}
+
+	/* IMPORTANT: note the third argument to http.open(), which is set to true. 
+	This is the async argument which sends the request to the background. AJAX would not be AJAX without that! */
+	http.open("GET", "high_bid_reset.php", true);
+	
+	http.onreadystatechange = function() {
+		switch(http.readyState) {
+			case 0: // uninitialized
+				document.getElementById("status").innerHTML = "Uninitialized.";
+				break;
+			case 1: // open
+				document.getElementById("status").innerHTML = "Open.";
+				break;
+			case 2: // sent
+				document.getElementById("status").innerHTML = "Sent.";
+				break;
+			case 3: // receiving
+				document.getElementById("status").innerHTML = "Receiving.";
+				break;
+			case 4: // loaded
+				// display the new high bid in the <span> element on the Web page
+				document.getElementById("status").innerHTML = http.responseText;
+				break;
+		}
+	}
+	
+	http.send(null);
+}
+
+</script>
+
+</head>
+<body onload="var begin=setInterval('get_high_bid()',5000);">
+<h1>AJAX with PHP and MySQL Example</h1>
+<h4>Auction</h4>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="117" valign="top"> 
+      <div align="right"><span style="font-weight: bold">New Bid:</span>&nbsp;</div>
+    </td>
+    <td width="85" valign="top"> 
+      <input type="text" id="bid" size="15" maxlength="15" />
+    </td>
+    <td width="504" valign="top"> 
+      <input type="button" value="Commit" onClick="enter_new_bid();" />
+    </td>
+  </tr>
+  <tr> 
+    <td width="117" valign="top" height="23"> 
+      <div align="right">&nbsp;<span style="font-weight: bold">*High Bid:</span>&nbsp;</div>
+    </td>
+    <td width="85" valign="top" height="23"><span id="high_bid"></span></td>
+    <td width="504" valign="top" height="23"></td>
+  </tr>
+  <tr> 
+    <td width="117" valign="top" height="39"> 
+      <div align="right"><span style="font-weight: bold">Status:</span>&nbsp;</div>
+    </td>
+    <td colspan="2" height="39" valign="top"><span id="status"></span></td>
+  </tr>
+  <tr> 
+    <td colspan="3" height="52" valign="top">* The high bid is automatically updated 
+      to this Web page every five seconds. <br>
+      &nbsp;&nbsp;&nbsp;Five seconds is used to provide you enough time to read the changing status 
+      messages. </td>
+  </tr>
+  <tr>
+    <td colspan="3" height="50" valign="top"> 
+      <input type="button" value="Remove All Bids" onClick="remove_all_bids();" name="button" />
+      <input type="button" value="Bid History" onClick="get_bid_history();" />
+<input type="button" value="Clear History" onClick="clear_bid_history();" /><br />
+<span id="bid_history"></span></td>
+  </tr>
+</table>
+
+</body>
+</html>

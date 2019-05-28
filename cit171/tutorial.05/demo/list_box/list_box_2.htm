@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>List Box Example 2</title>
+
+<script type="text/javascript">
+/* add an event that will run the user defined function named "initialize" when the web page is loaded by the web browser.
+when the "initialize" function is called it adds two events, one  event to trap each of the buttons on the form */
+addEvent(window, "load", initialize);
+
+function addEvent(objectHandle, eventName, functionName) {
+	// declare variable
+	var returnValue;
+	
+	if (objectHandle.addEventListener) {
+		// web browsers other than microsoft internet explorer
+		// note that addEventListener doesn't have a return value
+		objectHandle.addEventListener(eventName, functionName, false);
+		return true;
+	}
+	else if (objectHandle.attachEvent) {
+		// microsoft internet explorer
+		returnValue = objectHandle.attachEvent("on" + eventName, functionName);
+		alert(eventName);
+		return returnValue;
+	}
+	else {
+		alert("Unable to add event.");
+		return false;
+	}
+}
+
+function initialize() {
+	var buttonHandle;
+
+	// get a reference to the web page button
+	buttonHandle = document.getElementById("student_name");
+  
+	// add an event to the form that run a user defined function named validateForm when the user clicks the submit button
+	addEvent(buttonHandle, "click", display_student_name);
+  
+	// get a reference to the web page button
+	buttonHandle = document.getElementById("student_number");
+  
+	// add an event to the form that run a user defined function named  "resetTextColor" when the user clicks the reset button
+	addEvent(buttonHandle, "click", display_student_number);
+}
+
+function display_student_number() {
+	// declare variables
+	var list_box_handle;
+	var list_box_index;
+	var list_box_contents;
+	var list_box_length;
+	var alert_message;
+
+	// get a reference to the list box
+	list_box_handle = document.getElementById("students");
+	
+	// get the number of the selected student 
+	list_box_index = list_box_handle.selectedIndex;
+	
+	if (list_box_index >= 0) {
+		// get the contents of the currently selected item
+		list_box_contents = list_box_handle.options[list_box_index].value;
+		
+		// display the contents of the selected item to the user
+		window.alert(list_box_contents);
+	}
+	else {
+		alert("List box item not selected");
+	}
+}
+
+function display_student_name() {
+	// declare variables
+	var list_box_handle;
+	var list_box_index;
+	var list_box_contents;
+	var list_box_length;
+	var alert_message;
+
+	// get a reference to the list box
+	list_box_handle = document.getElementById("students");
+	
+	// get the number of the selected student 
+	list_box_index = list_box_handle.selectedIndex;
+	
+	if (list_box_index >= 0) {
+		// get the contents of the currently selected item
+		list_box_contents = list_box_handle.options[list_box_index].text;
+		
+		// display the contents of the selected item to the user
+		window.alert(list_box_contents);
+	}
+	else {
+		alert("List box item not selected");
+	}
+}
+</script>
+
+</head>
+<body>
+
+<h1>List Box Example 2</h1>
+
+<form id="myForm">
+
+<select name="students" 
+        id="students"
+		size="4" 
+		style="width: 265px">
+	<option value="654564">Tim</option>
+	<option value="245233">Joe</option>
+	<option value="123412">Mary</option>
+	<option value="123544">Sue</option>
+</select>
+<br>
+<input type="button" value="Display Student Number" name="student_number" id="student_number" />
+<br>
+<input type="button" value="Display Student Name" name="student_name" id="student_name" />
+</form>
+
+</body>
+</html>

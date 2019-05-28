@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cookies Example</title>
+
+<script type="text/javascript">
+function createCookie() {
+	// declare a date object variable
+	var expiresDate = new Date();
+	
+	// set the expires date one year from today
+	expiresDate.setFullYear(expiresDate.getFullYear() + 1);
+	
+	// create a cookie (with name/value pair) with an expiration date of 1 year
+	document.cookie = "class=cit171; " + "expires=" + expiresDate.toUTCString();
+}
+
+function readCookie() {
+	// declare local variables
+	var cookiesArray;
+	var cookieName;
+	var cookieValue;
+	var nameArray;
+	var i;
+
+	// if any cookies exist then read them
+	if (document.cookie) {
+		// read all of the browser's cookies into an array
+		cookiesArray = document.cookie.split("; ");
+		
+		// search for the "class" cookie within the array
+		for (var i = 0; i < cookiesArray.length; i++) {
+			if (cookiesArray[i].split("=")[0] == "class") {
+				// display the cookie value to the user
+				alert(cookiesArray[i].split("=")[1]);
+			}
+		}
+	}
+}
+
+function deleteCookie() {
+	// delete the cookie
+    document.cookie = "class=;" + "expires=Thu, 01-Jan-1970 00:00:01 GMT";
+}
+
+</script>
+</head>
+
+<body>
+<h1>Cookies Example</h1>
+
+<input type="button" 
+		    value="Create Cookie" 
+			onclick="createCookie();" />
+			
+<input type="button" 
+		    value="Read Cookie" 
+			onclick="readCookie();" />
+			
+<input type="button" 
+		    value="Delete Cookie" 
+			onclick="deleteCookie();" />
+
+</body>
+</html>

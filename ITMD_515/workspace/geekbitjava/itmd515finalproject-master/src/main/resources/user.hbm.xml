@@ -1,0 +1,21 @@
+
+<?xmlversion="1.0"?>
+<!DOCTYPEhibernate-mappingPUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+"<a class="vglnk" href="http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" rel="nofollow"><span>http</span><span>://</span><span>hibernate</span><span>.</span><span>sourceforge</span><span>.</span><span>net</span><span>/</span><span>hibernate</span><span>-</span><span>mapping</span><span>-</span><span>3</span><span>.</span><span>0</span><span>.</span><span>dtd</span></a>">
+ 
+<hibernate-mapping>
+    <class name="hitchApp.Users"table="users">
+        <id name="userid"type="int"column="userid">
+            <generator class="assigned"/>
+        </id>
+        <property name="password">
+            <column name="password"/>
+        </property>
+      <property name = "firstName" column = "firstName" type = "string"/>
+      <property name = "lastName" column = "lastName" type = "string"/>
+      <property name = "userType" column = "userType" type = "string"/>
+      <property name = "rating" column = "rating" type = "byte"/>
+      <property name = "email" column = "email" type = "string"/>
+      <property name = "curr_Loc" column = "curr_Loc" type = "string"/>
+    </class>
+</hibernate-mapping>

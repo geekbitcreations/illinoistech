@@ -1,0 +1,6 @@
+﻿  Source.cpp
+e:\itm 312\project1a\consoleapplication5\consoleapplication5\source.cpp(40): error C4716: 'doubleNum': must return a value
+e:\itm 312\project1a\consoleapplication5\consoleapplication5\source.cpp(45): error C4716: 'addNum': must return a value
+e:\itm 312\project1a\consoleapplication5\consoleapplication5\source.cpp(50): error C4716: 'subNum': must return a value
+e:\itm 312\project1a\consoleapplication5\consoleapplication5\source.cpp(55): error C4716: 'multNum': must return a value
+e:\itm 312\project1a\consoleapplication5\consoleapplication5\source.cpp(60): error C4716: 'divNum': must return a value

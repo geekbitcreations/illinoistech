@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Top Stories</title>
+
+<script type="text/javascript">
+// global declaration of httpRequest variable 
+var httpRequest = false;
+
+//instantiate the XMLHttpRequest object with the XMLHttpRequest constructor
+function get_request_object(){
+	try {
+		//instantiate an object for Mozilla-based browsers and IE 7
+		httpRequest   =   new XMLHttpRequest();
+	}
+	catch (requestError) {
+		try {
+			//instantiate an ActiveX object for IE 6
+			httpRequest   =   new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		catch (requestError) {
+			try {
+				//instantiate an ActiveX object for IE 5.5
+				httpRequest   =   new ActiveXObject("Microsoft.XMLHTTP");  
+			}
+			catch (requestError) {
+				//for all other browsers
+				window.alert("Your browser does not support AJAX!");
+				return false;
+			}
+		}
+	}
+}
+
+function news_update(){
+	//instantiate the httpRequest object if it does not exist
+	if (!httpRequest) {
+	   httpRequest  = get_request_object();
+	}
+
+	//the for loop iterates throught the radio buttons on the form to determine which one is checked, and then copies the checked items URL
+	//which is stored in the value attibute to variable named agency.
+	for (var i=0; i<6; ++i) {
+		if (document.forms[0].agency[i].checked == true) {
+			var agency = document.forms[0].agency[i].value;
+			break;
+		}
+	}
+
+	httpRequest.abort();
+	//synchronous transfer
+	//syn   httpRequest.open("get","top_stories.php?" + "agency=" + agency,false);  //synchronous transfer
+
+	//  asynchronous transfer - its default
+	//***To ensure that your script continues running in the event of a server problem, you should use asynchronous request with send() method ***/
+	httpRequest.open("get","top_stories.php?" + "agency=" + agency, true); 
+	httpRequest.send(null);
+	httpRequest.onreadystatechange = fill_news_info;
+	//webpage refreshes the currently displayed news every 5 minutes.
+
+	var recentNews = setTimeout('news_update()', 10000);
+	//** commenting the above as it gives error "data is not available in line 100** 
+}
+ 
+function fill_news_info(){
+	if (httpRequest.readyState == 4 && httpRequest.status == 200){
+		//server Response. assign the value of resposeXML property to variable news
+		var news = httpRequest.responseXML;
+		document.getElementById('newscell').innerHTML = "";
+
+		var news_items = news.getElementsByTagName('item');
+		if (news_items.length > 0){
+			for (var i=0; i<news_items.length; ++i){
+				var curHeadline = news_items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+				var curLink     = news_items[i].getElementsByTagName("link")[0].childNodes[0].nodeValue;
+				var curPubDate  = news_items[i].getElementsByTagName("pubDate")[0].childNodes[0].nodeValue;
+				var curDesc     = news_items[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
+
+				var curStory = "<a href='"+curLink+"'>" + curHeadline+"</a><br>";
+				curStory += "<span style='color:gray'>" + curPubDate +"</span><br>";
+				curStory += curDesc + "<br>";
+				document.getElementById('newscell').innerHTML += curStory;
+			}
+		}
+		else {
+			document.getElementById('newscell').innerHTML = "RSS feed does not contain any items.";
+		}
+	}
+}
+</script>
+<style type="text/css">
+h1 {  font-family:arial;
+      color:navy;
+   }
+
+p,td { font-family:arial;
+       font-size:16px;
+	   color:black;
+     }	  
+</style>	
+</head>
+
+<body onload="get_request_object()">
+<h4>Chapter 12: Updating Web Pages with AJAX, top_stories.html</h4><hr />
+<h1> Top Stories </h1>
+<h4> Using the Asynchronous Request</h4>
+<form method="GET" action="top_stories.php">
+<table border="1">
+   <colgroup span="1" width="135" />
+   <colgroup span="1" width="550" />
+     <tr><td valign="top">
+	 <input type="radio" name="agency" value="http://my.abcnews.go.com/rsspublic/fp_rss20.xml" checked="checked" onclick="news_update()" />ABC News<br>
+	 <input type="radio" name="agency" value="http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml" onclick="news_update()" />BBC<br>
+	 <input type="radio" name="agency" value="http://www.cbsnews.com/feeds/rss/main.rss" onclick="news_update()" />CBS News<br>
+	 <input type="radio" name="agency" value="http://rss.cnn.com/rss/cnn_topstories.rss" onclick="news_update()" />CNN<br>
+	 <input type="radio" name="agency" value="http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml" onclick="news_update()" />MSNBC<br>
+	 <input type="radio" name="agency" value="http://rss.news.yahoo.com/rss/topstories" onclick="news_update()" />Yahoo! News<br>
+	 </td>
+	 <td id="newscell" valign="top">
+	 </td>
+	 </tr>
+</table>
+<!--  dd    <p><input type="submit" value="Get Headlines" /></p>  -->
+</form>
+</body>
+
+</html>

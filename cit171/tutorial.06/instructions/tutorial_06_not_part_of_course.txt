@@ -1,0 +1,1 @@
+Tutorial 6 Working with the Event Model is not part of this course. The data files, solutions, lecture notes, handouts, presentations, and demonstration files for this tutorial are provided to students that want to complete this chapter on their own after they have complete the CIT 171 Web Page Scripting course. 

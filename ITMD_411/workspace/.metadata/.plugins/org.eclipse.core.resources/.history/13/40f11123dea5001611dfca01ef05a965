@@ -1,0 +1,9 @@
+package bankofiit;
+
+public class LoanTable {
+
+	public LoanTable() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

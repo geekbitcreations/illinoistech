@@ -1,0 +1,34 @@
+/*
+   New Perspectives on JavaScript, 2nd Edition
+   Tutorial 9
+   Case Problem 4
+   Filename: quiz.css
+
+   This file contains styles used in the Trivia Masters Web site
+
+*/
+
+*                   {padding: 0px; margin: 0px; line-height: 1.2}
+
+body                {background-color: white; 
+                     font-family: 'Trebuchet MS', Arial, Verdana, sans-serif}
+
+#page               {width: 740px; border: 2px solid black; margin: 10px 0px 0px 20px}
+
+h1                  {border-bottom: 2px solid black; text-align: center}
+h2                  {font-style: italic; text-align: right; margin-bottom: 10px;
+                     padding-right: 30px}
+
+input               {margin: 0px 15px 0px 0px}
+
+ol                  {margin-left: 50px; list-style-type: decimal}
+ol ol               {margin: 10px 0px 10px 30px; list-style-type: lower-alpha}
+
+p                   {border-top: 2px solid black; text-align: center;
+                     padding: 10px 0px}
+p a                 {margin: 0px 10px}
+
+.quizList           {font-size: 11px; float: left; width: 160px; margin-left: 20px}
+.quizList h2        {font-size: 14px; text-align: center; margin-top: 15px}
+
+#qresults p         {clear: left; font-size: 14px; text-align: center; margin-top: 20px}

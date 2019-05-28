@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+   document.write("<h2>Your product registration has been received.</h2>");
+   document.write("<p><strong>You entered the following data:</strong></p>");
+   document.write("<p><strong>To look for the cookie in IE: go to Tools->Internet Options->Settings(under browsing history)->view files.Open the test file 'cookies/' text file and see the registered cookie with other information.</strong></p>");
+   var cookieData  = decodeURIComponent(document.cookie);
+   var cookieArray = cookieData.split("; ");
+   for (var i=0; i<cookieArray.length; ++i){
+        document.write(cookieArray[i] + "<br>");
+   }
+   
+   var form_data = location.search;
+   form_data = form_data.substring(1, form_data.length);
+   var form_array = form_data.split("&");
+   for (var i=0; i<form_array.length; ++i){
+         document.write(form_array[i] + "<br>");
+   }
+</script>
+
+</head>
+
+<body>
+   <!--<h2>Your product registration has been received.</h2>
+   <p><strong>You entered the following data:</strong></p>  -->
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+Open the Web page named   product_registration.htm   to begin.

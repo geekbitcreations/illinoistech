@@ -1,0 +1,16 @@
+/*
+   New Perspectives on HTML and XHTML 5th Edition
+   Tutorial 10
+   Case Problem 4
+   Filename: styles.css
+
+   This file contains styles used in the birthday.htm file.
+
+*/
+
+body {background-color: yellow; text-align: center}
+p {text-align: center}
+a {color: blue; font-size: 16pt; font-family: cursive}
+#welcome  {text-align: center; font-size: 10pt; color: white; background-color: blue;
+          font-family: Arial, Helvetica, sans-serif; border: 10px outset rgb(201,201,255);
+          font-weight: bold; padding: 5px; width: 400px; margin-left: auto; margin-right: auto}

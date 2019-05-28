@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forestville Hardware Supply</title>
+<style type="text/css">
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 { color: #039 }
+table { background-color: aqua; border-style: solid; border-width: thin; border-color: black }
+a.noDecor { text-decoration: none; color: black }
+table.noShow {visibility:hidden; position:absolute }
+table.navMenu { left:-130px; position:relative}
+</style>
+
+<script type="text/javascript">
+var curPosition=-130;
+var curMenu;
+var slider;
+function showMenu(selectedMenu) {
+     clearInterval(slider);
+     curMenu = document.getElementById(selectedMenu);
+     slider = setInterval("show()", 10);
+}
+function show() {
+     if (curPosition < -12) {
+           curPosition = curPosition + 2;
+           curMenu.style.left = curPosition + "px";
+     }
+}
+function hideMenu(selectedMenu) {
+     clearInterval(slider);
+     curMenu = document.getElementById(selectedMenu);
+     slider = setInterval("hide()", 10);
+}
+function hide() {
+     if (curPosition > -130) {
+           curPosition = curPosition - 2;
+           curMenu.style.left = curPosition + "px";
+     }
+}
+</script>
+
+</head>
+<body>
+<h1>Forestville Hardware Supply</h1>
+<p>Use the menu to help find what you are looking for.</p>
+<table width="160px" class="navMenu" id="electrical"
+onmouseover="showMenu('electrical')"
+onmouseout="hideMenu('electrical')">
+<tr><td><a href="breakers.htm">Breakers</a></td>
+<td rowspan="4" align="right" valign="middle">
+<img src="electrical.gif" height="65" width="19"
+alt="Vertical text that reads 'Electrical'"></td></tr>
+<tr><td><a href="fuses.htm">Fuses</a></td></tr>
+<tr><td><a href="tools.htm">Tools</a></td></tr>
+<tr><td><a href="wire.htm">Wire</a></td></tr>
+</table>
+<table width="160px" class="navMenu" id="plumbing"
+onmouseover="showMenu('plumbing')"
+onmouseout="hideMenu('plumbing')">
+<tr><td><a href="hoseclamps.htm">Hose Clamps</a></td>
+<td rowspan="4" align="right" valign="middle">
+<img src="plumbing.gif" height="65" width="19"
+alt="Vertical text that reads 'Plumbing'"></td></tr>
+<tr><td><a href="pipe.htm">Pipe and Fittings</a></td></tr>
+<tr><td><a href="solders.htm">Solders and
+Flux</a></td></tr>
+<tr><td><a href="tools.htm">Tools</a></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NBA Finals All-Time Scoring Leaders</title>
+</head>
+<body>
+<h1>NBA Finals</h1>
+<h2>All-Time Scoring Leaders (as of 2005)</h2>
+
+<script type="text/javascript">
+var leader1 = new Array();
+leader1[0] = "Rick Barry";                 // player
+leader1[1] = 10;                           // number of games
+leader1[2] = 138;                          // two point baskets
+leader1[3] = 87;                           // free throws
+var leader2 = new Array();
+leader2[0] = "Michael Jordan";
+leader2[1] = 35;
+leader2[2] = 438;
+leader2[3] = 258;
+var leader3 = new Array();
+leader3[0] = "Shaquille \"Shaq\" O\'Neal";
+leader3[1] = 24;
+leader3[2] = 306;
+leader3[3] = 171;
+document.write("<table border='1' width='100%'><colgroup span='1' width='30%' /><colgroup span='5' width='14%' /><tr><th>Player</th><th>Games</th><th>2 Pt. Baskets</th><th>Free Throws</th><th>Total Points</th><th>Avg</th></tr>");
+document.write("<tr><td>" + leader1[0] + "</td><td>" + leader1[1] + "</td><td>" + leader1[2] + "</td><td>" + leader1[3] + "</td><td>" + (leader1[2] * 2 + leader1[3]) + "</td><td>" + (leader1[2] * 2 + leader1[3]) / leader1[1] + "</td></tr>");
+document.write("<tr><td>" + leader2[0] + "</td><td>" + leader2[1] + "</td><td>" + leader2[2] + "</td><td>" + leader2[3] + "</td><td>" + (leader2[2] * 2 + leader2[3]) + "</td><td>" + (leader2[2] * 2 + leader2[3]) / leader2[1] + "</td></tr>");
+document.write("<tr><td>" + leader3[0] + "</td><td>" + leader3[1] + "</td><td>" + leader3[2] + "</td><td>" + leader3[3] + "</td><td>" + (leader3[2] * 2 + leader3[3]) + "</td><td>" + (leader3[2] * 2 + leader3[3]) / leader3[1] + "</td></tr>");
+document.write("</table>");
+</script>
+
+</body>
+</html>

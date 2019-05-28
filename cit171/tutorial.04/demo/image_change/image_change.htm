@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Change Example</title>
+
+<script type="text/javascript">
+// declare global variables
+var image_array_global = new Array(2);
+var timer_handle;
+
+function rightStr(s, c) {
+	index = s.lastIndexOf(c);
+	index = index + 1;
+	return s.slice(index);
+}
+
+function init() {
+	// set the data type of each element in the array
+	image_array_global[0] = new Image();
+	image_array_global[1] = new Image();
+	
+	// put an actual image into each of the array elements
+	image_array_global[0].src = "image_bw.jpg";
+	image_array_global[1].src = "image_color.jpg";	
+	
+	// disable the auto off button
+	document.getElementById("auto_off").disabled = true;
+}
+function change_bw() {
+	document.getElementById("slide").src = "image_bw.jpg";
+}
+function change_color() {
+	document.getElementById("slide").src = "image_color.jpg";
+}
+function increase_image_size() {
+	document.getElementById("slide").height = 140;
+}
+function reset_image_size() {
+	document.getElementById("slide").height = 70;
+}
+function increase_border_size() {
+	document.getElementById("slide").border = 10;
+}
+function reset_border_size() {
+	document.getElementById("slide").border = 0;	
+}
+function change_bw_handle() {
+	// declare variables
+	var image_handle;
+	
+	// get a reference to the image tag
+	 image_handle = document.getElementById("slide");
+	 
+	 // change the image using the image reference 
+	 image_handle.src = "image_bw.jpg";
+}
+function change_color_handle() {
+	// declare variables
+	var image_handle;
+	
+	// get a reference to the image tag
+	 image_handle = document.getElementById("slide");
+	 
+	 // change the image using the image reference 
+	 image_handle.src = "image_color.jpg";
+}
+function change_bw_variable() {
+	// declare variables
+	var image = new Image();
+	
+	// set the image
+	image.src = "image_bw.jpg";
+	
+	// assign image to tag
+	document.getElementById("slide").src = image.src;
+}
+function change_color_variable() {
+	// declare variables
+	var image = new Image();
+	
+	// set the image
+	image.src = "image_color.jpg";
+	
+	// assign image to tag
+	document.getElementById("slide").src = image.src;
+}
+function change_bw_array() {
+	// declare an array
+	var image_array = new Array(2);
+	
+	// set the data type of each element in the array
+	image_array[0] = new Image();
+	image_array[1] = new Image();
+	
+	// put an actual image into each of the array elements
+	image_array[0].src = "image_bw.jpg";
+	image_array[1].src = "image_color.jpg";
+	
+	// change the image in the tag
+	document.getElementById("slide").src = image_array[0].src;
+}
+function change_color_array() {
+	// declare an array
+	var image_array = new Array(2);
+	
+	// set the data type of each element in the array
+	image_array[0] = new Image();
+	image_array[1] = new Image();
+	
+	// put an actual image into each of the array elements
+	image_array[0].src = "image_bw.jpg";
+	image_array[1].src = "image_color.jpg";
+	
+	// change the image in the tag
+	document.getElementById("slide").src = image_array[1].src;
+}
+function change_bw_global_array() {
+	// change the image in the tag
+	document.getElementById("slide").src = image_array_global[0].src;
+}
+function change_color_global_array() {
+	// change the image in the tag
+	document.getElementById("slide").src = image_array_global[1].src;
+}
+function change_auto_on() {
+	// turn on the timer
+	timer_handle = setInterval( 'change_image()', 1000);
+
+	// auto on button enable/disable
+	document.getElementById("auto_on").disabled = true;
+	document.getElementById("auto_off").disabled = false;
+}
+function change_auto_off() {
+	// turn off the timer
+	clearInterval( timer_handle );
+
+	// auto on button enable/disable
+	document.getElementById("auto_on").disabled = false;
+	document.getElementById("auto_off").disabled = true;
+}
+function change_image() {
+	// declare variables
+	var image_path;
+	var image_name;
+	
+	// get the path of the image that is currently in the Web page
+	image_path = document.getElementById("slide").src;
+	
+	// get just the file name itself from the image path
+	image_name = rightStr( image_path, "/" );
+	
+	if ( image_name == "image_bw.jpg" ) {
+		document.getElementById("slide").src = image_array_global[1].src;
+	}
+	else {
+		document.getElementById("slide").src = image_array_global[0].src;
+	}
+}
+</script>
+
+</head>
+<body onload="init();" >
+<h1>Image Change Example</h1>
+
+<img src="image_bw.jpg" id="slide">
+
+<br><br><br>
+<input type="button" value="Change to BW" onclick="change_bw();" />
+<input type="button" value="Change to Color" onclick="change_color();" />
+<br><br>
+<input type="button" value="Increase Image Size" onclick="increase_image_size();" />
+<input type="button" value="Reset Image Size" onclick="reset_image_size();" />
+<br><br>
+<input type="button" value="Increase Border Size" onclick="increase_border_size();" />
+<input type="button" value="Reset Border Size" onclick="reset_border_size();" />
+<br><br>
+<input type="button" value="Change to BW using a Handle" onclick="change_bw_handle();" />
+<input type="button" value="Change to Color using a Handle" onclick="change_color_handle();" />
+<br><br>
+<input type="button" value="Change to BW using a Variable" onclick="change_bw_variable();" />
+<input type="button" value="Change to Color using a Variable" onclick="change_color_variable();" />
+<br><br>
+<input type="button" value="Change to BW using an Array" onclick="change_bw_array();" />
+<input type="button" value="Change to Color using an Array" onclick="change_color_array();" />
+<br><br>
+<input type="button" value="Change to BW using a Global Array" onclick="change_bw_global_array();" />
+<input type="button" value="Change to Color using a Global  Array" onclick="change_color_global_array();" />
+<br><br>
+<input type="button" value="Turn Auto Image Change On" id="auto_on" onclick="change_auto_on();" />
+<input type="button" value="Turn Auto Image Change Off" id="auto_off" onclick="change_auto_off();" />
+
+</body>
+</html>

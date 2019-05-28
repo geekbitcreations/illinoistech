@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Information</title>
+<link rel="stylesheet" href="js_styles.css" type="text/css">
+
+<script type="text/javascript">
+function confirmReset() {
+        var resetForm = confirm("Are you sure you want to reset the form?");
+        if (resetForm == true)
+                return true;
+        return false;
+}
+
+function submitform(){
+      window.alert("product from submit");
+      //Commented below method 1: Saving state information using HIDDEN FORM FIELDS.
+       parent.topframe.document.forms[0].serial.value    = document.forms[0].serial.value;		   
+	   parent.topframe.document.forms[0].date.value      = document.forms[0].date.value;
+       if (document.forms[0].where[0].checked == true)
+		          parent.topframe.document.forms[0].where[0].value = document.forms[0].where[0].value; 
+	   if (document.forms[0].where[1].checked == true)
+		          parent.topframe.document.forms[0].where[1].value = document.forms[0].where[1].value; 
+	   if (document.forms[0].where[2].checked == true)
+		          parent.topframe.document.forms[0].where[2].value = document.forms[0].where[2].value; 
+	   if (document.forms[0].where[3].checked == true)
+		          parent.topframe.document.forms[0].where[3].value = document.forms[0].where[3].value; 
+	   parent.topframe.document.forms[0].submit();
+	   
+	   return false; 
+	   
+	}   
+</script>
+</head>
+<body>
+<h3>Color Printer Product Information</h3>
+
+<form action="" method="get" enctype="application/x-www-form-urlencoded" onreset="return confirmReset();" onsubmit="return submitform();">
+     <p>Printer serial number<br>      <input type="text" name="serial" size="50" /></p>
+     <p>Date printer was purchased<br> <input type="text" name="date" size="50" /></p>
+     <p>Where did you purchase this printer?<br>
+         <input type="radio" name="where" value="retail" />Retail Store<br>
+         <input type="radio" name="where" value="catalog_mail" />Catalog/Mail Order<br>
+         <input type="radio" name="where" value="internet" />Internet Transaction<br>
+         <input type="radio" name="where" value="other" />Other</p>
+     <p> <input type="submit" value="Register Product" />
+	     <input type="reset" /></p>
+</form>
+
+</body>
+</html>

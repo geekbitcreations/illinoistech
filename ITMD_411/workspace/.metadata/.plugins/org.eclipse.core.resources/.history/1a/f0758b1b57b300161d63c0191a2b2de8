@@ -1,0 +1,17 @@
+/**
+ * Deborah Barndt
+ * 11-22-16
+ * UpdateTicket.java
+ * Final Project
+ * This program will allow the user to update a trouble ticket in the database.
+ * Written by Deborah Barndt. */
+
+public class UpdateTicket 
+{
+
+	public UpdateTicket() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forestville Hardware Supply</title>
+<style type="text/css">
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+h1 { color: #039 }
+table { background-color: aqua; border-style: solid; border-width: thin; border-color: black }
+a.noDecor { text-decoration: none; color: black }
+table.noShow {display: none; border-style: none; position: relative }
+</style>
+</head>
+<body>
+<h1>Forestville Hardware Supply</h1>
+<p>Use the menu to help find what you are looking for.</p>
+<table width="50%">
+ <tr align="left">
+  <td onmouseover=
+   "document.getElementById('electrical').style.display='block';"
+   onmouseout=
+   "document.getElementById('electrical').style.display='none';">
+   <a href="" class="noDecor">Electrical</a><br/>
+   <table class="noShow" id="electrical" width="100%">
+     <tr><td><a href="breakers.htm">Breakers</a></td></tr>
+     <tr><td><a href="fuses.htm">Fuses</a></td></tr>
+     <tr><td><a href="tools.htm">Tools</a></td></tr>
+     <tr><td><a href="wire.htm">Wire</a></td></tr>
+          </table>
+         </td>
+       </tr>
+       <tr align="left">
+        <td onmouseover=
+          "document.getElementById('plumbing').style.display='block';"
+          onmouseout=
+            "document.getElementById('plumbing').style.display='none';">
+           <a href="" class="noDecor">Plumbing</a><br>
+           <table class="noShow" id="plumbing" width="100%">
+             <tr><td><a href="hoseclamps.htm">Hose Clamps</a></td></tr>
+             <tr><td><a href="pipe.htm">Pipe and Fittings</a></td></tr>
+             <tr><td><a href="solders.htm">Solders and Flux</a></td></tr>
+             <tr><td><a href="tools.htm">Tools</a></td></tr>
+           </table>
+          </td>
+        </tr>
+        <tr align="left"><td onmouseover=
+          "document.getElementById('hc').style.display='block';"
+          onmouseout=
+           "document.getElementById('hc').style.display='none';">
+          <a href="" class="noDecor">Heating and Cooling</a><br/>
+          <table class="noShow" id="hc" width="100%">
+            <tr><td><a href="ac.htm">Air Conditioners</a></td></tr>
+            <tr><td><a href="dehumidifier.htm">Dehumidifiers</a></td></tr>
+          <tr><td><a href="heaters.htm">Heaters</a></td></tr>
+            <tr><td><a href="insulation.htm">Insulation</a></td></tr>
+            <tr><td><a href="thermostats.htm">Thermostats</a></td></tr>
+            <tr><td><a href="ventilation.htm">Ventilation</a></td></tr>
+            <tr><td><a href="waterheaters.htm">Water Heaters</a></td></tr>
+          </table>
+         </td>
+       </tr>
+      </table>
+</body>
+</html>

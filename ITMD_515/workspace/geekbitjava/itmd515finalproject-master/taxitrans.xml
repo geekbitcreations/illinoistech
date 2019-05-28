@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="taxitrans.xsl" ?>
+
+<!-- Deborah Barndt
+ 	 Thomas Boller
+ 	 2-23-18
+ 	 taxitrans.xml
+ 	 Programming Assignment 2
+ 	 This xml file holds the taxi transactions for the car services.
+ 	 Written by Deborah Barndt & Thomas Boller. -->
+
+<taxitransactions>
+	
+	<transaction>
+		<trans_id>2001</trans_id>
+		<user_id>daredvl</user_id>
+		<driver_id>grngoblin</driver_id>
+		<date>2018-02-18</date>
+		<rate>4.56</rate>
+		<pickup_time>08:25:00</pickup_time>
+		<pickup_loc>3201 S State St</pickup_loc>
+		<drop_loc>1825 S Clark St</drop_loc>
+		<drop_time>08:53:45</drop_time>
+		<rating>5</rating>
+	</transaction>
+	
+	<transaction>
+		<trans_id>2002</trans_id>
+		<user_id>storm</user_id>
+		<driver_id>antman12</driver_id>
+		<date>2018-03-14</date>
+		<rate>9.65</rate>
+		<pickup_time>09:20:10</pickup_time>
+		<pickup_loc>10 W 35th St</pickup_loc>
+		<drop_loc>18 W Monroe St</drop_loc>
+		<drop_time>10:15:45</drop_time>
+		<rating>5</rating>
+	</transaction>
+	
+	<transaction>
+		<trans_id>2003</trans_id>
+		<user_id>flcon</user_id>
+		<driver_id>jessjones3</driver_id>
+		<date>2018-05-16</date>
+		<rate>5.13</rate>
+		<pickup_time>03:12:47</pickup_time>
+		<pickup_loc>10 E Randolph St</pickup_loc>
+		<drop_loc>3301 S State St</drop_loc>
+		<drop_time>04:36:45</drop_time>
+		<rating>5</rating>
+	</transaction>
+
+</taxitransactions>

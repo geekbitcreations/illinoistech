@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Move Example 1</title>
+
+<script type="text/javascript">
+
+function init() {
+	//set the image in back of all of the other page objects
+	document.getElementById("clc_logo").style.zIndex = -1;	
+}
+
+function move_right() {
+	// declare variables
+	var image_handle;
+	var image_left;
+	var string_length;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// get the current location of the image
+	image_left = image_handle.style.left;
+	
+	// get rid of the "px" in the string and convert the string to a number
+	image_left = parseInt(image_left);
+		
+	// add 50 to the current left location of the image
+	image_left = image_left + 50;
+	
+	// move the image to the right
+	image_handle.style.left = image_left + "px";
+}
+
+function move_left() {
+	// declare variables
+	var image_handle;
+	var image_left;
+	var string_length;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// get the current location of the image
+	image_left = image_handle.style.left;
+	
+	// get rid of the "px" in the string and convert the string to a number
+	image_left = parseInt(image_left);
+		
+	// add 50 to the current left location of the image
+	image_left = image_left - 50;
+	
+	// move the image to the left
+	image_handle.style.left = image_left + "px";
+}
+
+function move_down() {
+	// declare variables
+	var image_handle;
+	var image_top;
+	var string_length;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// get the current location of the image
+	image_top = image_handle.style.top;
+	
+	// get rid of the "px" in the string and convert the string to a number
+	image_top = parseInt(image_top);
+		
+	// add 50 to the current top location of the image
+	image_top = image_top + 50;
+	
+	// move the image down
+	image_handle.style.top = image_top + "px";
+}
+
+function move_up() {
+	// declare variables
+	var image_handle;
+	var image_top;
+	var string_length;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// get the current location of the image
+	image_top = image_handle.style.top;
+	
+	// get rid of the "px" in the string and convert the string to a number
+	image_top = parseInt(image_top);
+		
+	// add 50 to the current top location of the image
+	image_top = image_top - 50;
+	
+	// move the image up
+	image_handle.style.top = image_top + "px";
+}
+</script>
+
+</head>
+<body onload="init();">
+
+<h1>Image Move Example 1</h1>
+
+<img src="clc_logo.gif" name="clc_logo" id="clc_logo" style="position: absolute; left: 10px; top: 75px" alt="CLC Logo">
+<br><br><br>
+<input type="button" value="Move Right" onclick="move_right();" />
+<input type="button" value="Move Left" onclick="move_left();" />
+<input type="button" value="Move Up" onclick="move_up();" />
+<input type="button" value="Move Down" onclick="move_down();" />
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Conditional Statements</title>
+</head>
+<body>
+<h1>Conditional Statements</h1>
+
+<script type="text/javascript">
+// declare variables
+var totalSales;
+var message;
+
+// assign values to variables
+totalSales = 12;
+
+// IF STATEMENT EXAMPLE 1
+document.write("If Statement Example 1:<br>");
+// create a message based on sales number
+// note that in this if format there are only two possible outcomes
+// "Outstanding" will be assigned to the variable message if totalSales > 12, otherwise "Excellent" will be assigned
+message = (totalSales > 12) ? "Outstanding" : "Excellent";
+// display the message on the Web page
+document.write(message + "<br><br>");	
+
+// IF STATEMENT EXAMPLE 2
+document.write("If Statement Example 2:<br>");
+// create message based on sales number
+if (totalSales > 12) {
+	message = "Outstanding";
+}
+else if (totalSales > 9) {
+	message = "Excellent";
+}
+else if (totalSales > 6) {
+	message = "Great";
+}	
+else {
+	message = "O.K.";
+}
+// display the message on the Web page
+document.write(message + "<br><br>");	
+
+// CASE STATEMENT EXAMPLE
+document.write("Case Statement Example:<br>");
+// when the switch executes, it finds the first matching case statement and then executes each
+// line of code after the switch until it hits either a break statement or the end of the switch 
+switch (totalSales) {
+	case 15:
+	case 14:
+	case 13:
+			message= "Outstanding";
+			break;
+	case 12:
+	case 11:
+	case 10:
+			message= "Excellent";
+			break;
+	case 9:
+	case 8:
+	case 7:
+			message= "Great";
+			break;
+	default:
+			message= "O.K.";
+			break;
+}
+// display the message on the Web page
+document.write(message + "<br><br>");	
+</script>
+
+</body>
+</html>

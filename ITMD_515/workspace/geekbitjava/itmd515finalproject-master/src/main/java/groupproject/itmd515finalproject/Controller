@@ -1,0 +1,53 @@
+@ManagedBean(name = "logintblController")
+@SessionScoped
+
+public class LogintblController implements Serializable 
+{
+    private Logintbl current;
+    @EJB
+    private com.jsf.blog.example1.LogintblFacade ejbFacade;
+    private String message;
+    
+    public LogintblController() 
+    {
+    }
+    
+    public Logintbl getSelected() 
+    {
+        if (current == null) 
+        {
+            current = new Logintbl();
+        }
+        
+        return current;
+    }
+    
+    private LogintblFacade getFacade() 
+    {
+        return ejbFacade;
+    }
+    
+    public void validateLogin() 
+    {
+        TypedQuery<Logintbl> query = getFacade().getEntityManager().
+                createNamedQuery("Logintbl.findByUsernameAndPassword", Logintbl.class);
+        query.setParameter("username", current.getUsername());
+        query.setParameter("password", current.getPassword());
+        
+        try 
+        {
+            Logintbl login = query.getSingleResult();
+            message = "Valid User";
+        } 
+        
+        catch (Exception e) 
+        {
+            message = "Invalid Login Credentials";
+        }
+    }
+    
+    public String getMessage() 
+    {
+        return message;
+    }
+}

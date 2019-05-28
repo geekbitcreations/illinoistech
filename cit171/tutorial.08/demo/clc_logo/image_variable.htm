@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Image Variable Example</title>
+
+<script type="text/javascript">
+// declare two variables
+var image_white;
+var image_black;
+
+// change the data type of each variable to an image data type
+image_white = new Image();
+image_black = new Image();
+
+// load images from disk into the array elements
+image_white.src = "clc_logo_white.jpg";
+image_black.src = "clc_logo_black.jpg";
+
+function change_to_white() {
+	// declare variables
+	var image_handle;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// change the image
+	image_handle.src = image_white;
+}
+
+function change_to_black() {
+	// declare variables
+	var image_handle;
+
+	// get a reference to the image
+	image_handle = document.getElementById("clc_logo");
+	
+	// change the image
+	image_handle.src = image_black;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Image Variable Example</h1>
+
+<img src="clc_logo_white.jpg" name="clc_logo" id="clc_logo" alt="CLC Logo">
+
+<br><br><br>
+<input type="button" value="Change to White" onclick="change_to_white();" />
+<input type="button" value="Change to Black" onclick="change_to_black();" />
+
+</body>
+</html>

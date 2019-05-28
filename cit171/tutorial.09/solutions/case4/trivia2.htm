@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<!-- 
+   New Perspectives on JavaScript, 2nd Edition
+   Tutorial 9
+   Case Problem 4
+
+   Trivia Masters Quiz 2
+   Author:           Todd Ferris
+   Date:             3/1/2012
+
+   Filename:         trivia2.htm
+   Supporting files: quiz.css, results.js, score.js, trivia2.htm
+
+-->
+
+   <title>Trivia Master Quiz 2</title>
+   <link href="quiz.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="score.js"></script>
+
+</head>
+
+<body>
+   <div id="page">
+
+   <h1>Trivia Masters</h1>
+   <h2>Movies</h2>
+
+   <ol>
+      <li>He was in the his mid-seventies before he won his first Best Actor Oscar</li>
+         <ol>
+            <li><input type="radio" id="q21a" name="question21" value="true" />Henry Fonda</li>
+	    <li><input type="radio" id="q21b" name="question21" value="false" />Jimmy Stewart</li>
+	    <li><input type="radio" id="q21c" name="question21" value="false" />Charleton Heston</li>
+	    <li><input type="radio" id="q21d" name="question21" value="false" />Paul Newman</li>
+         </ol>
+
+      <li>She was the first Black woman to win an Oscar</li>
+         <ol>
+            <li><input type="radio" id="q22a" name="question22" value="false" />Della Reese</li>
+	    <li><input type="radio" id="q22b" name="question22" value="false" />Halle Berry</li>
+	    <li><input type="radio" id="q22c" name="question22" value="true" />Hattie McDaniel</li>
+	    <li><input type="radio" id="q22d" name="question22" value="false" />Lena Horne</li>
+         </ol>
+      <li>Which of these movies resulted in an Oscar for Jack Nicholson?</li>
+         <ol>
+            <li><input type="radio" id="q23a" name="question23" value="false" />Prizzi's Honor</li>
+	    <li><input type="radio" id="q23b" name="question23" value="true" />As Good as it Gets</li>
+	    <li><input type="radio" id="q23c" name="question23" value="false" />Batman</li>
+	    <li><input type="radio" id="q23d" name="question23" value="false" />A Few Good Men</li>
+         </ol>
+      <li>Whom of these following did not win an Oscar?</li>
+         <ol>
+            <li><input type="radio" id="q24a" name="question24" value="false" />Bruce Springsteen</li>
+	    <li><input type="radio" id="q24b" name="question24" value="false" />The Beatles</li>
+	    <li><input type="radio" id="q24c" name="question24" value="false" />Elton John</li>
+	    <li><input type="radio" id="q24d" name="question24" value="true" />The Rolling Stones</li>
+         </ol>
+      <li>Which of these movies did not star Jimmy Stewart?</li>
+         <ol>
+            <li><input type="radio" id="q25a" name="question25" value="false" />It's a Wonderful Life</li>
+	    <li><input type="radio" id="q25b" name="question25" value="true" />Mr. Deeds Goes to Town</li>
+	    <li><input type="radio" id="q25c" name="question25" value="false" />Mr. Smith Goes to Washington</li>
+	    <li><input type="radio" id="q25d" name="question25" value="false" />Made for Each Other</li>
+         </ol>
+      <li>Paul Newman won an Oscar for his role in this movie</li>
+         <ol>
+            <li><input type="radio" id="q26a" name="question26" value="false" />The Hustler</li>
+	    <li><input type="radio" id="q26b" name="question26" value="false" />Hud</li>
+	    <li><input type="radio" id="q26c" name="question26" value="true" />The Color of Money</li>
+	    <li><input type="radio" id="q26d" name="question26" value="false" />The Verdict</li>
+         </ol>
+      <li>Dustin Hoffman won his first Oscar for his role in:</li>
+         <ol>
+            <li><input type="radio" id="q27a" name="question27" value="false" />Hook</li>
+	    <li><input type="radio" id="q27b" name="question27" value="false" />Midnight Cowboy</li>
+	    <li><input type="radio" id="q27c" name="question27" value="false" />The Graduate</li>
+	    <li><input type="radio" id="q27d" name="question27" value="true" />Kramer vs. Kramer</li>
+         </ol>
+      <li>The first sequel ever to win a Best Picture Oscar was:</li>
+         <ol>
+            <li><input type="radio" id="q28a" name="question28" value="true" />Godfather II</li>
+	    <li><input type="radio" id="q28b" name="question28" value="false" />The Lord of the Rings: Return of the King</li>
+	    <li><input type="radio" id="q28c" name="question28" value="false" />The Bells of St. Marys</li>
+	    <li><input type="radio" id="q28d" name="question28" value="false" />The French Connection II</li>
+         </ol>
+      <li>The only animated film to be nominated for Best Picture was:</li>
+         <ol>
+            <li><input type="radio" id="q29a" name="question29" value="false" />Snow White and the 7 Dwarfs</li>
+	    <li><input type="radio" id="q29b" name="question29" value="true" />Beauty and the Beast</li>
+	    <li><input type="radio" id="q29c" name="question29" value="false" />The Lion King</li>
+	    <li><input type="radio" id="q22d" name="question29" value="false" />Bambi</li>
+         </ol>
+      <li>Sir Alec Guinness won a Best Actor Oscar for his role in:</li>
+         <ol>
+            <li><input type="radio" id="q210a" name="question210" value="false" />Star Wars</li>
+	    <li><input type="radio" id="q210b" name="question210" value="false" />Marathon Man</li>
+	    <li><input type="radio" id="q210c" name="question210" value="true" />Bridge on the River Kwai</li>
+	    <li><input type="radio" id="q210d" name="question210" value="false" />Wuthering Heights</li>
+         </ol>
+   </ol>
+
+   <p>
+      <input type="button" id="submit" value="Submit my Answers" />
+   </p>
+   
+   </div>
+</body>
+</html>

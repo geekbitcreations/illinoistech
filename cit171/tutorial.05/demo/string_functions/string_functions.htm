@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>String Functions Example</title>
+
+<script type="text/javascript">
+
+function display_length() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var text_box_length;
+	var alert_message;
+
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("first_name");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+
+	// get the length of the text box contents
+	text_box_length = text_box_contents.length;
+	
+	// build a message into a variable
+	alert_message = "The length of the name is " + text_box_length;
+	
+	// display the length of the text box to the user
+	window.alert(alert_message);
+}
+
+function validate_length() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var text_box_length;
+	var alert_message;
+
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("first_name");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+
+	// get the length of the text box contents
+	text_box_length = text_box_contents.length;
+	
+	if (text_box_length <= 30) {
+		window.alert("The length of the name is less than or equal to 30 characters");
+	}
+	else {
+		// build a message into a variable
+		alert_message = "The maximum length of the name is 30" + "\n" + "Your name is length " + text_box_length;
+		
+		// display the message to the user
+		window.alert(alert_message);
+	}
+}
+
+function convert_to_lower_case() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("first_name");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	// convert the string to all lower case letters
+	text_box_contents = text_box_contents.toLowerCase();
+	
+	// update the text box on the Web page
+	text_box_handle.value = text_box_contents;
+}
+
+function convert_to_upper_case_1() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("first_name");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	// convert the string to all upper case letters
+	text_box_contents = text_box_contents.toUpperCase();
+	
+	// update the text box on the Web page
+	text_box_handle.value = text_box_contents;
+}
+
+function convert_to_upper_case_2() {
+	// convert to upper case in one line of JavaScript code
+	document.getElementById("first_name").value = document.getElementById("first_name").value.toUpperCase();
+}
+
+function convert_to_upper_case_3() {
+	// convert to upper case in one line of JavaScript code
+	document.forms[0].first_name.value = document.forms[0].first_name.value.toUpperCase();
+}
+
+function convert_to_upper_case_4() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+
+	// get a reference to the first name text box
+	text_box_handle = document.forms[0].first_name;
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	// convert the string to all upper case letters
+	text_box_contents = text_box_contents.toUpperCase();
+	
+	// update the text box on the Web page
+	text_box_handle.value = text_box_contents;
+}
+
+function remove_single_period() {
+	// declare variables
+	var text_box_handle;
+	var text_box_contents;
+	var text_box_contents_new;
+
+	// get a reference to the first name text box
+	text_box_handle = document.getElementById("first_name");
+	
+	// get the contents of the text box into a variable
+	text_box_contents = text_box_handle.value;
+	
+	// remove any periods with zero length strings
+	text_box_contents_new = text_box_contents.replace(".", "");
+	
+	// update the text box on the Web page
+	text_box_handle.value = text_box_contents_new;
+}
+
+</script>
+
+</head>
+<body>
+
+<h1>String Functions Example</h1>
+
+<form>
+
+<br>
+First Name <input type="text" name="first_name" id="first_name" size="30" value="John" />
+<br><br>
+<input type="button" value="Display Length" onclick="display_length();" /><br>
+<input type="button" value="Validate Length" onclick="validate_length();" /><br>
+<input type="button" value="Convert to Lower Case" onclick="convert_to_lower_case();" /><br>
+<input type="button" value="Convert to Upper Case 1" onclick="convert_to_upper_case_1();" /><br>
+<input type="button" value="Convert to Upper Case 2" onclick="convert_to_upper_case_2();" /><br>
+<input type="button" value="Convert to Upper Case 3" onclick="convert_to_upper_case_3();" /><br>
+<input type="button" value="Convert to Upper Case 4" onclick="convert_to_upper_case_4();" /><br>
+<input type="button" value="Remove Single Period" onclick="remove_single_period();" /><br>
+
+</form>
+
+</body>
+</html>

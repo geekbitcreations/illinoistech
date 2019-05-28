@@ -1,0 +1,21 @@
+<ui:composition template="template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">Welcome to Hitch, Please Login</ui:define>
+    <ui:define name="body">
+        <h:form>
+            <h:panelGrid style="float: right; border: 1">
+                <h:outputText value="Hitch" />
+                <h:outputText value="Username"/>
+                <h:inputText value="#{Controller.selected.username}" />
+                <h:outputText value="Password" />
+                <h:inputSecret  value="#{Controller.selected.password}" />
+                <h:commandButton action="#{Controller.validateLogin}" value="Login">
+                    <f:ajax execute="@form" render="displayResponse" />
+                </h:commandButton>
+                <h:outputLabel id="displayResponse" value="#{Controller.message}" />
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
